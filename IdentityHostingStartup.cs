@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using CRM.Models;
-
+using CRM.Services;
 using CRM.Data;
 
 [assembly: HostingStartup(typeof(CRM.IdentityHostingStartup))]
@@ -22,7 +22,7 @@ namespace CRM
                 services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                     .AddRoles<IdentityRole>()
                     .AddEntityFrameworkStores<ApplicationDbContext>();
-                
+                services.AddTransient<IEmailSender,EmailSender>();
 
             });
         }
