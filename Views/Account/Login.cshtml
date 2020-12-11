@@ -54,7 +54,8 @@
                                     <hr>
                                     <div class="form-group text-center">
                                         <label>Not a member yet?</label>
-                                        <a asp-page="" class="btn btn-register btn-user btn-block">Register for a New Account</a>
+                                        <a class="btn btn-register btn-user btn-block" asp-area=""  asp-controller="Account" asp-action="Register">Register</a>
+                                        @* <a asp-page="./Register" class="btn btn-register btn-user btn-block">Register for a New Account</a> *@
                                     </div>
                                 </form>
                             </div>
