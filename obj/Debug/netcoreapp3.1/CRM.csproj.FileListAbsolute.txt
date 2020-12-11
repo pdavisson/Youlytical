@@ -93,6 +93,7 @@ C:\Users\10PRO64\source\repos\CRM\CRM\obj\Debug\netcoreapp3.1\CRM.genruntimeconf
 C:\Users\10PRO64\source\repos\CRM\CRM\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_FormLayout.cshtml.g.cs
 C:\Users\10PRO64\source\repos\CRM\CRM\obj\Debug\netcoreapp3.1\Razor\Views\Account\Register.cshtml.g.cs
 C:\Users\10PRO64\source\repos\CRM\CRM\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
-C:\Users\10PRO64\source\repos\CRM\CRM\obj\Debug\netcoreapp3.1\Razor\Views\Account\LoginOldNotUse.cshtml.g.cs
 C:\Users\10PRO64\source\repos\CRM\CRM\obj\Debug\netcoreapp3.1\Razor\Views\CRM\index.cshtml.g.cs
 C:\Users\10PRO64\source\repos\CRM\CRM\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_CRMLayout.cshtml.g.cs
+C:\Users\10PRO64\source\repos\CRM\CRM\obj\Debug\netcoreapp3.1\Razor\Views\CRM\Contacts.cshtml.g.cs
+C:\Users\10PRO64\source\repos\CRM\CRM\obj\Debug\netcoreapp3.1\Razor\Views\Account\Logout.cshtml.g.cs

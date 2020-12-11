@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Youlytical</title>
+    @* <title>Youlytical - Dashboard</title> *@
     <link rel="icon" href="@Url.Content("~/favicon.ico")" type="image/x-icon" />
     <!--jquery, dependency for other files-->
     
@@ -38,10 +38,6 @@
       <br><br>
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
- <!-- Heading -->
- @* <div class="sidebar-heading">
-  Products
-</div> *@
    <!-- Nav Item - Face Mask  Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" asp-area="" asp-controller="CRM" asp-action="Index">
@@ -52,25 +48,17 @@
 <!-- Nav Item - Pages Collapse Menu -->
 
 <li class="nav-item">
-  <a class="nav-link collapsed" asp-area="" asp-controller="Home" asp-action="Contacts">
+  <a class="nav-link collapsed" asp-area="" asp-controller="CRM" asp-action="Contacts">
     <i class="fas fa-address-book"></i>
     <span>Contacts</span>
   </a>
 </li>
   <!-- Nav Item - Tasks -->
   <li class="nav-item">
-    <a class="nav-link collapsed" asp-area="" asp-controller="Home" asp-action="Tasks">
+    <a class="nav-link collapsed" asp-area="" asp-controller="CRM" asp-action="Tasks">
       <i class="fas fa-tasks"></i>
       <span>Tasks</span>
     </a>
-    @* <div id="collapseTasks" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Types of Tasks:</h6>
-        <a class="collapse-item" asp-area="" asp-controller="Home" asp-action="Tasks">Task to Do</a>
-        <a class="collapse-item" href="utilities-border.html">Completed</a>
-        <a class="collapse-item" href="utilities-animation.html">Archived</a>
-      </div>
-    </div> *@
   </li>
   <!-- Nav Item - Smart Plans -->
   <li class="nav-item">
@@ -429,7 +417,7 @@
             <div class="modal-body">Select "Sign Out" below if you are ready to end your current session.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <form id="logoutForm" class="form-inline" asp-controller="Account" method="POST">
                     <button id="logout" type="submit" class="btn btn-primary">Sign Out</button>
                 </form>
                 @* <a class="btn btn-primary" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">Logout</a> *@

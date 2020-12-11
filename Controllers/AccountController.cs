@@ -246,14 +246,14 @@ namespace CRM.Controllers
             return View(model);
         }
 
-        // [HttpPost]
-        // [ValidateAntiForgeryToken]
-        // public async Task<IActionResult> Logout()
-        // {
-        //     await _signInManager.SignOutAsync();
-        //     _logger.LogInformation("User logged out.");
-        //     return RedirectToAction(nameof(HomeController.Index), "Home");
-        // }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            _logger.LogInformation("User logged out.");
+            return RedirectToAction(nameof(HomeController.Index), "Home");
+        }
 
         // [HttpPost]
         // [AllowAnonymous]

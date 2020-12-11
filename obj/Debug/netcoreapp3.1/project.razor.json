@@ -14447,8 +14447,13 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\10PRO64\\source\\repos\\CRM\\CRM\\Views\\Account\\LoginOldNotUse.cshtml",
-      "TargetPath": "Views\\Account\\LoginOldNotUse.cshtml",
+      "FilePath": "c:\\Users\\10PRO64\\source\\repos\\CRM\\CRM\\Views\\CRM\\Contacts.cshtml",
+      "TargetPath": "Views\\CRM\\Contacts.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\10PRO64\\source\\repos\\CRM\\CRM\\Views\\Account\\Logout.cshtml",
+      "TargetPath": "Views\\Account\\Logout.cshtml",
       "FileKind": "mvc"
     },
     {
