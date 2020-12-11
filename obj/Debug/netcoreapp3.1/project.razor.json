@@ -14402,6 +14402,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\10PRO64\\source\\repos\\CRM\\CRM\\Views\\Shared\\_CRMLayout.cshtml",
+      "TargetPath": "Views\\Shared\\_CRMLayout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\10PRO64\\source\\repos\\CRM\\CRM\\Views\\Shared\\_FormLayout.cshtml",
       "TargetPath": "Views\\Shared\\_FormLayout.cshtml",
       "FileKind": "mvc"
@@ -14434,6 +14439,11 @@
     {
       "FilePath": "c:\\Users\\10PRO64\\source\\repos\\CRM\\CRM\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\10PRO64\\source\\repos\\CRM\\CRM\\Views\\CRM\\index.cshtml",
+      "TargetPath": "Views\\CRM\\index.cshtml",
       "FileKind": "mvc"
     },
     {
