@@ -2355,7 +2355,6 @@ textarea.form-control {
     transition: none;
   }
 }
-
 .btn:hover {
   color: #858796;
   text-decoration: none;
@@ -3712,8 +3711,8 @@ input[type="button"].btn-block {
 
 .custom-control-input:checked ~ .custom-control-label::before {
   color: #fff;
-  border-color: #3960CF;
-  background-color: #3960CF;
+  border-color: #00a2e8;
+  background-color:#00a2e8;
 }
 
 .custom-control-input:focus ~ .custom-control-label::before {

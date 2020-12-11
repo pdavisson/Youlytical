@@ -46,6 +46,8 @@ namespace CRM
 
 			app.UseRouting();
 
+			app.UseAuthentication();
+			
 			app.UseAuthorization();
 
 			app.UseEndpoints(endpoints =>
