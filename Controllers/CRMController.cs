@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using CRM.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CRM.Controllers
 {
+	[Authorize]
     public class CRMController : Controller
     {
         private readonly ILogger<CRMController> _logger;
@@ -17,7 +19,7 @@ namespace CRM.Controllers
 		{
 			_logger = logger;
 		}
-
+		
 		public IActionResult Index()
 		{
 			return View();

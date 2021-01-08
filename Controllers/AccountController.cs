@@ -38,6 +38,7 @@ namespace CRM.Controllers
             _emailSender = emailSender;
             _logger = logger;
         }
+        public string ReturnUrl { get; set; }
 
         [TempData]
         public string ErrorMessage { get; set; }
@@ -67,6 +68,7 @@ namespace CRM.Controllers
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
+                    returnUrl = returnUrl ?? Url.Content("~/CRM");
                     return RedirectToLocal(returnUrl);
                 }
                 // if (result.RequiresTwoFactor)
@@ -248,11 +250,14 @@ namespace CRM.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Logout()
+        public async Task<IActionResult> Logout(string returnUrl=null)
         {
+            ViewData["ReturnUrl"] = returnUrl;
             await _signInManager.SignOutAsync();
             _logger.LogInformation("User logged out.");
-            return RedirectToAction(nameof(HomeController.Index), "Home");
+            // returnUrl = returnUrl ?? Url.Content("~/");
+            // return RedirectToLocal(returnUrl);
+            return RedirectToAction("Index","Home");
         }
 
         // [HttpPost]
