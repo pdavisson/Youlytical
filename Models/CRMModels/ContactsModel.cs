@@ -1,10 +1,11 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace CRMModels
+namespace Models.CRMModels
 {
     public class ContactsModel
     {
+        
         [Key]
         public int ContactID { get; set; }
         [StringLength(10)]

@@ -1,5 +1,5 @@
-using CRMModels;
 using Microsoft.EntityFrameworkCore;
+using Models.CRMModels;
 
 namespace CRM.Data
 {

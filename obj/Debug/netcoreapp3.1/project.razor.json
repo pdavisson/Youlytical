@@ -14417,6 +14417,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\10PRO64\\source\\repos\\CRM\\CRM\\Views\\CRM\\Contacts Copy.cshtml",
+      "TargetPath": "Views\\CRM\\Contacts Copy.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\10PRO64\\source\\repos\\CRM\\CRM\\Views\\Home\\Privacy.cshtml",
       "TargetPath": "Views\\Home\\Privacy.cshtml",
       "FileKind": "mvc"
