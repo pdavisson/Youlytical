@@ -8,11 +8,11 @@ namespace Models.CRMModels
         
         [Key]
         public int ContactID { get; set; }
-        [StringLength(10)]
-        [DataType(DataType.Text)]
-        public string UserId { get; set; }
         [Required]
         [StringLength(450)]
+        [DataType(DataType.Text)]
+        public string UserId { get; set; }
+        [StringLength(10)]
         [DataType(DataType.Text)]
         public string prefix { get; set; }
         [Required]
@@ -34,7 +34,6 @@ namespace Models.CRMModels
         [StringLength(50)]
         [Display(Name = "Primary Phone Number")]
         public string PrimaryPhone { get; set; }
-        [Required]
         [Phone]
         [Display(Name = "Secondary Phone")]
         public string SecondaryPhone { get; set; }

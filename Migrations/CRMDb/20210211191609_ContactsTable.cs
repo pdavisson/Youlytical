@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace CRM.Migrations.CRM_Migrations
+namespace CRM.Migrations.CRMDb
 {
     public partial class ContactsTable : Migration
     {
@@ -13,14 +13,14 @@ namespace CRM.Migrations.CRM_Migrations
                 {
                     ContactID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
-                    prefix = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
+                    prefix = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
                     First = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Last = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Suffix = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
                     Spouse_Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     PrimaryPhone = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    SecondaryPhone = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SecondaryPhone = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PrimaryEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SecondaryEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Country = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace CRM.Migrations.CRM_Migrations
+namespace CRM.Migrations.CRMDb
 {
     [DbContext(typeof(CRMDbContext))]
     partial class CRMDbContextModelSnapshot : ModelSnapshot
@@ -74,7 +74,6 @@ namespace CRM.Migrations.CRM_Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SecondaryPhone")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Spouse_Name")
@@ -94,17 +93,17 @@ namespace CRM.Migrations.CRM_Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("UserId")
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .IsRequired()
+                        .HasMaxLength(450)
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Zip")
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("prefix")
-                        .IsRequired()
-                        .HasMaxLength(450)
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("province")
                         .HasMaxLength(50)
