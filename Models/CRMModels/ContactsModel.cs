@@ -10,6 +10,10 @@ namespace Models.CRMModels
         public int ContactID { get; set; }
         [StringLength(10)]
         [DataType(DataType.Text)]
+        public string UserId { get; set; }
+        [Required]
+        [StringLength(450)]
+        [DataType(DataType.Text)]
         public string prefix { get; set; }
         [Required]
         [StringLength(50)]

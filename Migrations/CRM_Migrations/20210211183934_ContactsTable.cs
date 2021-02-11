@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace CRM.Migrations.CRMDb
+namespace CRM.Migrations.CRM_Migrations
 {
-    public partial class CRM_ContactsTable : Migration
+    public partial class ContactsTable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,7 +13,8 @@ namespace CRM.Migrations.CRMDb
                 {
                     ContactID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    prefix = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
+                    UserId = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
+                    prefix = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
                     First = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Last = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Suffix = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
