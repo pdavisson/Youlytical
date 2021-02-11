@@ -1,3 +1,9 @@
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@{
+     var user = await UserManager.GetUserAsync(User);
+}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -345,7 +351,8 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Peter Davisson</span>
+                @* <span class="mr-2 d-none d-lg-inline text-gray-600 small">Peter Davisson</span> *@
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">@user.FirstName @user.LastName</span>
                 <img class="img-profile rounded-circle" src="~/img/Profile_Pictures/Peter_Profile.png">
               </a>
               <!-- Dropdown - User Information -->
@@ -420,8 +427,6 @@
                 <form id="logoutForm" class="form-inline" asp-controller="Account" asp-action="Logout" method="POST">
                     <button id="logout" type="submit" class="btn btn-primary">Sign Out</button>
                 </form>
-                @* <a class="btn btn-primary" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">Logout</a> *@
-                @* <a class="btn btn-primary" href="login.html">Logout</a> *@
             </div>
         </div>
     </div>

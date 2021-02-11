@@ -9,9 +9,13 @@
 
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Contact List</h6>
-    </div>
+    
+    <div class="card-header py-3 d-sm-inline-block">
+        @* <h6 class="m-0 font-weight-bold text-primary">Contact List</h6> *@
+        <a href="#" data-toggle="modal" data-target="#addContactModal">
+            <i class="text-right fas fa-plus fa-2x float-right"></i>
+        </a>
+    </div>  
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
@@ -44,7 +48,26 @@
         </div>
     </div>
 </div>
-
+  <!-- Logout Modal-->
+  <div class="modal fade" id="addContactModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Sign Out" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <form id="logoutForm" class="form-inline" asp-controller="Account" asp-action="Logout" method="POST">
+                    <button id="logout" type="submit" class="btn btn-primary">Sign Out</button>
+                </form>
+            </div>
+        </div>
+    </div>
+  </div>
 <link rel="stylesheet" href="~/css/datatable.min.css" />
 
 @section scripts {
