@@ -42,7 +42,6 @@ namespace CRM.Controllers
 		{
 			var UserID=_userManager.GetUserId(HttpContext.User);
 			return View(_context.CRM_Contacts.Where(a=>a.UserId==UserID));
-			// return View(_context.CRM_Contacts.ToList());
 		}
 		
 
