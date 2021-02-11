@@ -224,7 +224,16 @@ namespace CRM.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser 
+                { 
+                    UserName = model.Email, 
+                    Email = model.Email, 
+                    Company = model.Company,
+                    FirstName=model.FirstName,
+                    LastName=model.LastName,
+                    FranchiseID=model.FranchiseID,
+                    PhoneNumber=model.PhoneNumber
+                };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -232,11 +241,9 @@ namespace CRM.Controllers
                     
                     // Add a user to the default role, or any role you prefer here
                     await _userManager.AddToRoleAsync(user, "Member");
-                    
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
                     await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
-
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation("User created a new account with password.");
                     return RedirectToLocal(returnUrl);
