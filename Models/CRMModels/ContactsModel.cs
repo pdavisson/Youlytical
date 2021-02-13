@@ -18,11 +18,11 @@ namespace Models.CRMModels
         [Required]
         [StringLength(50)]
         [DataType(DataType.Text)]
-        public string First { get; set; }
+        public string FirstName { get; set; }
         [Required]
         [StringLength(50)]
         [DataType(DataType.Text)]
-        public string Last { get; set; }
+        public string LastName { get; set; }
         [StringLength(10)]
         [DataType(DataType.Text)]
         public string Suffix { get; set; }

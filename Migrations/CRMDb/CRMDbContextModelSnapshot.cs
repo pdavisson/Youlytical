@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace CRM.Migrations.CRMDb
+namespace CRM.Migrations.CRMdb
 {
     [DbContext(typeof(CRMDbContext))]
     partial class CRMDbContextModelSnapshot : ModelSnapshot
@@ -45,12 +45,12 @@ namespace CRM.Migrations.CRMDb
                     b.Property<DateTime>("EntryDateTimeStamp")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("First")
+                    b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("Last")
+                    b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");

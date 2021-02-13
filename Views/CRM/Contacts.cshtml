@@ -1,5 +1,6 @@
 ﻿@using Models.CRMModels
-@model IEnumerable<ContactsModel>
+@model IEnumerable<ContactsModel>\
+@* @model ContactsModel *@
 @{
     ViewData["Title"]="Dashboard";
     Layout="_CRMLayout";
@@ -35,8 +36,8 @@
                     {
                         <tr>
                             <td>@item.ContactID</td>
-                            <td>@item.First</td>
-                            <td>@item.Last</td>
+                            <td>@item.FirstName</td>
+                            <td>@item.LastName</td>
                             <td>@item.PrimaryPhone</td>
                             <td>@item.PrimaryEmail</td>
                             <td>@item.Address1</td>

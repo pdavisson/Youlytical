@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace CRM.Migrations.CRMDb
+namespace CRM.Migrations.CRMdb
 {
     public partial class ContactsTable : Migration
     {
@@ -15,8 +15,8 @@ namespace CRM.Migrations.CRMDb
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
                     prefix = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
-                    First = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Last = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Suffix = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
                     Spouse_Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     PrimaryPhone = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),

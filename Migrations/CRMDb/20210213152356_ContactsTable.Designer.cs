@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace CRM.Migrations.CRMDb
+namespace CRM.Migrations.CRMdb
 {
     [DbContext(typeof(CRMDbContext))]
-    [Migration("20210211191609_ContactsTable")]
+    [Migration("20210213152356_ContactsTable")]
     partial class ContactsTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -47,12 +47,12 @@ namespace CRM.Migrations.CRMDb
                     b.Property<DateTime>("EntryDateTimeStamp")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("First")
+                    b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("Last")
+                    b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
