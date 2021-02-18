@@ -98,3 +98,4 @@ C:\Users\10PRO64\source\repos\CRM\CRM\obj\Debug\netcoreapp3.1\Razor\Views\Shared
 C:\Users\10PRO64\source\repos\CRM\CRM\obj\Debug\netcoreapp3.1\Razor\Views\CRM\Contacts.cshtml.g.cs
 C:\Users\10PRO64\source\repos\CRM\CRM\obj\Debug\netcoreapp3.1\Razor\Views\Account\Logout.cshtml.g.cs
 C:\Users\10PRO64\source\repos\CRM\CRM\obj\Debug\netcoreapp3.1\Razor\Views\CRM\Contacts Copy.cshtml.g.cs
+C:\Users\10PRO64\source\repos\CRM\CRM\obj\Debug\netcoreapp3.1\Razor\Views\CRM\PartialViews\_AddContact.cshtml.g.cs
