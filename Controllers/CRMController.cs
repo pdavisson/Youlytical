@@ -1,18 +1,10 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using Microsoft.EntityFrameworkCore;
 using CRM.Models;
-using CRM.Models.AccountViewModels;
-using CRM.Services;
 using CRM.Data;
 
 
@@ -41,7 +33,10 @@ namespace CRM.Controllers
         public IActionResult Contacts()
 		{
 			var UserID=_userManager.GetUserId(HttpContext.User);
-			return View(_context.CRM_Contacts.Where(a=>a.UserId==UserID));
+            var list=_context.CRM_Contacts.Where(a=>a.UserId==UserID).ToList();
+			ViewBag.ContactData=list;
+            // return View(_context.CRM_Contacts.Where(a=>a.UserId==UserID).ToList());
+			return View();
 		}
 		
 

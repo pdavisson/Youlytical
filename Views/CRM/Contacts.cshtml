@@ -1,6 +1,6 @@
 ﻿@using Models.CRMModels
-@model IEnumerable<ContactsModel>
-@* @model ContactsModel *@
+@* @model IEnumerable<ContactsModel> *@
+@model ContactsModel
 @{
     ViewData["Title"]="Dashboard";
     Layout="_CRMLayout";
@@ -32,7 +32,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model)
+                    @foreach (var item in ViewBag.ContactData)
                     {
                         <tr>
                             <td>@item.ContactID</td>
@@ -62,7 +62,8 @@
             <div class="modal-body">Select "Sign Out" below if you are ready to end your current session.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <form id="logoutForm" class="form-inline" asp-controller="Account" asp-action="Logout" method="POST">
+                <form id="logoutForm" class="form-inline" asp-controller="CRM" asp-action="CreateContact" method="POST">
+                    @* <input asp-for="FirstName" class="form-control form-control-user" placeholder="First Name" /> *@
                     <button id="logout" type="submit" class="btn btn-primary">Sign Out</button>
                 </form>
             </div>
