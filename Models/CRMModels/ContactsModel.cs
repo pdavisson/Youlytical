@@ -8,13 +8,13 @@ namespace Models.CRMModels
         
         [Key]
         public int ContactID { get; set; }
-        [Required]
+        // [Required]
         [StringLength(450)]
         [DataType(DataType.Text)]
         public string UserId { get; set; }
         [StringLength(10)]
         [DataType(DataType.Text)]
-        public string prefix { get; set; }
+        public string Prefix { get; set; }
         [Required]
         [StringLength(50)]
         [DataType(DataType.Text)]

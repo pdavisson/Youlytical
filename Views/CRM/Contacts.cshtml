@@ -35,7 +35,7 @@
                             <td>@item.ContactID</td>
                             <td>@item.FirstName</td>
                             <td>@item.LastName</td>
-                            <td>@item.PrimaryPhone</td>
+                            <td>@string.Format("{0:(###) ###-####}",Decimal.Parse(item.PrimaryPhone))</td>
                             <td>@item.PrimaryEmail</td>
                             <td>@item.Address1</td>
                             <td>@item.Address2</td>
