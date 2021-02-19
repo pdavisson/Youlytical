@@ -46,7 +46,7 @@ namespace Models.CRMModels
         public string Country { get; set; }
         [DataType(DataType.Text)]
         [StringLength(50)]
-        public string province { get; set; }
+        public string Province { get; set; }
         [DataType(DataType.Text)]
         [StringLength(100)]
         public string Address1 { get; set; }
