@@ -3,11 +3,11 @@
 @{
     ViewData["Title"]="Dashboard";
     Layout="_CRMLayout";
+    
 }
 <h1 class="h3 mb-2 text-gray-800">Contacts</h1>
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
-    
     <div class="card-header py-3 d-sm-inline-block">
         @* <h6 class="m-0 font-weight-bold text-primary">Contact List</h6> *@
         <a href="#" data-toggle="modal" data-target="#addContactModal">
@@ -60,7 +60,7 @@
                 <div class="modal-body">
                     <div class="form-group custom-row">
                         <div class="col-sm-custom">
-                            <Select class="form-control form-control-dropdown" style="height:50px" id="test">
+                            <Select class="form-control form-control-dropdown" asp-for="Prefix" style="height:50px" id="test">
                                 <option value="">Prefix</option>
                                 <option value="1st Lt">1st Lt</Option>
                                 <option value="Adm">Adm</Option>
@@ -98,7 +98,7 @@
                             <input asp-for="LastName" class="form-control form-control-user" placeholder="Last Name" />
                         </div>
                         <div class="col-sm-custom">
-                            <Select class="form-control form-control-dropdown" style="height:50px" id="test">
+                            <Select class="form-control form-control-dropdown" asp-for="Suffix" style="height:50px" id="test">
                                 <option value="" >Suffix</option>
                                 <option value="II">II</option>
                                 <option value="III">III</option>

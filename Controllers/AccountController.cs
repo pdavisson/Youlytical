@@ -75,11 +75,11 @@ namespace CRM.Controllers
                 //     _logger.LogWarning("User account locked out.");
                 //     return RedirectToAction(nameof(Lockout));
                 // }
-                // else
-                // {
-                //     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                //     return View(model);
-                // }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    return View(model);
+                }
             }
 
             // If we got this far, something failed, redisplay form
