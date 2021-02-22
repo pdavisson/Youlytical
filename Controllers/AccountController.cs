@@ -241,6 +241,7 @@ namespace CRM.Controllers
                     await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation("User created a new account with password.");
+                    _logger.LogInformation(callbackUrl);
                     return RedirectToLocal(returnUrl);
                 }
                 AddErrors(result);
@@ -347,6 +348,7 @@ namespace CRM.Controllers
         {
             if (userId == null || code == null)
             {
+                
                 return RedirectToAction(nameof(HomeController.Index), "Home");
             }
             var user = await _userManager.FindByIdAsync(userId);

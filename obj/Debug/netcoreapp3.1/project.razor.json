@@ -14457,6 +14457,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\10PRO64\\source\\repos\\CRM\\CRM\\Views\\Account\\ConfirmEmail.cshtml",
+      "TargetPath": "Views\\Account\\ConfirmEmail.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\10PRO64\\source\\repos\\CRM\\CRM\\Views\\Account\\Logout.cshtml",
       "TargetPath": "Views\\Account\\Logout.cshtml",
       "FileKind": "mvc"

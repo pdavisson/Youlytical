@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "7TybouKxEM2QQaIo0XYYCMdOau4YbGRMcnBLKEU4u5R0hU/TOPL43MFZ9f5c/+qeyT+hoCj35Uwc/UEdv0ckfw==",
+  "dgSpecHash": "/VYylkWWAlS7O+JBHGUwcBy+CtlQEg6v9jKTgl5KlXs0gjgdjBIxlcqfuqs2u5XDoVS8GyqU8AWVEBIcnuUy8Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\10PRO64\\source\\repos\\CRM\\CRM\\CRM.csproj",
   "expectedPackageFiles": [
@@ -46,6 +46,8 @@
     "C:\\Users\\10PRO64\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\10PRO64\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512",
     "C:\\Users\\10PRO64\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
+    "C:\\Users\\10PRO64\\.nuget\\packages\\sendgrid\\9.22.0\\sendgrid.9.22.0.nupkg.sha512",
+    "C:\\Users\\10PRO64\\.nuget\\packages\\starkbank-ecdsa\\1.2.0\\starkbank-ecdsa.1.2.0.nupkg.sha512",
     "C:\\Users\\10PRO64\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",
     "C:\\Users\\10PRO64\\.nuget\\packages\\system.collections.concurrent\\4.3.0\\system.collections.concurrent.4.3.0.nupkg.sha512",
     "C:\\Users\\10PRO64\\.nuget\\packages\\system.collections.immutable\\5.0.0\\system.collections.immutable.5.0.0.nupkg.sha512",
