@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using SendGrid;
 using SendGrid.Helpers.Mail;
 
@@ -36,7 +37,11 @@ namespace CRM.Services
                 HtmlContent = message
             };
             msg.AddTo(new EmailAddress(email));
-
+            msg.SetTemplateId("d-d5189e1fbbc1459aadeb9049cc0844fe");
+            msg.SetTemplateData(new ButtonURL
+            {
+                ConfirmURL=message
+            });
             // Disable click tracking.
             // See https://sendgrid.com/docs/User_Guide/Settings/tracking.html
             msg.SetClickTracking(false, false);
@@ -44,6 +49,11 @@ namespace CRM.Services
             return client.SendEmailAsync(msg);
             
         }
+            private class ButtonURL
+            {
+                [JsonProperty("ConfirmURL")]
+                public string ConfirmURL { get; set; }
+            }
     
     
     //ORIGINAL FROM HERE DOWN, EVERYTHING ABOVE THIS AND BELOW PUBLIC CLASS EMAILSENDER : IEMAILSENDER CAN BE DELETED TO REVERT BACK TO START
