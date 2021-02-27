@@ -14442,6 +14442,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\10PRO64\\source\\repos\\CRM\\CRM\\Views\\Home\\EX_COLLAPSETABLE.cshtml",
+      "TargetPath": "Views\\Home\\EX_COLLAPSETABLE.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\10PRO64\\source\\repos\\CRM\\CRM\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "FileKind": "mvc"
@@ -14459,6 +14464,11 @@
     {
       "FilePath": "c:\\Users\\10PRO64\\source\\repos\\CRM\\CRM\\Views\\Account\\ConfirmEmail.cshtml",
       "TargetPath": "Views\\Account\\ConfirmEmail.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\10PRO64\\source\\repos\\CRM\\CRM\\Views\\Admin\\ManageUsers.cshtml",
+      "TargetPath": "Views\\Admin\\ManageUsers.cshtml",
       "FileKind": "mvc"
     },
     {

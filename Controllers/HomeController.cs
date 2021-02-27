@@ -27,6 +27,11 @@ namespace CRM.Controllers
 		{
 			return View();
 		}
+
+		public IActionResult EX_COLLAPSETABLE()
+		{
+			return View();
+		}
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 		public IActionResult Error()
 		{

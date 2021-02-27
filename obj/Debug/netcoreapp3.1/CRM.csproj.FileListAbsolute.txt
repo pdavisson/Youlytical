@@ -101,3 +101,5 @@ C:\Users\10PRO64\source\repos\CRM\CRM\obj\Debug\netcoreapp3.1\Razor\Views\CRM\Co
 C:\Users\10PRO64\source\repos\CRM\CRM\bin\Debug\netcoreapp3.1\SendGrid.dll
 C:\Users\10PRO64\source\repos\CRM\CRM\bin\Debug\netcoreapp3.1\StarkbankEcdsa.dll
 C:\Users\10PRO64\source\repos\CRM\CRM\obj\Debug\netcoreapp3.1\Razor\Views\Account\ConfirmEmail.cshtml.g.cs
+C:\Users\10PRO64\source\repos\CRM\CRM\obj\Debug\netcoreapp3.1\Razor\Views\Home\EX_COLLAPSETABLE.cshtml.g.cs
+C:\Users\10PRO64\source\repos\CRM\CRM\obj\Debug\netcoreapp3.1\Razor\Views\Admin\ManageUsers.cshtml.g.cs

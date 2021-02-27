@@ -10963,6 +10963,7 @@ a:focus {
 
 .card .card-header[data-toggle="collapse"].collapsed::after {
   content: '\f105';
+  
 }
 
 .chart-area {

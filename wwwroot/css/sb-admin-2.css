@@ -10744,6 +10744,8 @@ a:focus {
   text-decoration: none;
   position: relative;
   padding: 0.75rem 3.25rem 0.75rem 1.25rem;
+
+  
 }
 
 .card .card-header[data-toggle="collapse"]::after {
