@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using CRM.Models;
+using CRM.Models.AdminModels;
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using CRM.Services;
@@ -39,9 +41,34 @@ namespace CRM.Controllers
             {
                 _logger.LogInformation("User logged in is Admin.");
                 var list = _context.Users
-                    .Where(a=>a.Company==user.Company)
+                    .Join(_context.UserRoles,
+                            u => u.Id,
+                            ur => ur.UserId,
+                            (u,ur) => new
+                                {
+                                    FirstName = u.FirstName,
+                                    LastName = u.LastName,
+                                    Email = u.Email,
+                                    Company = u.Company,
+                                    Franchise = u.FranchiseID,
+                                    RoleId = ur.RoleId
+                                })
+                    .Join(_context.Roles,
+                            a =>a.RoleId,
+                            b => b.Id,
+                            (a,b) => new ManageUsersModel
+                                {
+                                    FirstName = a.FirstName,
+                                    LastName = a.LastName,
+                                    Email = a.Email,
+                                    Company = a.Company,
+                                    Franchise = a.Franchise,
+                                    Role = b.Name
+                                })
+                    .Where(a =>a.Company==user.Company)
                     .ToList();
-                ViewBag.ContactData=list;
+                ViewBag.UserData=list;
+                return View();
             }
             else
             {
@@ -49,7 +76,7 @@ namespace CRM.Controllers
                 var list = _context.Users
                     .Where(a=>a.Company==user.Company && a.FranchiseID==user.FranchiseID)
                     .ToList();
-                ViewBag.ContactData=list;
+                ViewBag.UserData=list;
             }
 
             return View();

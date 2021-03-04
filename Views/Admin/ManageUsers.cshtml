@@ -1,8 +1,8 @@
 @using Microsoft.AspNetCore.Identity
-@using CRM.Data
+@using CRM.Models.AdminModels
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
-
+@model ManageUsersModel
 @{
     ViewData["Title"]="Manage Users";
     Layout="_CRMLayout";
@@ -19,21 +19,21 @@
         <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
             <table class="table table-hover">
                 <tbody>
-                <tr>
-                    <td>John</td>
-                    <td>Doe</td>
-                    <td>john@example.com</td>
-                </tr>
-                <tr>
-                    <td>Mary</td>
-                    <td>Moe</td>
-                    <td>mary@example.com</td>
-                </tr>
-                <tr>
-                    <td>July</td>
-                    <td>Dooley</td>
-                    <td>july@example.com</td>
-                </tr>
+                  <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                  </tr>
+                  @foreach (var item in ViewBag.UserData)
+                  {
+                    <tr>
+                      <td>@item.FirstName</td>
+                      <td>@item.LastName</td>
+                      <td>@item.Email</td>
+                      <td>@item.Role</td>
+                    </tr>
+                  }
                 </tbody>
             </table>
         </div>
@@ -47,21 +47,24 @@
         <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
             <table class="table table-hover">
                 <tbody>
-                <tr>
-                    <td>John</td>
-                    <td>Doe</td>
-                    <td>john@example.com</td>
-                </tr>
-                <tr>
-                    <td>Mary</td>
-                    <td>Moe</td>
-                    <td>mary@example.com</td>
-                </tr>
-                <tr>
-                    <td>July</td>
-                    <td>Dooley</td>
-                    <td>july@example.com</td>
-                </tr>
+                  <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                  </tr>
+                  @foreach (var item in ViewBag.UserData)
+                  {
+                      @if(item.Role == "Admin")
+                      {
+                        <tr>
+                          <td>@item.FirstName</td>
+                          <td>@item.LastName</td>
+                          <td>@item.Email</td>
+                          <td>@item.Role</td>
+                        </tr>
+                      }
+                  }
                 </tbody>
             </table>
         </div>
@@ -75,21 +78,18 @@
         <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
             <table class="table table-hover">
                 <tbody>
-                <tr>
-                    <td>John</td>
-                    <td>Doe</td>
-                    <td>john@example.com</td>
-                </tr>
-                <tr>
-                    <td>Mary</td>
-                    <td>Moe</td>
-                    <td>mary@example.com</td>
-                </tr>
-                <tr>
-                    <td>July</td>
-                    <td>Dooley</td>
-                    <td>july@example.com</td>
-                </tr>
+                  @foreach (var item in ViewBag.UserData)
+                  {
+                      @if(item.Role == "Member")
+                      {
+                        <tr>
+                          <td>@item.FirstName</td>
+                          <td>@item.LastName</td>
+                          <td>@item.Email</td>
+                          <td>@item.Role</td>
+                        </tr>
+                      }
+                  }
                 </tbody>
             </table>
         </div>
