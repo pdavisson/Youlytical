@@ -7,91 +7,93 @@
     ViewData["Title"]="Manage Users";
     Layout="_CRMLayout";
 }
-
 <div id="accordion" role="tablist" aria-multiselectable="true">
-    <div class="card">
-        <h5 class="card-header text-uppercase" role="tab" id="headingOne">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="d-block">
-                <i class="fas fa-chevron-down float-right"></i> All Users
-            </a>
-        </h5>
-
-        <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
-            <table class="table table-hover">
-                <tbody>
+  <div class="card">
+    <h5 class="card-header text-uppercase" role="tab" id="headingOne">
+      <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="d-block">
+        <i class="fas fa-chevron-down float-right"></i> All Users
+      </a>
+    </h5>
+    <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Role</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach (var item in ViewBag.UserData)
+            {
+            <tr>
+              <td>@item.FirstName</td>
+              <td>@item.LastName</td>
+              <td>@item.Email</td>
+              <td>@item.Role</td>
+            </tr>
+            }
+        </tbody>
+      </table>
+    </div>  
+  </div>
+  <div class="card">
+    <h5 class="card-header text-uppercase" role="tab" id="headingTwo">
+      <a class="collapsed d-block" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        <i class="fas fa-chevron-down float-right"></i> Administrators
+     </a>
+    </h5>
+    <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Role</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach (var item in ViewBag.UserData)
+            {
+              @if(item.Role == "Admin")
+                {
                   <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
-                    <th>Role</th>
+                    <td>@item.FirstName</td>
+                    <td>@item.LastName</td>
+                    <td>@item.Email</td>
+                    <td>@item.Role</td>
                   </tr>
-                  @foreach (var item in ViewBag.UserData)
-                  {
-                    <tr>
-                      <td>@item.FirstName</td>
-                      <td>@item.LastName</td>
-                      <td>@item.Email</td>
-                      <td>@item.Role</td>
-                    </tr>
-                  }
-                </tbody>
-            </table>
-        </div>
+                }
+            }
+        </tbody>
+      </table>
     </div>
-    <div class="card">
-        <h5 class="card-header text-uppercase" role="tab" id="headingTwo">
-            <a class="collapsed d-block" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                <i class="fas fa-chevron-down float-right"></i> Administrators
-            </a>
-        </h5>
-        <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
-            <table class="table table-hover">
-                <tbody>
-                  <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
-                    <th>Role</th>
-                  </tr>
-                  @foreach (var item in ViewBag.UserData)
-                  {
-                      @if(item.Role == "Admin")
-                      {
-                        <tr>
-                          <td>@item.FirstName</td>
-                          <td>@item.LastName</td>
-                          <td>@item.Email</td>
-                          <td>@item.Role</td>
-                        </tr>
-                      }
-                  }
-                </tbody>
-            </table>
-        </div>
+  </div>
+  <div class="card">
+    <h5 class="card-header text-uppercase" role="tab" id="headingThree">
+      <a class="collapsed d-block" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+       <i class="fas fa-chevron-down float-right"></i> Members
+      </a>
+    </h5>
+    <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+      <table class="table table-hover">
+        <tbody>
+        @foreach (var item in ViewBag.UserData)
+          {
+            @if(item.Role == "Member")
+              {
+                <tr>
+                  <td>@item.FirstName</td>
+                  <td>@item.LastName</td>
+                  <td>@item.Email</td>
+                  <td>@item.Role</td>
+                </tr>
+                }
+          }
+        </tbody>
+      </table>
     </div>
-    <div class="card">
-        <h5 class="card-header text-uppercase" role="tab" id="headingThree">
-            <a class="collapsed d-block" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                <i class="fas fa-chevron-down float-right"></i> Members
-            </a>
-        </h5>
-        <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
-            <table class="table table-hover">
-                <tbody>
-                  @foreach (var item in ViewBag.UserData)
-                  {
-                      @if(item.Role == "Member")
-                      {
-                        <tr>
-                          <td>@item.FirstName</td>
-                          <td>@item.LastName</td>
-                          <td>@item.Email</td>
-                          <td>@item.Role</td>
-                        </tr>
-                      }
-                  }
-                </tbody>
-            </table>
-        </div>
-    </div>
+  </div>
 </div>
