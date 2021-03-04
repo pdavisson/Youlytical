@@ -38,13 +38,17 @@ namespace CRM.Controllers
             if(HttpContext.User.IsInRole("Admin"))
             {
                 _logger.LogInformation("User logged in is Admin.");
-                var list = _context.Users.Where(a=>a.Company==user.Company).ToList();
+                var list = _context.Users
+                    .Where(a=>a.Company==user.Company)
+                    .ToList();
                 ViewBag.ContactData=list;
             }
             else
             {
                 _logger.LogInformation("User logged in is Manager.");
-                var list = _context.Users.Where(a=>a.Company==user.Company && a.FranchiseID==user.FranchiseID).ToList();
+                var list = _context.Users
+                    .Where(a=>a.Company==user.Company && a.FranchiseID==user.FranchiseID)
+                    .ToList();
                 ViewBag.ContactData=list;
             }
 
