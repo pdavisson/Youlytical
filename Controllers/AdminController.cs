@@ -60,7 +60,6 @@ namespace CRM.Controllers
                             (a,b) => new ManageUsersModel
                                 {
                                     GUID = a.UID,
-                                    
                                     Profile = "/img/Profile_Pictures/" + a.UID + ".png",
                                     FirstName = a.FirstName,
                                     LastName = a.LastName,
