@@ -27,7 +27,6 @@ namespace CRM
                     o.TokenLifespan = TimeSpan.FromHours(3));
                 services.AddTransient<IEmailSender,EmailSender>();
                 services.Configure<AuthMessageSenderOptions>(context.Configuration);
-
             });
         }
     }

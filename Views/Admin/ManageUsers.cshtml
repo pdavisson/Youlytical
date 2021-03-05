@@ -10,19 +10,22 @@
 <div id="accordion" role="tablist" aria-multiselectable="true">
   <div class="card">
     <h5 class="card-header text-uppercase" role="tab" id="headingOne">
-      <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="d-block">
+      <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="collapsed d-block">
         <i class="fas fa-chevron-down float-right"></i> All Users
       </a>
     </h5>
     <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
       <div class="card-body">
         <div class="table-responsive">
-          <table class="table table-bordered table-hover" id="AllUsersTable">
+          <table class="table table-hover" id="AllUsersTable" width="100%">
             <thead>
               <tr>
+                <th style="display:none;">GUID</th>
+                <th class="text-center" style="width:20">Profile</th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>
+                <th>Franchise</th>
                 <th>Role</th>
               </tr>
             </thead>
@@ -30,9 +33,12 @@
               @foreach (var item in ViewBag.UserData)
                 {
                 <tr>
+                  <td style="display:none;">@item.GUID</td>
+                  <td class="text-center"><img class="img-profile rounded-circle" src="@item.Profile" alt="Not Found" onerror=this.src="/img/Profile_Pictures/Default.png" height="30" width="30" /></td>
                   <td>@item.FirstName</td>
                   <td>@item.LastName</td>
                   <td>@item.Email</td>
+                  <td>@item.Franchise</td>
                   <td>@item.Role</td>
                 </tr>
                 }
@@ -51,12 +57,15 @@
     <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
       <div class="card-body">
         <div class="table-responsive">
-          <table class="table table-bordered table-hover" id="AdminTable">
+          <table class="table table-hover" id="AdminTable" width="100%">
             <thead>
               <tr>
+                <th style="display:none;">GUID</th>
+                <th class="text-center" style="width:20">Profile</th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>
+                <th>Franchise</th>
                 <th>Role</th>
               </tr>
             </thead>
@@ -66,9 +75,12 @@
                   @if(item.Role == "Admin")
                     {
                       <tr>
+                        <td style="display:none;">@item.GUID</td>
+                        <td class="text-center"><img class="img-profile rounded-circle" src="@item.Profile" alt="Not Found" onerror=this.src="/img/Profile_Pictures/Default.png" height="30" width="30" /></td>
                         <td>@item.FirstName</td>
                         <td>@item.LastName</td>
                         <td>@item.Email</td>
+                        <td>@item.Franchise</td>
                         <td>@item.Role</td>
                       </tr>
                     }
@@ -88,12 +100,15 @@
     <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
       <div class="card-body">
         <div class="table-responsive">
-          <table class="table table-bordered table-hover" id="MembersTable">
+          <table class="table table-hover" id="MembersTable" width="100%">
             <thead>
               <tr>
+                <th style="display:none;">GUID</th>
+                <th class="text-center" style="width:20">Profile</th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>
+                <th>Franchise</th>
                 <th>Role</th>
               </tr>
             </thead>
@@ -103,9 +118,12 @@
                 @if(item.Role == "Member")
                   {
                     <tr>
+                      <td style="display:none;">@item.GUID</td>
+                      <td class="text-center"><img class="img-profile rounded-circle" src="@item.Profile" alt="Not Found" onerror=this.src="/img/Profile_Pictures/Default.png" height="30" width="30" /></td>
                       <td>@item.FirstName</td>
                       <td>@item.LastName</td>
                       <td>@item.Email</td>
+                      <td>@item.Franchise</td>
                       <td>@item.Role</td>
                     </tr>
                     }
@@ -122,10 +140,6 @@
 
 @section scripts {
 
-    <!-- Page level plugins
-    <script src="~/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="~/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-        -->
     <script src="~/js/datatables.min.js"></script>
     <!-- Page level custom scripts -->
     <script src="~/js/demo/datatables-demo.js"></script>

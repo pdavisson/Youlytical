@@ -46,6 +46,7 @@ namespace CRM.Controllers
                             ur => ur.UserId,
                             (u,ur) => new
                                 {
+                                    UID = u.Id,
                                     FirstName = u.FirstName,
                                     LastName = u.LastName,
                                     Email = u.Email,
@@ -58,6 +59,9 @@ namespace CRM.Controllers
                             b => b.Id,
                             (a,b) => new ManageUsersModel
                                 {
+                                    GUID = a.UID,
+                                    
+                                    Profile = "/img/Profile_Pictures/" + a.UID + ".png",
                                     FirstName = a.FirstName,
                                     LastName = a.LastName,
                                     Email = a.Email,
@@ -73,8 +77,36 @@ namespace CRM.Controllers
             else
             {
                 _logger.LogInformation("User logged in is Manager.");
-                var list = _context.Users
-                    .Where(a=>a.Company==user.Company && a.FranchiseID==user.FranchiseID)
+                        var list = _context.Users
+                    .Join(_context.UserRoles,
+                            u => u.Id,
+                            ur => ur.UserId,
+                            (u,ur) => new
+                                {
+                                    UID = u.Id,
+                                    FirstName = u.FirstName,
+                                    LastName = u.LastName,
+                                    Email = u.Email,
+                                    Company = u.Company,
+                                    Franchise = u.FranchiseID,
+                                    RoleId = ur.RoleId
+                                })
+                    .Join(_context.Roles,
+                            a =>a.RoleId,
+                            b => b.Id,
+                            (a,b) => new ManageUsersModel
+                                {
+                                    GUID = a.UID,
+                                    
+                                    Profile = "/img/Profile_Pictures/" + a.UID + ".png",
+                                    FirstName = a.FirstName,
+                                    LastName = a.LastName,
+                                    Email = a.Email,
+                                    Company = a.Company,
+                                    Franchise = a.Franchise,
+                                    Role = b.Name
+                                })
+                    .Where(a=>a.Company==user.Company && a.Franchise==user.FranchiseID)
                     .ToList();
                 ViewBag.UserData=list;
             }

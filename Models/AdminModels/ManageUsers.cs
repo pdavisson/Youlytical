@@ -5,6 +5,12 @@ namespace CRM.Models.AdminModels
 {
     public class ManageUsersModel
     {
+        [StringLength(450)]
+        [DataType(DataType.Text)]
+        public string GUID { get; set; }
+        [StringLength(50)]
+        [DataType(DataType.Text)]
+        public string Profile { get; set; }
         [StringLength(50)]
         [DataType(DataType.Text)]
         public string FirstName { get; set; }
