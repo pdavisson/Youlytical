@@ -32,14 +32,14 @@
             <tbody>
               @foreach (var item in ViewBag.UserData)
                 {
-                <tr>
-                  <td style="display:none;">@item.GUID</td>
-                  <td class="text-center"><img class="img-profile rounded-circle" src="@item.Profile" alt="Not Found" onerror=this.src="/img/Profile_Pictures/Default.png" height="30" width="30" /></td>
-                  <td>@item.FirstName</td>
-                  <td>@item.LastName</td>
-                  <td>@item.Email</td>
-                  <td>@item.Franchise</td>
-                  <td>@item.Role</td>
+                <tr class="SelectedUser" data-toggle="modal" data-target="#EditUserModal">
+                    <td id="Test" style="display:none;">@item.GUID</td>
+                    <td class="text-center"><img class="img-profile rounded-circle" src="@item.Profile" alt="Not Found" onerror=this.src="/img/Profile_Pictures/Default.png" height="30" width="30" /></td>
+                    <td>@item.FirstName</td>
+                    <td>@item.LastName</td>
+                    <td>@item.Email</td>
+                    <td>@item.Franchise</td>
+                    <td>@item.Role</td>
                 </tr>
                 }
             </tbody>
@@ -74,7 +74,7 @@
                 {
                   @if(item.Role == "Admin")
                     {
-                      <tr>
+                      <tr class="SelectedUser">
                         <td style="display:none;">@item.GUID</td>
                         <td class="text-center"><img class="img-profile rounded-circle" src="@item.Profile" alt="Not Found" onerror=this.src="/img/Profile_Pictures/Default.png" height="30" width="30" /></td>
                         <td>@item.FirstName</td>
@@ -117,7 +117,7 @@
               {
                 @if(item.Role == "Member")
                   {
-                    <tr>
+                    <tr class="SelectedUser">
                       <td style="display:none;">@item.GUID</td>
                       <td class="text-center"><img class="img-profile rounded-circle" src="@item.Profile" alt="Not Found" onerror=this.src="/img/Profile_Pictures/Default.png" height="30" width="30" /></td>
                       <td>@item.FirstName</td>
@@ -135,15 +135,68 @@
     </div>
   </div>
 </div>
+<!-- Edit User Modal-->
+<div class="modal fade" id="EditUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit User</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <form id="EditUser" class="user" asp-controller="Admin" asp-action="EditUser" method="POST">
+                <div class="modal-body">
+                    <div id="EditUserResults" class="form-group">
+                        <div class="col">
+                            <label>User ID:</label>
+                            <input id="jsGUID" asp-for="FirstName" class="form-control form-control-user" disabled/>
+                        </div>
+                        <div class="col">
+                            <label>First Name:</label>
+                            <input id="jsFirstName" asp-for="FirstName" class="form-control form-control-user" />
+                        </div>
+                        <div class="col">
+                            <label>Last Name:</label>
+                            <input id="jsLastName" asp-for="LastName" class="form-control form-control-user" />
+                        </div>
+                        <div class="col">
+                            <label>Email</label>
+                            <input id="jsEmail" asp-for="Email" class="form-control form-control-user" />
+                        </div>
+                        <div class="col">
+                            <label>Franchise:</label>
+                            <input id="jsFranchise" asp-for="Franchise" class="form-control form-control-user" />
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-sm-3">
+                              <input type="checkbox" id="jsRoleAdmin">
+                              <label>Admin</label>                         
+                          </div>
+                            <div class="col-sm-3">
+                              <input type="checkbox" id="jsRoleManager">
+                              <label>Manager</label>                         
+                          </div>
+                            <div class="col-sm-3">
+                              <input type="checkbox" id="jsRoleMember">
+                              <label>Member</label>                         
+                          </div>
+                        </div>
+                   <br>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button id="logout" type="submit" class="btn btn-primary">Update User</button>
+                    </div> 
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <link rel="stylesheet" href="~/css/datatable.min.css" />
 @section scripts{
     <script src="~/js/datatables.min.js"></script>
     <!-- Page level custom scripts -->
     <script src="~/js/demo/datatables-demo.js"></script>
-    <script>
-      $(function(){
-       $("#AllUsersTable").dataTable();
-       $("#AdminTable").dataTable();
-       $("#MembersTable").dataTable();
-      })   
-    </script>}
+    <script src="~/js/site.js"></script>
+    
+ }

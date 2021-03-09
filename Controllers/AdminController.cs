@@ -112,5 +112,10 @@ namespace CRM.Controllers
 
             return View();
 		}
+        // [Authorize(Roles ="Manager, Admin")]
+        // public IActionResult EditUser()
+        // {
+
+        // }
     }
 }
