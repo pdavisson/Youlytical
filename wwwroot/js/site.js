@@ -25,13 +25,13 @@
 //     });
 //     id.checked = true;
 //   }
-//   function IncludedCheck(id){
-//     var myCheckbox = document.getElementsByName("ShippingIncluded");
-//     Array.prototype.forEach.call(myCheckbox,function(el){
-//       el.checked = false;
-//     });
-//     id.checked = true;
-// }
+  function RoleFunction(id){
+    var myCheckbox = document.getElementsByName("RoleCheckBox");
+    Array.prototype.forEach.call(myCheckbox,function(el){
+      el.checked = false;
+    });
+    id.checked = true;
+}
   $('#checkmark-svg').on('click', function(){
     svg = $(this);
     svg.removeClass('run-animation').width();
