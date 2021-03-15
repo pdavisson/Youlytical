@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Models.CRMModels;
+using Youlytical.Models.CRMModels;
 
 namespace CRM.Data
 {
@@ -10,6 +10,9 @@ namespace CRM.Data
         {
             
         }
-        public DbSet<ContactsModel> CRM_Contacts { get; set; }
+        public DbSet<ContactsModel> crmContacts { get; set; }
+        public DbSet<AddressModel> crmAddresses { get; set; }
+        public DbSet<EmailAccountsModel> crmEmails { get; set; }
+        public DbSet<EmailAccountsModel> crmPhoneNumbers { get; set; }
     }
 }

@@ -33,7 +33,7 @@ namespace CRM.Controllers
         public IActionResult Contacts()
 		{
 			var UserID=_userManager.GetUserId(HttpContext.User);
-            var list=_context.CRM_Contacts.Where(a=>a.UserId==UserID).ToList();
+            var list=_context.crmContacts.Where(a=>a.UserId==UserID).ToList();
 			ViewBag.ContactData=list;
             // return View(_context.CRM_Contacts.Where(a=>a.UserId==UserID).ToList());
 			return View();
