@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\10PRO64\\source\\repos\\CRM\\CRM\\CRM.csproj": {}
+    "C:\\Users\\peted\\source\\repos\\Youlytical\\CRM.csproj": {}
   },
   "projects": {
-    "C:\\Users\\10PRO64\\source\\repos\\CRM\\CRM\\CRM.csproj": {
+    "C:\\Users\\peted\\source\\repos\\Youlytical\\CRM.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\10PRO64\\source\\repos\\CRM\\CRM\\CRM.csproj",
+        "projectUniqueName": "C:\\Users\\peted\\source\\repos\\Youlytical\\CRM.csproj",
         "projectName": "CRM",
-        "projectPath": "C:\\Users\\10PRO64\\source\\repos\\CRM\\CRM\\CRM.csproj",
-        "packagesPath": "C:\\Users\\10PRO64\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\10PRO64\\source\\repos\\CRM\\CRM\\obj\\",
+        "projectPath": "C:\\Users\\peted\\source\\repos\\Youlytical\\CRM.csproj",
+        "packagesPath": "C:\\Users\\peted\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\peted\\source\\repos\\Youlytical\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\10PRO64\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\peted\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -30,6 +30,7 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -41,6 +42,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "BuildBundlerMinifier": {
               "target": "Package",
@@ -91,7 +93,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }
