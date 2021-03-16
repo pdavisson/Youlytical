@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CRM.migrations.CRMdb
 {
     [DbContext(typeof(CRMDbContext))]
-    [Migration("20210315220555_CRMDataTables")]
-    partial class CRMDataTables
+    [Migration("20210316224934_BuildContacts-v1")]
+    partial class BuildContactsv1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,9 +21,9 @@ namespace CRM.migrations.CRMdb
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
-            modelBuilder.Entity("Youlytical.Models.CRMModels.AddressModel", b =>
+            modelBuilder.Entity("Youlytical.Models.CRMModels.AddressData", b =>
                 {
-                    b.Property<int>("addrID")
+                    b.Property<int>("aID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
@@ -73,12 +73,14 @@ namespace CRM.migrations.CRMdb
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("addrID");
+                    b.HasKey("aID");
 
-                    b.ToTable("crmAddresses");
+                    b.HasIndex("ContactID");
+
+                    b.ToTable("crmPhoneNumbers");
                 });
 
-            modelBuilder.Entity("Youlytical.Models.CRMModels.ContactsModel", b =>
+            modelBuilder.Entity("Youlytical.Models.CRMModels.ContactData", b =>
                 {
                     b.Property<int>("ContactID")
                         .ValueGeneratedOnAdd()
@@ -123,7 +125,7 @@ namespace CRM.migrations.CRMdb
                     b.ToTable("crmContacts");
                 });
 
-            modelBuilder.Entity("Youlytical.Models.CRMModels.EmailAccountsModel", b =>
+            modelBuilder.Entity("Youlytical.Models.CRMModels.EmailData", b =>
                 {
                     b.Property<int>("eID")
                         .ValueGeneratedOnAdd()
@@ -148,7 +150,81 @@ namespace CRM.migrations.CRMdb
 
                     b.HasKey("eID");
 
-                    b.ToTable("EmailAccountsModel");
+                    b.HasIndex("ContactID");
+
+                    b.ToTable("crmEmails");
+                });
+
+            modelBuilder.Entity("Youlytical.Models.CRMModels.PhoneData", b =>
+                {
+                    b.Property<int>("pID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("ContactID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreateDateTimeStamp")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneType")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool>("Primary")
+                        .HasColumnType("bit");
+
+                    b.HasKey("pID");
+
+                    b.HasIndex("ContactID");
+
+                    b.ToTable("crmAddresses");
+                });
+
+            modelBuilder.Entity("Youlytical.Models.CRMModels.AddressData", b =>
+                {
+                    b.HasOne("Youlytical.Models.CRMModels.ContactData", "ContactData")
+                        .WithMany("Addresses")
+                        .HasForeignKey("ContactID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ContactData");
+                });
+
+            modelBuilder.Entity("Youlytical.Models.CRMModels.EmailData", b =>
+                {
+                    b.HasOne("Youlytical.Models.CRMModels.ContactData", "ContactData")
+                        .WithMany("EmailAddresses")
+                        .HasForeignKey("ContactID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ContactData");
+                });
+
+            modelBuilder.Entity("Youlytical.Models.CRMModels.PhoneData", b =>
+                {
+                    b.HasOne("Youlytical.Models.CRMModels.ContactData", "ContactData")
+                        .WithMany("PhoneNumbers")
+                        .HasForeignKey("ContactID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ContactData");
+                });
+
+            modelBuilder.Entity("Youlytical.Models.CRMModels.ContactData", b =>
+                {
+                    b.Navigation("Addresses");
+
+                    b.Navigation("EmailAddresses");
+
+                    b.Navigation("PhoneNumbers");
                 });
 #pragma warning restore 612, 618
         }
