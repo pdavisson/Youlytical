@@ -44,49 +44,75 @@ namespace CRM.Controllers
 			ViewBag.ContactList=ContactList;
 			return View();
 		}
-		// [HttpPost]
-		// [ValidateAntiForgeryToken]
-		// public async Task<IActionResult> CreateContact(ContactsModel model, string returnUrl = null)
-		// {
-		// 	if(ModelState.IsValid)
-		// 	{
-		// 		_logger.LogInformation("Model State is Valid.");
-		// 		ContactsModel newContact = new ContactsModel()
-		// 		{
-		// 			UserId=_userManager.GetUserId(HttpContext.User),
-		// 			Prefix=model.Prefix,
-		// 			FirstName=model.FirstName,
-		// 			LastName=model.LastName,
-		// 			Suffix=model.Suffix,
-		// 			Spouse_Name=model.Spouse_Name,
-		// 			PrimaryPhone=model.PrimaryPhone,
-		// 			SecondaryPhone=model.SecondaryPhone,
-		// 			PrimaryEmail=model.PrimaryEmail,
-		// 			SecondaryEmail=model.SecondaryEmail,
-		// 			Address1=model.Address1,
-		// 			Address2=model.Address2,
-		// 			City=model.City,
-		// 			State=model.State,
-		// 			Zip=model.Zip,	
-		// 			Country=model.Country,
-		// 			Province=model.Province,
-		// 			Tags=model.Tags,
-		// 			PreferredContact=model.PreferredContact
-		// 		};
-		// 		try
-		// 		{
-		// 			_context.Add(newContact);
-		// 			await _context.SaveChangesAsync();
-		// 			return RedirectToAction(nameof(Contacts));
-		// 		}
-		// 		catch
-		// 		{
-		// 			return RedirectToAction("Contacts","CRM");
-		// 		}
-
-		// 	}
-			// return Redirect(Url.Content("~/"));
-		// }
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		// public async Task<IActionResult> CreateContact(ContactData mContact, PhoneData mPhone, EmailData mEmail, AddressData mAddress, string returnUrl = null)
+		public async Task<IActionResult> CreateContact(ContactsModel model, string returnUrl = null)
+		{
+			if(ModelState.IsValid)
+			{
+				try
+				{
+					_logger.LogInformation("Model State is Valid.");
+					ContactData newContact = new ContactData()
+					{
+						UserId=_userManager.GetUserId(HttpContext.User),
+						
+						Prefix=model.ContactData.Prefix,
+						FirstName=model.ContactData.FirstName,
+						LastName=model.ContactData.LastName,
+						Suffix=model.ContactData.Suffix,
+						SpousePrefix=model.ContactData.SpousePrefix,
+						SpouseFirstName=model.ContactData.SpouseFirstName,
+						SpouseLastName=model.ContactData.SpouseLastName,
+						SpouseSuffix=model.ContactData.SpouseSuffix,
+						Create_DateTimeStamp=System.DateTime.Now,
+						LastUpdate_DateTimeStamp=System.DateTime.Now
+					};
+					_context.Add(newContact);
+					await _context.SaveChangesAsync();
+					int id = newContact.ContactID;
+					PhoneData newPhone = new PhoneData()
+					{
+						ContactID=id,
+						PhoneType=model.PhoneData.PhoneType,
+						PhoneNumber=model.PhoneData.PhoneNumber,
+						Primary=model.PhoneData.Primary
+					};
+					AddressData newAddress = new AddressData()
+					{
+						ContactID=id,
+						// AddressType=mAddress.AddressType,
+						AddressType="Test",
+						Address1=model.AddressData.Address1,
+						Address2=model.AddressData.Address2,
+						City=model.AddressData.City,
+						State=model.AddressData.State,
+						Zip=model.AddressData.Zip,
+						Country=model.AddressData.Country,
+						Province=model.AddressData.Province,
+						Primary=model.AddressData.Primary
+					};
+					EmailData newEmail = new EmailData()
+					{
+						ContactID=id,
+						EmailType=model.EmailData.EmailType,
+						Email=model.EmailData.Email,
+						Primary=model.EmailData.Primary
+					};
+					_context.Add(newPhone);
+					_context.Add(newAddress);
+					_context.Add(newEmail);
+					await _context.SaveChangesAsync();
+					return RedirectToAction(nameof(Contacts));
+				}
+				catch
+				{
+					return RedirectToAction("Contacts","CRM");
+				}
+			}
+			return Redirect(Url.Content("~/"));
+		}
 
     }
 }

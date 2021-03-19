@@ -27,7 +27,6 @@ namespace CRM.migrations.CRMdb
                         .UseIdentityColumn();
 
                     b.Property<string>("Address1")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
@@ -36,12 +35,10 @@ namespace CRM.migrations.CRMdb
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("AddressType")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("City")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
@@ -52,9 +49,6 @@ namespace CRM.migrations.CRMdb
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<DateTime>("CreateDateTimeStamp")
-                        .HasColumnType("datetime2");
-
                     b.Property<bool>("Primary")
                         .HasColumnType("bit");
 
@@ -63,7 +57,6 @@ namespace CRM.migrations.CRMdb
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("State")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
@@ -84,6 +77,9 @@ namespace CRM.migrations.CRMdb
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
+
+                    b.Property<DateTime>("Create_DateTimeStamp")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -110,6 +106,14 @@ namespace CRM.migrations.CRMdb
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<string>("SpousePrefix")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("SpouseSuffix")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
                     b.Property<string>("Suffix")
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
@@ -132,9 +136,6 @@ namespace CRM.migrations.CRMdb
 
                     b.Property<int>("ContactID")
                         .HasColumnType("int");
-
-                    b.Property<DateTime>("CreateDateTimeStamp")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
@@ -162,9 +163,6 @@ namespace CRM.migrations.CRMdb
 
                     b.Property<int>("ContactID")
                         .HasColumnType("int");
-
-                    b.Property<DateTime>("CreateDateTimeStamp")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");

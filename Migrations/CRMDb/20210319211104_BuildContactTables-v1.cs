@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CRM.migrations.CRMdb
 {
-    public partial class BuildContactsv1 : Migration
+    public partial class BuildContactTablesv1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -18,8 +18,11 @@ namespace CRM.migrations.CRMdb
                     FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Suffix = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
+                    SpousePrefix = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
                     SpouseFirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     SpouseLastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    SpouseSuffix = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
+                    Create_DateTimeStamp = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastUpdate_DateTimeStamp = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -36,8 +39,7 @@ namespace CRM.migrations.CRMdb
                     ContactID = table.Column<int>(type: "int", nullable: false),
                     PhoneType = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Primary = table.Column<bool>(type: "bit", nullable: false),
-                    CreateDateTimeStamp = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Primary = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -59,8 +61,7 @@ namespace CRM.migrations.CRMdb
                     ContactID = table.Column<int>(type: "int", nullable: false),
                     EmailType = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Primary = table.Column<bool>(type: "bit", nullable: false),
-                    CreateDateTimeStamp = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Primary = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -80,16 +81,15 @@ namespace CRM.migrations.CRMdb
                     aID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ContactID = table.Column<int>(type: "int", nullable: false),
-                    AddressType = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Address1 = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    AddressType = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Address1 = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     Address2 = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-                    City = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    State = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    City = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    State = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     Zip = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     Country = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     Province = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    Primary = table.Column<bool>(type: "bit", nullable: false),
-                    CreateDateTimeStamp = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Primary = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {

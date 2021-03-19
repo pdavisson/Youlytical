@@ -3,15 +3,23 @@ using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.AspNetCore.Mvc;
 
 namespace Youlytical.Models.CRMModels
 {
+    public class ContactsModel
+    {
+        public ContactData ContactData { get; set; }
+        public PhoneData PhoneData { get; set; }
+        public EmailData EmailData { get; set; }
+        public AddressData AddressData { get; set; }
+    }
     public class ContactData
     {
+        private DateTime _createdon = DateTime.Now;
         [Key]        
         public int ContactID { get; set; }
-        // [Required]
+        
         [StringLength(450)]
         [DataType(DataType.Text)]
         public string UserId { get; set; }
@@ -29,19 +37,27 @@ namespace Youlytical.Models.CRMModels
         [StringLength(10)]
         [DataType(DataType.Text)]
         public string Suffix { get; set; }
+        [StringLength(10)]
+        [DataType(DataType.Text)]
+        public string SpousePrefix { get; set; }
         [StringLength(50)]
         [DataType(DataType.Text)]
         public string SpouseFirstName { get; set; }
         [StringLength(50)]
         [DataType(DataType.Text)]
-        public string SpouseLastName { get; set; }
-        [Required]
+        public string SpouseLastName  { get; set; }
+        [StringLength(10)]
+        [DataType(DataType.Text)]
+        public string SpouseSuffix { get; set; }
+        
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy hh:mm tt}", ApplyFormatInEditMode = true)]
+        public DateTime Create_DateTimeStamp { get; set; }
+        
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy hh:mm tt}", ApplyFormatInEditMode = true)]
         public DateTime LastUpdate_DateTimeStamp { get; set; }
-        public List<PhoneData> PhoneNumbers { get; set; }
-        public List<EmailData> EmailAddresses { get; set; }
-        public List <AddressData> Addresses { get; set; }
-
+        public virtual List<PhoneData> PhoneNumbers { get; set; }
+        public virtual ICollection<EmailData> EmailAddresses { get; set; }
+        public virtual List <AddressData> Addresses { get; set; }
     }
 
     public class PhoneData
@@ -59,10 +75,6 @@ namespace Youlytical.Models.CRMModels
         [Phone]
         public string PhoneNumber { get; set; }
         public bool Primary { get; set; }
-
-        [Required]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy hh:mm tt}", ApplyFormatInEditMode = true)]
-        public DateTime CreateDateTimeStamp { get; set; }
     }
 
     public class EmailData
@@ -73,16 +85,20 @@ namespace Youlytical.Models.CRMModels
         [ForeignKey("ContactID")]
         public ContactData ContactData { get; set; }
         
+        [BindProperty]
         [StringLength(50)]
         [DataType(DataType.Text)]
         public string EmailType { get; set; }
+        // public virtual ICollection<EmailData> Email { get; set; }
+        // internal void CreateEmailArray(int count =1)
+        // {
+        //     for(int i=0; i< count; i++) {
+        //         Email.Add(new EmailData()); 
+        //     }
+        // }
         [EmailAddress]
         public string Email { get; set; }
         public bool Primary { get; set; }
-
-        [Required]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy hh:mm tt}", ApplyFormatInEditMode = true)]
-        public DateTime CreateDateTimeStamp { get; set; }
     }
 
     public class AddressData
@@ -93,12 +109,10 @@ namespace Youlytical.Models.CRMModels
         [ForeignKey("ContactID")]
         public ContactData ContactData { get; set; }
 
-        [Required]
         [StringLength(50)]
         [DataType(DataType.Text)]
         public string AddressType { get; set; }
 
-        [Required]
         [StringLength(100)]
         [DataType(DataType.Text)]
         public string Address1 { get; set; }
@@ -107,12 +121,10 @@ namespace Youlytical.Models.CRMModels
         [DataType(DataType.Text)]
         public string Address2 { get; set; }
 
-        [Required]
         [StringLength(100)]
         [DataType(DataType.Text)]
         public string City { get; set; }
 
-        [Required]
         [StringLength(100)]
         [DataType(DataType.Text)]
         public string State { get; set; }
@@ -120,18 +132,12 @@ namespace Youlytical.Models.CRMModels
         [StringLength(100)]
         [DataType(DataType.Text)]
         public string Zip { get; set; }
-
         [StringLength(50)]
         [DataType(DataType.Text)]
         public string Country { get; set; }
         [StringLength(50)]
         [DataType(DataType.Text)]
         public string Province { get; set; }
-
         public bool Primary { get; set; }
-
-        [Required]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy hh:mm tt}", ApplyFormatInEditMode = true)]
-        public DateTime CreateDateTimeStamp { get; set; }
     }
 }

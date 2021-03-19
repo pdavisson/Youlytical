@@ -1,5 +1,6 @@
-﻿@using Models.CRMModels
+﻿@using Youlytical.Models.CRMModels
 @model ContactsModel
+
 @{
     ViewData["Title"]="Dashboard";
     Layout="_CRMLayout";
@@ -27,7 +28,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in ViewBag.ContactData)
+                    @* @foreach (var item in ViewBag.ContactData)
                     {
                         <tr>
                             <td style="display:none;">@item.ContactID</td>
@@ -38,7 +39,7 @@
                             <td>@item.Address1</td>
                             <td>@item.Address2</td>
                         </tr>
-                    }
+                    } *@
                 </tbody>
             </table>
         </div>
@@ -56,114 +57,289 @@
             </div>
             <form id="CreateEditContact" class="user" asp-controller="CRM" asp-action="CreateContact" method="POST">
                 <div class="modal-body">
-                    <div class="form-group custom-row">
-                        <div class="col-sm-custom">
-                            <Select class="form-control form-control-dropdown" asp-for="Prefix" style="height:50px" id="test">
-                                <option value="">Prefix</option>
-                                <option value="1st Lt">1st Lt</Option>
-                                <option value="Adm">Adm</Option>
-                                <option value="Atty">Atty</Option>
-                                <option value="Brother">Brother</Option>
-                                <option value="Capt">Capt</Option>
-                                <option value="Chief">Chief</Option>
-                                <option value="Cmdr">Cmdr</Option>
-                                <option value="Col">Col</Option>
-                                <option value="Dean">Dean</Option>
-                                <option value="Dr">Dr</Option>
-                                <option value="Elder">Elder</Option>
-                                <option value="Father">Father</Option>
-                                <option value="Gen">Gen</Option>
-                                <option value="Gov">Gov</Option>
-                                <option value="Hon">Hon</Option>
-                                <option value="Lt Col">Lt Col</Option>
-                                <option value="Maj">Maj</Option>
-                                <option value="MSgt">MSgt</Option>
-                                <option value="Mr">Mr</Option>
-                                <option value="Mrs">Mrs</Option>
-                                <option value="Ms">Ms</Option>
-                                <option value="Pastor">Pastor</Option>
-                                <option value="Prince">Prince</option>
-                                <option value="Prof">Prof</Option>
-                                <option value="Rabbi">Rabbi</Option>
-                                <option value="Rev">Rev</Option>
-                                <option value="Sister">Sister</Option>
-                            </Select>
+                    <div id="accordion" role="tablist" aria-multiselectable="true">
+                    <div class="card">
+                        <h5 class="card-header text-uppercase" role="tab" id="headingOne">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="collapsed d-block">
+                            <i class="fas fa-chevron-down float-right"></i> Names
+                        </a>
+                        </h5>
+                        <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="card-body">
+                            <div class="form-group custom-row">
+                                <div class="col-sm-2">
+                                    <Select class="form-control form-control-dropdown" asp-for="ContactData.Prefix" style="height:50px" id="test">
+                                        <option value="">Prefix</option>
+                                        <option value="1st Lt">1st Lt</Option>
+                                        <option value="Adm">Adm</Option>
+                                        <option value="Atty">Atty</Option>
+                                        <option value="Brother">Brother</Option>
+                                        <option value="Capt">Capt</Option>
+                                        <option value="Chief">Chief</Option>
+                                        <option value="Cmdr">Cmdr</Option>
+                                        <option value="Col">Col</Option>
+                                        <option value="Dean">Dean</Option>
+                                        <option value="Dr">Dr</Option>
+                                        <option value="Elder">Elder</Option>
+                                        <option value="Father">Father</Option>
+                                        <option value="Gen">Gen</Option>
+                                        <option value="Gov">Gov</Option>
+                                        <option value="Hon">Hon</Option>
+                                        <option value="Lt Col">Lt Col</Option>
+                                        <option value="Maj">Maj</Option>
+                                        <option value="MSgt">MSgt</Option>
+                                        <option value="Mr">Mr</Option>
+                                        <option value="Mrs">Mrs</Option>
+                                        <option value="Ms">Ms</Option>
+                                        <option value="Pastor">Pastor</Option>
+                                        <option value="Prince">Prince</option>
+                                        <option value="Prof">Prof</Option>
+                                        <option value="Rabbi">Rabbi</Option>
+                                        <option value="Rev">Rev</Option>
+                                        <option value="Sister">Sister</Option>
+                                    </Select>
+                                </div>
+                                <div class="col-sm-4">
+                                    <input asp-for="ContactData.FirstName" class="form-control form-control-user" placeholder="First Name" />
+                                </div>
+                                <div class="col-sm-4">
+                                    <input asp-for="ContactData.LastName" class="form-control form-control-user" placeholder="Last Name" />
+                                </div>
+                                <div class="col-sm-2">
+                                    <Select class="form-control form-control-dropdown" asp-for="ContactData.Suffix" style="height:50px" id="test">
+                                        <option value="" >Suffix</option>
+                                        <option value="II">II</option>
+                                        <option value="III">III</option>
+                                        <option value="IV">IV</option>
+                                        <option value="CPA">CPA</option>
+                                        <option value="DDS">DDS</option>
+                                        <option value="Esq">Esq</option>
+                                        <option value="JD">JD</option>
+                                        <option value="Jr">Jr</option>
+                                        <option value="LLD">LLD</option>
+                                        <option value="MD">MD</option>
+                                        <option value="PhD">PhD</option>
+                                        <option value="Ret">Ret</option>
+                                        <option value="RN">RN</option>
+                                        <option value="Sr">Sr</option>
+                                        <option value="DO">DO</option>
+                                    </Select>
+                                </div>
+                            </div>
+                            <div class="form-group custom-row">
+                                <div class="col-sm-2">
+                                    <Select class="form-control form-control-dropdown" asp-for="ContactData.SpousePrefix" style="height:50px" id="test">
+                                        <option value="">Prefix</option>
+                                        <option value="1st Lt">1st Lt</Option>
+                                        <option value="Adm">Adm</Option>
+                                        <option value="Atty">Atty</Option>
+                                        <option value="Brother">Brother</Option>
+                                        <option value="Capt">Capt</Option>
+                                        <option value="Chief">Chief</Option>
+                                        <option value="Cmdr">Cmdr</Option>
+                                        <option value="Col">Col</Option>
+                                        <option value="Dean">Dean</Option>
+                                        <option value="Dr">Dr</Option>
+                                        <option value="Elder">Elder</Option>
+                                        <option value="Father">Father</Option>
+                                        <option value="Gen">Gen</Option>
+                                        <option value="Gov">Gov</Option>
+                                        <option value="Hon">Hon</Option>
+                                        <option value="Lt Col">Lt Col</Option>
+                                        <option value="Maj">Maj</Option>
+                                        <option value="MSgt">MSgt</Option>
+                                        <option value="Mr">Mr</Option>
+                                        <option value="Mrs">Mrs</Option>
+                                        <option value="Ms">Ms</Option>
+                                        <option value="Pastor">Pastor</Option>
+                                        <option value="Prince">Prince</option>
+                                        <option value="Prof">Prof</Option>
+                                        <option value="Rabbi">Rabbi</Option>
+                                        <option value="Rev">Rev</Option>
+                                        <option value="Sister">Sister</Option>
+                                    </Select>
+                                </div>
+                                <div class="col-sm-4">
+                                    <input asp-for="ContactData.SpouseFirstName" class="form-control form-control-user" placeholder="Spouse First Name" />
+                                </div>
+                                <div class="col-sm-4">
+                                    <input asp-for="ContactData.SpouseLastName" class="form-control form-control-user" placeholder="Spouse Last Name" />
+                                </div>
+                                <div class="col-sm-2">
+                                    <Select class="form-control form-control-dropdown" asp-for="ContactData.SpouseSuffix" style="height:50px" id="test">
+                                        <option value="" >Suffix</option>
+                                        <option value="II">II</option>
+                                        <option value="III">III</option>
+                                        <option value="IV">IV</option>
+                                        <option value="CPA">CPA</option>
+                                        <option value="DDS">DDS</option>
+                                        <option value="Esq">Esq</option>
+                                        <option value="JD">JD</option>
+                                        <option value="Jr">Jr</option>
+                                        <option value="LLD">LLD</option>
+                                        <option value="MD">MD</option>
+                                        <option value="PhD">PhD</option>
+                                        <option value="Ret">Ret</option>
+                                        <option value="RN">RN</option>
+                                        <option value="Sr">Sr</option>
+                                        <option value="DO">DO</option>
+                                    </Select>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-sm-3">
-                            <input asp-for="FirstName" class="form-control form-control-user" placeholder="First Name" />
+                        </div>  
+                    </div>
+                    <div class="card">
+                        <h5 class="card-header text-uppercase" role="tab" id="headingTwo">
+                        <a class="collapsed d-block" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <i class="fas fa-chevron-down float-right"></i> Contact Info
+                        </a>
+                        </h5>
+                        <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <div class="form-group col-sm-6">
+                                    <input asp-for="AddressData.Address1" class="form-control form-control-user" placeholder="Address1" />                
+                                </div>
+                                    <div class="form-group col-sm-4">
+                                    <input asp-for="AddressData.Address2" class="form-control form-control-user" placeholder="Address2" />                
+                                </div>
+                                <div class="form-group col-sm-2">
+                                    <Select class="form-control form-control-dropdown" asp-for="AddressData.AddressType" style="height:50px" id="test">
+                                        <option value="">Address Type</option>
+                                        <option value="Residential" >Residential</option>
+                                        <option value="Business">Business</option>
+                                        <option value="Other">Other</option>
+                                    </Select>             
+                                </div> 
+                            </div> 
+                            <div class="form-group row">
+                                <div class="form-group col-sm-4">
+                                    <input asp-for="AddressData.City" class="form-control form-control-user" placeholder="City" />                
+                                </div> 
+                                <div class="form-group col-sm-4">
+                                    <input asp-for="AddressData.State" class="form-control form-control-user" placeholder="State" />                
+                                </div> 
+                                <div class="form-group col-sm-4">
+                                    <input asp-for="AddressData.Zip" class="form-control form-control-user" placeholder="Zip" />                
+                                </div>
+                            </div> 
+                                <div class="form-group row">
+                                <div class="form-group col-sm-6">
+                                    <input asp-for="AddressData.Country" class="form-control form-control-user" placeholder="Country" />                
+                                </div> 
+                                <div class="form-group col-sm-6">
+                                    <input asp-for="AddressData.Province" class="form-control form-control-user" placeholder="Province" />                
+                                </div>
+                            </div> 
+                            <div class="form-group row">
+                                <div class="form-group col-sm-6">
+                                    <input asp-for="PhoneData.PhoneNumber" class="form-control form-control-user" placeholder="Phone Number" />                
+                                </div> 
+                            </div>
+                            <div class="form-group row">
+                                <div class="form-group col-sm-1">
+                                    <label class="text-center">Primary</label>
+                                    
+                                    <label class="custom-control custom-checkbox text-center">
+                                        <input type="checkbox" asp-for="EmailData.Primary" name="chbxTerms" class="custom-control-input text-center">
+                                        <span class="custom-control-label text-center" asp-for="EmailData.Primary"></span>
+                                    </label>
+                                </div>
+                                <div class="form-group col-sm-3">
+                                    <Select class="form-control form-control-dropdown" asp-for="ContactData.SpouseSuffix" style="height:50px" id="test">
+                                        <option value="" >Email Type</option>
+                                        <option value="Personal">Personal</option>
+                                        <option value="Business">Business</option>
+                                    </Select>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <input asp-for="EmailData.Email" id="Email1" class="form-control form-control-user" placeholder="Email Address" /> 
+                                </div>
+                            </div>   
+                            <div class="form-group row">
+                                <div class="form-group col-sm-1">
+                                    <label class="text-center">Primary</label>
+                                    
+                                    <label class="custom-control custom-checkbox text-center">
+                                        <input type="checkbox" asp-for="EmailData.Primary" name="chbxTerms" class="custom-control-input text-center">
+                                        <span class="custom-control-label text-center" asp-for="EmailData.Primary"></span>
+                                    </label>
+                                </div>
+                                <div class="form-group col-sm-3">
+                                    <Select class="form-control form-control-dropdown" asp-for="ContactData.SpouseSuffix" style="height:50px" id="test">
+                                        <option value="" >Email Type</option>
+                                        <option value="Personal">Personal</option>
+                                        <option value="Business">Business</option>
+                                    </Select>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <input asp-for="EmailData.Email" id="Email1" class="form-control form-control-user" placeholder="Email Address" /> 
+                                </div>
+                            </div>  
+                            <div class="form-group row">
+                                <div class="form-group col-sm-6">
+                                    <input asp-for="AddressData.Address1" class="form-control form-control-user" placeholder="Address1" />                
+                                </div>
+                                    <div class="form-group col-sm-4">
+                                    <input asp-for="AddressData.Address2" class="form-control form-control-user" placeholder="Address2" />                
+                                </div>
+                                <div class="form-group col-sm-2">
+                                    <Select class="form-control form-control-dropdown" asp-for="AddressData.AddressType" style="height:50px" id="test">
+                                        <option value="">Address Type</option>
+                                        <option value="Residential" >Residential</option>
+                                        <option value="Business">Business</option>
+                                        <option value="Other">Other</option>
+                                    </Select>             
+                                </div> 
+                            </div> 
+                            <div class="form-group row">
+                                <div class="form-group col-sm-4">
+                                    <input asp-for="AddressData.City" class="form-control form-control-user" placeholder="City" />                
+                                </div> 
+                                <div class="form-group col-sm-4">
+                                    <input asp-for="AddressData.State" class="form-control form-control-user" placeholder="State" />                
+                                </div> 
+                                <div class="form-group col-sm-4">
+                                    <input asp-for="AddressData.Zip" class="form-control form-control-user" placeholder="Zip" />                
+                                </div>
+                            </div> 
+                                <div class="form-group row">
+                                <div class="form-group col-sm-6">
+                                    <input asp-for="AddressData.Country" class="form-control form-control-user" placeholder="Country" />                
+                                </div> 
+                                <div class="form-group col-sm-6">
+                                    <input asp-for="AddressData.Province" class="form-control form-control-user" placeholder="Province" />                
+                                </div>
+                            </div> 
+                            <div class="form-group row">
+                                <div class="form-group col-sm-6">
+                                    <input asp-for="PhoneData.PhoneNumber" class="form-control form-control-user" placeholder="Phone Number" />                
+                                </div> 
+                            </div>  
                         </div>
-                        <div class="col-sm-3">
-                            <input asp-for="LastName" class="form-control form-control-user" placeholder="Last Name" />
-                        </div>
-                        <div class="col-sm-custom">
-                            <Select class="form-control form-control-dropdown" asp-for="Suffix" style="height:50px" id="test">
-                                <option value="" >Suffix</option>
-                                <option value="II">II</option>
-                                <option value="III">III</option>
-                                <option value="IV">IV</option>
-                                <option value="CPA">CPA</option>
-                                <option value="DDS">DDS</option>
-                                <option value="Esq">Esq</option>
-                                <option value="JD">JD</option>
-                                <option value="Jr">Jr</option>
-                                <option value="LLD">LLD</option>
-                                <option value="MD">MD</option>
-                                <option value="PhD">PhD</option>
-                                <option value="Ret">Ret</option>
-                                <option value="RN">RN</option>
-                                <option value="Sr">Sr</option>
-                                <option value="DO">DO</option>
-                            </Select>
-                        </div>
-                        <div class="col-sm-3">
-                            <input asp-for="Spouse_Name" class="form-control form-control-user" placeholder="Spouse Name" />
                         </div>
                     </div>
-                    <div class="form-group">
-                        <input asp-for="Address1" class="form-control form-control-user" placeholder="Address1" />                
-                    </div>  
-                    <div class="form-group">
-                        <input asp-for="Address2" class="form-control form-control-user" placeholder="Address2" />                
-                    </div> 
-                    <div class="form-group row">
-                        <div class="form-group col-sm-4">
-                            <input asp-for="City" class="form-control form-control-user" placeholder="City" />                
-                        </div> 
-                        <div class="form-group col-sm-4">
-                            <input asp-for="State" class="form-control form-control-user" placeholder="State" />                
-                        </div> 
-                        <div class="form-group col-sm-4">
-                            <input asp-for="Zip" class="form-control form-control-user" placeholder="Zip" />                
+                    <div class="card">
+                        <h5 class="card-header text-uppercase" role="tab" id="headingThree">
+                        <a class="collapsed d-block" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        <i class="fas fa-chevron-down float-right"></i> Notes
+                        </a>
+                        </h5>
+                        <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+                            <div class="card-body">
+
+
+
+
+                            </div>
                         </div>
-                    </div> 
-                     <div class="form-group row">
-                        <div class="form-group col-sm-6">
-                            <input asp-for="Country" class="form-control form-control-user" placeholder="Country" />                
-                        </div> 
-                        <div class="form-group col-sm-6">
-                            <input asp-for="Province" class="form-control form-control-user" placeholder="Province" />                
-                        </div>
-                    </div> 
-                    <div class="form-group row">
-                        <div class="form-group col-sm-6">
-                            <input asp-for="PrimaryPhone" class="form-control form-control-user" placeholder="Primary Phone" />                
-                        </div> 
-                        <div class="form-group col-sm-6">
-                            <input asp-for="SecondaryPhone" class="form-control form-control-user" placeholder="Secondary Phone" />                
-                        </div> 
                     </div>
-                    <div class="form-group row">
-                        <div class="form-group col-sm-6">
-                            <input asp-for="PrimaryEmail" class="form-control form-control-user" placeholder="Primary Email" />                
-                        </div> 
-                        <div class="form-group col-sm-6">
-                            <input asp-for="SecondaryEmail" class="form-control form-control-user" placeholder="Secondary Email" />                
-                        </div>
-                    </div>      
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                         <button id="logout" type="submit" class="btn btn-primary">Add Contact</button>
                     </div> 
+                    @* </div> *@
                 </div>
             </form>
         </div>
