@@ -23,6 +23,19 @@ namespace CRM
                 services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                     .AddRoles<IdentityRole>()
                     .AddEntityFrameworkStores<ApplicationDbContext>();
+
+                services.Configure<IdentityOptions>(options =>
+                {
+                    options.Password.RequiredLength = 5;
+                    options.Password.RequiredUniqueChars = 1;
+                    options.Password.RequireDigit = true;
+                    options.Password.RequireLowercase = true;
+                    options.Password.RequireNonAlphanumeric = true;
+                    options.Password.RequireUppercase = true;
+                    options.SignIn.RequireConfirmedEmail = true;
+                    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(20);
+                    options.Lockout.MaxFailedAccessAttempts = 3;
+                });
                 services.Configure<DataProtectionTokenProviderOptions>(o =>
                     o.TokenLifespan = TimeSpan.FromHours(3));
                 services.AddTransient<IEmailSender,EmailSender>();

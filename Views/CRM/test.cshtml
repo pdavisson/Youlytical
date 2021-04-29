@@ -1,0 +1,69 @@
+
+@model Youlytical.Models.CRMModels.ContactsModel;
+@{
+    ViewData["Title"] = "Test";
+    Layout="_CRMLayout";
+
+}
+<h2>@ViewData["Title"]</h2>
+
+
+<p>Use this area to provide additional information.</p>
+<br /> <br />
+
+<form method="post">
+
+
+<div class="form-group row">
+    <div class="form-group col-sm-1 text-center">
+        <label class="custom-control-Primary">Primary</label>
+        
+        <label class="custom-control custom-checkbox text-center">
+            <input type="checkbox" asp-for="EmailData.Primary" name="chbxTerms" id="Email_0" class="custom-control-input text-center">
+            <span class="custom-control-label" asp-for="EmailData.Primary"></span>
+        </label>
+    </div>
+    <div class="form-group col-sm-3">
+        <Select class="custom-control-formElement form-control form-control-dropdown custom-form-Element" asp-for="EmailData.EmailType" id="Email_0">
+            <option value="" >Email Type</option>
+            <option value="Personal">Personal</option>
+            <option value="Business">Business</option>
+        </Select>
+    </div>
+    <div class="form-group col-sm-6">
+        <input asp-for="EmailData.Email" id="Email_0" class="form-control form-control-user custom-form-Element" placeholder="Email Address" /> 
+    </div>
+</div> 
+<div id="new_Email"></div>
+<div class="form-group row">
+    <div class="form-group">
+         <button class="btn btn-primary btn-user custom-form-Element" type="submit">
+            <i class="float-right fas fa-save fa-2x"></i>
+        </button>
+        <button class="add btn btn-green float-right custom-form-Element"><i class="text-right custom-form-Element fas fa-plus fa-2x"></i></button>
+        <input type="hidden" value="0" id="total_email">
+    </div>
+</div>
+</form>
+
+
+
+
+@section Scripts
+{
+    <script>
+        $('.add').on('click', add);
+        function add() {
+            var new_Email_No = parseInt($('#total_email').val()) + 1;
+            var new_Email = "<div id='Email_" + new_Email_No + "' class='form-group row'><div class='form-group col-sm-1 text-center'><label class='text-center'>Primary</label><label class='custom-control custom-checkbox text-center'> <input type='checkbox' asp-for='EmailData.Primary' name='chbxTerms' id='Email_" + new_Email_No + "' class='custom-control-input text-center'> <span class='custom-control-label text-center' asp-for='EmailData.Primary'></span> </label></div><div class='form-group col-sm-3'> <Select class='form-control form-control-dropdown custom-form-Element' asp-for='EmailData.EmailType style='height:50px' id='Email_" + new_Email_No + "'><option value='' >Email Type</option><option value='Personal'>Personal</option><option value='Business'>Business</option> </Select></div><div class='form-group col-sm-6'> <input asp-for='EmailData.Email' id='Email_" + new_Email_No + "' class='form-control form-control-user custom-form-Element' placeholder='Email Address' /></div><div class='form-group col-sm-1'><button class='btn btn-register custom-form-Element' id='Email_" + new_Email_No + "' onClick='removeItem(this.id)'><i class='fas fa-trash-alt fa-lg'></i></button></div></div>";
+            @* var new_input = "<input type='text' id='Email_" + new_Email_No + "'>"; *@
+            $('#new_Email').append(new_Email);
+            $('#total_email').val(new_Email_No);
+            return false;
+        }
+        function removeItem(clicked_id) {
+            document.getElementById(clicked_id).remove();
+        }
+    </script>
+}
+

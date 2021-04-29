@@ -464,7 +464,10 @@ mark,
   font-size: 90%;
   text-transform: uppercase;
 }
-
+.add-icon
+{
+  font-size: 50px;
+}
 .blockquote {
   margin-bottom: 1rem;
   font-size: 1.25rem;
@@ -2413,13 +2416,13 @@ fieldset:disabled a.btn {
 .btn-green {
     color: #fff;
     background-color: #22b14c;
-    border-color: #fff;
+    border-color: #22b14c;
 }
 
 .btn-green:hover {
     color: #fff;
     background-color: #27783e;
-    border-color: #e6e6e6;
+    border-color: #22b14c;
 }
 
 .btn-yellow {
@@ -3717,6 +3720,7 @@ input[type="button"].btn-block {
   opacity: 0;
 }
 
+
 .custom-control-input:checked ~ .custom-control-label::before {
   color: #fff;
   border-color: #00a2e8;
@@ -3749,6 +3753,14 @@ input[type="button"].btn-block {
   position: relative;
   margin-bottom: 0;
   vertical-align: top;
+}
+
+.custom-control-Primary {  
+  margin-bottom: 0;
+  vertical-align: top;
+}
+.custom-form-Element {
+  height: 50px;
 }
 
 .custom-control-label::before {
@@ -4160,6 +4172,27 @@ input[type="button"].btn-block {
   }
 }
 
+.icon-size-sm
+{
+  font-size: small !important;
+}
+
+.icon-size-md
+{
+  font-size: medium !important;
+}
+.icon-size-lg
+{
+  font-size: large !important;
+}
+.icon-size-custom
+{
+  font-size: 28px !important;
+}
+.icon-size-xxl
+{
+  font-size: xx-large !important;
+}
 .nav {
   display: flex;
   flex-wrap: wrap;
@@ -10597,8 +10630,11 @@ a:focus {
 .sidebar #sidebarToggle::after {
   font-weight: 900;
   content: '\f104';
+  font-size: x-large;
   font-family: 'Font Awesome 5 Free';
   margin-right: 0.1rem;
+  color: #000;
+  vertical-align: bottom;
 }
 
 .sidebar #sidebarToggle:hover {
@@ -10617,6 +10653,8 @@ a:focus {
 .sidebar.toggled #sidebarToggle::after {
   content: '\f105';
   font-family: 'Font Awesome 5 Free';
+  font-size: x-large;
+  vertical-align: bottom;
   margin-left: 0.25rem;
 }
 
@@ -10815,7 +10853,7 @@ a:focus {
 }
 
 .sidebar-light #sidebarToggle::after {
-  color: #b7b9cc;
+  color: #000000;
 }
 
 .sidebar-light #sidebarToggle:hover {
@@ -10865,19 +10903,20 @@ a:focus {
 }
 
 .sidebar-dark #sidebarToggle {
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgb(255, 255, 255);
 }
 
 .sidebar-dark #sidebarToggle::after {
-  color: rgba(255, 255, 255, 0.9);
+  color: #858796;
 }
 
 .sidebar-dark #sidebarToggle:hover {
-  background-color: rgba(0, 0, 0, 0.8);
+  /* background-color: rgba(0, 0, 0, 0.8); */
+  font-weight: bold;
 }
 
 .sidebar-dark.toggled #sidebarToggle::after {
-  color: rgba(255, 255, 255, 0.9);
+  color: #858796;
   
 }
 
@@ -10890,7 +10929,6 @@ a:focus {
   align-items: center;
   justify-content: center;
 }
-
 .btn-circle.btn-sm, .btn-group-sm > .btn-circle.btn {
   height: 1.8rem;
   width: 1.8rem;
@@ -11710,3 +11748,4 @@ svg .cls-1 {
   margin: 20px 0 60px;
   font-size: 1.25em;
 }
+

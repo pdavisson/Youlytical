@@ -56,7 +56,7 @@ namespace Youlytical.Models.CRMModels
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy hh:mm tt}", ApplyFormatInEditMode = true)]
         public DateTime LastUpdate_DateTimeStamp { get; set; }
         public virtual List<PhoneData> PhoneNumbers { get; set; }
-        public virtual ICollection<EmailData> EmailAddresses { get; set; }
+        public virtual List<EmailData> EmailAddresses { get; set; }
         public virtual List <AddressData> Addresses { get; set; }
     }
 
@@ -89,13 +89,6 @@ namespace Youlytical.Models.CRMModels
         [StringLength(50)]
         [DataType(DataType.Text)]
         public string EmailType { get; set; }
-        // public virtual ICollection<EmailData> Email { get; set; }
-        // internal void CreateEmailArray(int count =1)
-        // {
-        //     for(int i=0; i< count; i++) {
-        //         Email.Add(new EmailData()); 
-        //     }
-        // }
         [EmailAddress]
         public string Email { get; set; }
         public bool Primary { get; set; }

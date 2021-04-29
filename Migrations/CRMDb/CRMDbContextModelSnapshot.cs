@@ -68,7 +68,7 @@ namespace CRM.migrations.CRMdb
 
                     b.HasIndex("ContactID");
 
-                    b.ToTable("crmPhoneNumbers");
+                    b.ToTable("crmAddresses");
                 });
 
             modelBuilder.Entity("Youlytical.Models.CRMModels.ContactData", b =>
@@ -178,7 +178,7 @@ namespace CRM.migrations.CRMdb
 
                     b.HasIndex("ContactID");
 
-                    b.ToTable("crmAddresses");
+                    b.ToTable("crmPhoneNumbers");
                 });
 
             modelBuilder.Entity("Youlytical.Models.CRMModels.AddressData", b =>

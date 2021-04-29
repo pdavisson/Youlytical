@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CRM.migrations.CRMdb
 {
     [DbContext(typeof(CRMDbContext))]
-    [Migration("20210319211104_BuildContactTables-v1")]
-    partial class BuildContactTablesv1
+    [Migration("20210426161142_ContactsBuild-v202104266")]
+    partial class ContactsBuildv202104266
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -70,7 +70,7 @@ namespace CRM.migrations.CRMdb
 
                     b.HasIndex("ContactID");
 
-                    b.ToTable("crmPhoneNumbers");
+                    b.ToTable("crmAddresses");
                 });
 
             modelBuilder.Entity("Youlytical.Models.CRMModels.ContactData", b =>
@@ -180,7 +180,7 @@ namespace CRM.migrations.CRMdb
 
                     b.HasIndex("ContactID");
 
-                    b.ToTable("crmAddresses");
+                    b.ToTable("crmPhoneNumbers");
                 });
 
             modelBuilder.Entity("Youlytical.Models.CRMModels.AddressData", b =>

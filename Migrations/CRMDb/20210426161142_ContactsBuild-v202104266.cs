@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CRM.migrations.CRMdb
 {
-    public partial class BuildContactTablesv1 : Migration
+    public partial class ContactsBuildv202104266 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -34,16 +34,22 @@ namespace CRM.migrations.CRMdb
                 name: "crmAddresses",
                 columns: table => new
                 {
-                    pID = table.Column<int>(type: "int", nullable: false)
+                    aID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ContactID = table.Column<int>(type: "int", nullable: false),
-                    PhoneType = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AddressType = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Address1 = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    Address2 = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    City = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    State = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    Zip = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    Country = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Province = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     Primary = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_crmAddresses", x => x.pID);
+                    table.PrimaryKey("PK_crmAddresses", x => x.aID);
                     table.ForeignKey(
                         name: "FK_crmAddresses_crmContacts_ContactID",
                         column: x => x.ContactID,
@@ -78,22 +84,16 @@ namespace CRM.migrations.CRMdb
                 name: "crmPhoneNumbers",
                 columns: table => new
                 {
-                    aID = table.Column<int>(type: "int", nullable: false)
+                    pID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ContactID = table.Column<int>(type: "int", nullable: false),
-                    AddressType = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    Address1 = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-                    Address2 = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-                    City = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-                    State = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-                    Zip = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-                    Country = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    Province = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    PhoneType = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Primary = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_crmPhoneNumbers", x => x.aID);
+                    table.PrimaryKey("PK_crmPhoneNumbers", x => x.pID);
                     table.ForeignKey(
                         name: "FK_crmPhoneNumbers_crmContacts_ContactID",
                         column: x => x.ContactID,

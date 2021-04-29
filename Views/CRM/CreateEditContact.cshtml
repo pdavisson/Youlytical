@@ -1,0 +1,360 @@
+@using Youlytical.Models.CRMModels
+@model ContactsModel
+
+@{
+    ViewData["Title"]="Dashboard";
+    Layout="_CRMLayout";
+}
+<form id="CreateEditContact" class="user" asp-controller="CRM" asp-action="CreateContact" method="POST">
+    <div class="modal-body">
+        <div id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="card">
+                <h5 class="card-header text-uppercase" role="tab" id="headingOne">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="collapsed d-block">
+                        <i class="fas fa-chevron-down float-right"></i> Names
+                    </a>
+                </h5>
+                <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="card-body">
+                        <div class="form-group custom-row">
+                            <div class="col-sm-2">
+                                <Select class="form-control form-control-dropdown" asp-for="ContactData.Prefix" style="height:50px" id="test">
+                                    <option value="">Prefix</option>
+                                    <option value="1st Lt">1st Lt</Option>
+                                    <option value="Adm">Adm</Option>
+                                    <option value="Atty">Atty</Option>
+                                    <option value="Brother">Brother</Option>
+                                    <option value="Capt">Capt</Option>
+                                    <option value="Chief">Chief</Option>
+                                    <option value="Cmdr">Cmdr</Option>
+                                    <option value="Col">Col</Option>
+                                    <option value="Dean">Dean</Option>
+                                    <option value="Dr">Dr</Option>
+                                    <option value="Elder">Elder</Option>
+                                    <option value="Father">Father</Option>
+                                    <option value="Gen">Gen</Option>
+                                    <option value="Gov">Gov</Option>
+                                    <option value="Hon">Hon</Option>
+                                    <option value="Lt Col">Lt Col</Option>
+                                    <option value="Maj">Maj</Option>
+                                    <option value="MSgt">MSgt</Option>
+                                    <option value="Mr">Mr</Option>
+                                    <option value="Mrs">Mrs</Option>
+                                    <option value="Ms">Ms</Option>
+                                    <option value="Pastor">Pastor</Option>
+                                    <option value="Prince">Prince</option>
+                                    <option value="Prof">Prof</Option>
+                                    <option value="Rabbi">Rabbi</Option>
+                                    <option value="Rev">Rev</Option>
+                                    <option value="Sister">Sister</Option>
+                                </Select>
+                            </div>
+                            <div class="col-sm-4">
+                                <input asp-for="ContactData.FirstName" class="form-control form-control-user" placeholder="First Name" />
+                            </div>
+                                <div class="col-sm-4">
+                                <input asp-for="ContactData.LastName" class="form-control form-control-user" placeholder="Last Name" />
+                            </div>
+                            <div class="col-sm-2">
+                                <Select class="form-control form-control-dropdown" asp-for="ContactData.Suffix" style="height:50px" id="test">
+                                    <option value="" >Suffix</option>
+                                    <option value="II">II</option>
+                                    <option value="III">III</option>
+                                    <option value="IV">IV</option>
+                                    <option value="CPA">CPA</option>
+                                    <option value="DDS">DDS</option>
+                                    <option value="Esq">Esq</option>
+                                    <option value="JD">JD</option>
+                                    <option value="Jr">Jr</option>
+                                    <option value="LLD">LLD</option>
+                                    <option value="MD">MD</option>
+                                    <option value="PhD">PhD</option>
+                                    <option value="Ret">Ret</option>
+                                    <option value="RN">RN</option>
+                                    <option value="Sr">Sr</option>
+                                    <option value="DO">DO</option>
+                                </Select>
+                            </div>
+                        </div>
+                    <div class="form-group custom-row">
+                        <div class="col-sm-2">
+                            <Select class="form-control form-control-dropdown" asp-for="ContactData.SpousePrefix" style="height:50px" id="test">
+                                <option value="">Prefix</option>
+                                <option value="1st Lt">1st Lt</Option>
+                                <option value="Adm">Adm</Option>
+                                <option value="Atty">Atty</Option>
+                                <option value="Brother">Brother</Option>
+                                <option value="Capt">Capt</Option>
+                                <option value="Chief">Chief</Option>
+                                <option value="Cmdr">Cmdr</Option>
+                                <option value="Col">Col</Option>
+                                <option value="Dean">Dean</Option>
+                                <option value="Dr">Dr</Option>
+                                <option value="Elder">Elder</Option>
+                                <option value="Father">Father</Option>
+                                <option value="Gen">Gen</Option>
+                                <option value="Gov">Gov</Option>
+                                <option value="Hon">Hon</Option>
+                                <option value="Lt Col">Lt Col</Option>
+                                <option value="Maj">Maj</Option>
+                                <option value="MSgt">MSgt</Option>
+                                <option value="Mr">Mr</Option>
+                                <option value="Mrs">Mrs</Option>
+                                <option value="Ms">Ms</Option>
+                                <option value="Pastor">Pastor</Option>
+                                <option value="Prince">Prince</option>
+                                <option value="Prof">Prof</Option>
+                                <option value="Rabbi">Rabbi</Option>
+                                <option value="Rev">Rev</Option>
+                                <option value="Sister">Sister</Option>
+                            </Select>
+                        </div>
+                        <div class="col-sm-4">
+                            <input asp-for="ContactData.SpouseFirstName" class="form-control form-control-user" placeholder="Spouse First Name" />
+                        </div>
+                        <div class="col-sm-4">
+                            <input asp-for="ContactData.SpouseLastName" class="form-control form-control-user" placeholder="Spouse Last Name" />
+                        </div>
+                        <div class="col-sm-2">
+                            <Select class="form-control form-control-dropdown" asp-for="ContactData.SpouseSuffix" style="height:50px" id="test">
+                                <option value="" >Suffix</option>
+                                <option value="II">II</option>
+                                <option value="III">III</option>
+                                <option value="IV">IV</option>
+                                <option value="CPA">CPA</option>
+                                <option value="DDS">DDS</option>
+                                <option value="Esq">Esq</option>
+                                <option value="JD">JD</option>
+                                <option value="Jr">Jr</option>
+                                <option value="LLD">LLD</option>
+                                <option value="MD">MD</option>
+                                <option value="PhD">PhD</option>
+                                <option value="Ret">Ret</option>
+                                <option value="RN">RN</option>
+                                <option value="Sr">Sr</option>
+                                <option value="DO">DO</option>
+                            </Select>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+        </div>
+
+
+
+        <div class="card">
+            <h5 class="card-header text-uppercase" role="tab" id="headingTwo">
+                <a class="collapsed d-block" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    <i class="fas fa-chevron-down float-right"></i> Email Addresses
+                </a>
+            </h5>
+            <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+                <div class="card-body">
+                    <div class="form-group row">
+                        <div class="form-group col-sm-1 text-center">
+                            <label class="custom-control-Primary">Primary</label>
+                            
+                            <label class="custom-control custom-checkbox text-center">
+                                <input type="checkbox" asp-for="EmailData.Primary" name="chbxTerms" id="Email_0" class="custom-control-input text-center">
+                                <span class="custom-control-label" asp-for="EmailData.Primary"></span>
+                            </label>
+                        </div>
+                        <div class="form-group col-sm-3">
+                            <Select class="custom-control-formElement form-control form-control-dropdown custom-form-Element" asp-for="EmailData.EmailType" id="Email_0">
+                                <option value="" >Email Type</option>
+                                <option value="Personal">Personal</option>
+                                <option value="Business">Business</option>
+                            </Select>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <input asp-for="EmailData.Email" id="Email_0" class="form-control form-control-user custom-form-Element" placeholder="Email Address" /> 
+                        </div>
+                    </div> 
+                    <div id="new_Email"></div>
+                    <div class="form-group row">
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-user custom-form-Element" type="submit">
+                                <i class="float-right fas fa-save fa-2x"></i>
+                            </button>
+                            <button class="addEmail btn btn-green custom-form-Element"><i class="text-right custom-form-Element fas fa-plus fa-2x"></i></button>
+                            <input type="hidden" value="0" id="total_email">
+                        </div>
+                    </div>       
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <h5 class="card-header text-uppercase" role="tab" id="headingThree">
+                <a class="collapsed d-block" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    <i class="fas fa-chevron-down float-right"></i> Phone Numbers
+                </a>
+            </h5>
+            <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+                <div class="card-body">
+                    <div class="form-group row">
+                        @* <div class="form-group col-sm-1 text-center">
+                            <label class="custom-control-Primary">Primary</label>
+                            <label class="custom-control custom-checkbox text-center">
+                                <input type="checkbox" asp-for="PhoneData.Primary" name="chbxTerms" id="Phone_0" class="custom-control-input text-center">
+                                <span class="custom-control-label" asp-for="PhoneData.Primary"></span>
+                            </label>
+                        </div> *@
+                        @* <div class="form-group col-sm-3">
+                            <Select class="custom-control-formElement form-control form-control-dropdown custom-form-Element" asp-for="PhoneData.PhoneType" id="Phone_0">
+                                <option value="" >Phone Type</option>
+                                <option value="Mobile">Mobile</option>
+                                <option value="Home">Home</option>
+                                <option value="Work">Work</option>
+                            </Select>
+                        </div> *@
+                        @* <div class="form-group col-sm-6">
+                            <input asp-for="PhoneData.PhoneNumber" id="Phone_0" class="form-control form-control-user custom-form-Element" placeholder="Phone Number" /> 
+                        </div> *@
+                    </div> 
+                    <div id="new_Phone"></div>
+                    <div class="form-group row">
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-user custom-form-Element" type="submit">
+                                <i class="float-right fas fa-save fa-2x"></i>
+                            </button>
+                            <button class="addPhone btn btn-green custom-form-Element"><i class="text-right custom-form-Element fas fa-plus fa-2x"></i></button>
+                            <input type="hidden" value="0" id="total_Phone">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <h5 class="card-header text-uppercase" role="tab" id="headingFour">
+                <a class="collapsed d-block" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    <i class="fas fa-chevron-down float-right"></i> Addresses
+                </a>
+            </h5>
+            <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFour">
+                <div class="card-body">
+                    <div class="form-group row">
+                        <div class="form-group col-sm-6">
+                            <input asp-for="AddressData.Address1" class="form-control form-control-user" placeholder="Address1" />                
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <input asp-for="AddressData.Address2" class="form-control form-control-user" placeholder="Address2" />                
+                        </div>
+                        <div class="form-group col-sm-2">
+                            <Select class="form-control form-control-dropdown" asp-for="AddressData.AddressType" style="height:50px" id="test">
+                                <option value="">Address Type</option>
+                                <option value="Residential" >Residential</option>
+                                <option value="Business">Business</option>
+                                <option value="Other">Other</option>
+                            </Select>             
+                        </div> 
+                    </div> 
+                    <div class="form-group row">
+                        <div class="form-group col-sm-4">
+                            <input asp-for="AddressData.City" class="form-control form-control-user" placeholder="City" />                
+                        </div> 
+                        <div class="form-group col-sm-4">
+                            <input asp-for="AddressData.State" class="form-control form-control-user" placeholder="State" />                
+                        </div> 
+                        <div class="form-group col-sm-4">
+                            <input asp-for="AddressData.Zip" class="form-control form-control-user" placeholder="Zip" />                
+                        </div>
+                    </div> 
+                    <div class="form-group row">
+                        <div class="form-group col-sm-6">
+                            <input asp-for="AddressData.Country" class="form-control form-control-user" placeholder="Country" />                
+                        </div> 
+                        <div class="form-group col-sm-6">
+                            <input asp-for="AddressData.Province" class="form-control form-control-user" placeholder="Province" />                
+                        </div>
+                    </div> 
+                    <div id="new_Address"></div>
+                    <div class="form-group row">
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-user custom-form-Element" type="submit">
+                                <i class="float-right fas fa-save fa-2x"></i>
+                            </button>
+                            <button class="addAddress btn btn-green custom-form-Element"><i class="text-right custom-form-Element fas fa-plus fa-2x"></i></button>
+                            <input type="hidden" value="0" id="total_Address">
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+         <div class="card">
+            <h5 class="card-header text-uppercase" role="tab" id="headingFive">
+                <a class="collapsed d-block" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                    <i class="fas fa-chevron-down float-right"></i> Notes
+                </a>
+            </h5>
+            <div id="collapseFive" class="collapse" role="tabpanel" aria-labelledby="headingFive">
+                <div class="card-body">
+                    @* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ *@
+
+
+                    @* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ *@
+                </div>
+            </div>
+        </div>
+         <div class="card">
+            <h5 class="card-header text-uppercase" role="tab" id="headingSix">
+                <a class="collapsed d-block" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                    <i class="fas fa-chevron-down float-right"></i> History
+                </a>
+            </h5>
+            <div id="collapseSix" class="collapse" role="tabpanel" aria-labelledby="headingSix">
+                <div class="card-body">
+                    @* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ *@
+
+
+                    @* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ *@
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <button id="logout" type="submit" class="btn btn-primary">Add Contact</button>
+        </div> 
+    </div>
+</form>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        $('.addEmail').on('click', addEmail);
+        function addEmail() {
+            var new_Email_No = parseInt($('#total_email').val()) + 1;
+            var new_Email = "<div id='Email_" + new_Email_No + "' class='form-group row'><div class='form-group col-sm-1 text-center'><label class='text-center'>Primary</label><label class='custom-control custom-checkbox text-center'> <input type='checkbox' asp-for='EmailData.Primary' name='chbxTerms' id='Email_" + new_Email_No + "' class='custom-control-input text-center'> <span class='custom-control-label text-center' asp-for='EmailData.Primary'></span> </label></div><div class='form-group col-sm-3'> <Select class='form-control form-control-dropdown custom-form-Element' asp-for='EmailData.EmailType style='height:50px' id='Email_" + new_Email_No + "'><option value='' >Email Type</option><option value='Personal'>Personal</option><option value='Business'>Business</option> </Select></div><div class='form-group col-sm-6'> <input asp-for='EmailData.Email' id='Email_" + new_Email_No + "' class='form-control form-control-user custom-form-Element' placeholder='Email Address' /></div><div class='form-group col-sm-1'><button class='btn btn-register custom-form-Element' id='Email_" + new_Email_No + "' onClick='removeItem(this.id)'><i class='fas fa-trash-alt fa-lg'></i></button></div></div>";
+            $('#new_Email').append(new_Email);
+            $('#total_email').val(new_Email_No);
+            return false;
+        }
+        $('.addPhone').on('click', addPhone);
+        function addPhone() {
+            var new_Phone_No = parseInt($('#total_Phone').val()) + 1;
+            var new_Phone = "<div id='Phone_" + new_Phone_No + "' class='form-group row'><div class='form-group col-sm-1 text-center'><label class='text-center'>Primary</label><label class='custom-control custom-checkbox text-center'> <input type='checkbox' asp-for='PhoneData.Primary' name='chbxTerms' id='Phone_" + new_Phone_No + "' class='custom-control-input text-center'> <span class='custom-control-label text-center' asp-for='PhoneData.Primary'></span> </label></div><div class='form-group col-sm-3'> <Select class='form-control form-control-dropdown custom-form-Element' asp-for='PhoneData.PhoneType style='height:50px' id='Phone_" + new_Phone_No + "'><option value='' >Phone Type</option><option value='Personal'>Personal</option><option value='Business'>Business</option> </Select></div><div class='form-group col-sm-6'> <input asp-for='PhoneData.PhoneNumber' id='Phone_" + new_Phone_No + "' class='form-control form-control-user custom-form-Element' placeholder='Phone Address' /></div><div class='form-group col-sm-1'><button class='btn btn-register custom-form-Element' id='Phone_" + new_Phone_No + "' onClick='removeItem(this.id)'><i class='fas fa-trash-alt fa-lg'></i></button></div></div>";
+            $('#new_Phone').append(new_Phone);
+            $('#total_Phone').val(new_Phone_No);
+            return false;
+        }
+        $('.addAddress').on('click', addAddress);
+        function addAddress() {
+            var new_Address_No = parseInt($('#total_Address').val()) + 1;
+            var new_Address_row = "<div id='Address_" + new_Address_No + "'><hr><div class='form-group row'><div class='form-group col-sm-6'><input asp-for='AddressData.Address1' class='form-control form-control-user' placeholder='Address1'/></div><div class='form-group col-sm-4'><input asp-for='AddressData.Address2' class='form-control form-control-user' placeholder='Address2'/></div><div class='form-group col-sm-2'><select class='form-control form-control-dropdown' asp-for='AddressData.AddressType' style='height: 50px;' id='test'><option value=''>Address Type</option><option value='Residential'>Residential</option><option value='Business'>Business</option><option value='Other'>Other</option></select></div></div><div class='form-group row'><div class='form-group col-sm-4'><input asp-for='AddressData.City' class='form-control form-control-user' placeholder='City'/></div><div class='form-group col-sm-4'><input asp-for='AddressData.State' class='form-control form-control-user' placeholder='State'/></div><div class='form-group col-sm-4'><input asp-for='AddressData.Zip' class='form-control form-control-user' placeholder='Zip'/></div></div><div class='form-group row'><div class='form-group col-sm-6'><input asp-for='AddressData.Country' class='form-control form-control-user' placeholder='Country'/></div><div class='form-group col-sm-5'><input asp-for='AddressData.Province' class='form-control form-control-user' placeholder='Province'/></div><div class='form-group col-sm-1'><button class='btn btn-register custom-form-Element' id='Address_" + new_Address_No + "' onClick='removeItem(this.id)'><i class='fas fa-trash-alt fa-lg'> </i></button></div></div></div>";
+            $('#new_Address').append(new_Address_row);
+            $('#total_Address').val(new_Address_No);
+            return false;
+        }
+        function removeItem(clicked_id) {
+            document.getElementById(clicked_id).remove();
+        }
+    </script>
+}
+
+  
+
+
+

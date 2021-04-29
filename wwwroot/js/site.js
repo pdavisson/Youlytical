@@ -42,10 +42,10 @@
   $(function(){
     $("#AllUsersTable")
       .dataTable();
-      // .click(function () {
-      //   var Clicked_Id = $(this).text();
+      .click(function () {
+        var Clicked_Id = $(this).text();
         
-      // });
+      });
     $("#AdminTable").dataTable();
     $("#MembersTable").dataTable();
   })   
@@ -63,5 +63,16 @@ $(document).ready(function () {
     if (role=="Manager"){document.getElementById("jsRoleManager").checked=true;}else{document.getElementById("jsRoleManager").checked=false;}
   })
 })
+$('.add').on('click', add);
+function add() {
+    var new_Email_No = parseInt($('#total_email').val()) + 1;
+    var new_Email = "<div id='Email_" + new_Email_No + "' class='form-group row'><div class='form-group col-sm-1 text-center'><label class='text-center'>Primary</label><label class='custom-control custom-checkbox text-center'> <input type='checkbox' asp-for='EmailData.Primary' name='chbxTerms' id='Email_" + new_Email_No + "' class='custom-control-input text-center'> <span class='custom-control-label text-center' asp-for='EmailData.Primary'></span> </label></div><div class='form-group col-sm-3'> <Select class='form-control form-control-dropdown custom-form-Element' asp-for='EmailData.EmailType style='height:50px' id='Email_" + new_Email_No + "'><option value='' >Email Type</option><option value='Personal'>Personal</option><option value='Business'>Business</option> </Select></div><div class='form-group col-sm-6'> <input asp-for='EmailData.Email' id='Email_" + new_Email_No + "' class='form-control form-control-user custom-form-Element' placeholder='Email Address' /></div><div class='form-group col-sm-1'><button class='btn btn-register custom-form-Element' id='Email_" + new_Email_No + "' onClick='removeItem(this.id)'><i class='fas fa-trash-alt fa-lg'></i></button></div></div>";
+    $('#new_Email').append(new_Email);
+    $('#total_email').val(new_Email_No);
+    return false;
+}
+function removeItem(clicked_id) {
+    document.getElementById(clicked_id).remove();
+}
 
     

@@ -28,8 +28,15 @@ namespace CRM.Controllers
 			_userManager=userManager;
 
 		}
-		
+		public IActionResult Test()
+		{
+			return View();
+		}
 		public IActionResult Index()
+		{
+			return View();
+		}
+		public IActionResult CreateEditContact()
 		{
 			return View();
 		}
@@ -38,7 +45,9 @@ namespace CRM.Controllers
 		{
 			var UserID=_userManager.GetUserId(HttpContext.User);
             var ContactList=_context.crmContacts
+				.Include(b=>b.PhoneNumbers)
 				.Include(p=>p.EmailAddresses)
+				.Include(c=>c.Addresses)
 				.Where(a=>a.UserId==UserID)
 				.ToList();
 			ViewBag.ContactList=ContactList;
@@ -93,16 +102,20 @@ namespace CRM.Controllers
 						Province=model.AddressData.Province,
 						Primary=model.AddressData.Primary
 					};
-					EmailData newEmail = new EmailData()
-					{
-						ContactID=id,
-						EmailType=model.EmailData.EmailType,
-						Email=model.EmailData.Email,
-						Primary=model.EmailData.Primary
-					};
+					// EmailData newEmail = new EmailData()
+					// {
+					// 	foreach (var Entry in newEmail)
+					// 	{
+					// 	ContactID=id,
+					// 	EmailType=model.EmailData[Entry].EmailType,
+					// 	Email=model.EmailData[].Email,
+					// 	Primary=model.EmailData[].Primary
+					// 	}
+		
+					// };
 					_context.Add(newPhone);
 					_context.Add(newAddress);
-					_context.Add(newEmail);
+					// _context.Add(newEmail);
 					await _context.SaveChangesAsync();
 					return RedirectToAction(nameof(Contacts));
 				}

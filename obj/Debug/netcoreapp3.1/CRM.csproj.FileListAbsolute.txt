@@ -210,3 +210,5 @@ C:\Users\peted\source\repos\Youlytical\obj\Debug\netcoreapp3.1\CRM.pdb
 C:\Users\peted\source\repos\Youlytical\obj\Debug\netcoreapp3.1\CRM.genruntimeconfig.cache
 C:\Users\peted\source\repos\Youlytical\bin\Debug\netcoreapp3.1\Microsoft.DotNet.PlatformAbstractions.dll
 C:\Users\peted\source\repos\Youlytical\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyModel.dll
+C:\Users\peted\source\repos\Youlytical\obj\Debug\netcoreapp3.1\Razor\Views\CRM\test.cshtml.g.cs
+C:\Users\peted\source\repos\Youlytical\obj\Debug\netcoreapp3.1\Razor\Views\CRM\CreateEditContact.cshtml.g.cs
