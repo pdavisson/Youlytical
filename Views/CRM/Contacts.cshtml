@@ -222,13 +222,13 @@
                             <div class="card-body">
                                 <div class="form-group row">
                                     <div class="form-group col-sm-6">
-                                        <input asp-for="AddressData.Address1" class="form-control form-control-user" placeholder="Address1" />                
+                                        <input asp-for="AddressData[0].Address1" class="form-control form-control-user" placeholder="Address1" />                
                                     </div>
                                     <div class="form-group col-sm-4">
-                                        <input asp-for="AddressData.Address2" class="form-control form-control-user" placeholder="Address2" />                
+                                        <input asp-for="AddressData[0].Address2" class="form-control form-control-user" placeholder="Address2" />                
                                     </div>
                                     <div class="form-group col-sm-2">
-                                        <Select class="form-control form-control-dropdown" asp-for="AddressData.AddressType" style="height:50px" id="test">
+                                        <Select class="form-control form-control-dropdown" asp-for="AddressData[0]  .AddressType" style="height:50px" id="test">
                                             <option value="">Address Type</option>
                                             <option value="Residential" >Residential</option>
                                             <option value="Business">Business</option>
@@ -238,26 +238,26 @@
                                 </div> 
                             <div class="form-group row">
                                 <div class="form-group col-sm-4">
-                                    <input asp-for="AddressData.City" class="form-control form-control-user" placeholder="City" />                
+                                    <input asp-for="AddressData[0].City" class="form-control form-control-user" placeholder="City" />                
                                 </div> 
                                 <div class="form-group col-sm-4">
-                                    <input asp-for="AddressData.State" class="form-control form-control-user" placeholder="State" />                
+                                    <input asp-for="AddressData[0].State" class="form-control form-control-user" placeholder="State" />                
                                 </div> 
                                 <div class="form-group col-sm-4">
-                                    <input asp-for="AddressData.Zip" class="form-control form-control-user" placeholder="Zip" />                
+                                    <input asp-for="AddressData[0].Zip" class="form-control form-control-user" placeholder="Zip" />                
                                 </div>
                             </div> 
                                 <div class="form-group row">
                                 <div class="form-group col-sm-6">
-                                    <input asp-for="AddressData.Country" class="form-control form-control-user" placeholder="Country" />                
+                                    <input asp-for="AddressData[0].Country" class="form-control form-control-user" placeholder="Country" />                
                                 </div> 
                                 <div class="form-group col-sm-6">
-                                    <input asp-for="AddressData.Province" class="form-control form-control-user" placeholder="Province" />                
+                                    <input asp-for="AddressData[0].Province" class="form-control form-control-user" placeholder="Province" />                
                                 </div>
                             </div> 
                             <div class="form-group row">
                                 <div class="form-group col-sm-6">
-                                    <input asp-for="PhoneData.PhoneNumber" class="form-control form-control-user" placeholder="Phone Number" />                
+                                    <input asp-for="PhoneData[0].PhoneNumber" class="form-control form-control-user" placeholder="Phone Number" />                
                                 </div> 
                             </div>
                             <div class="form-group row">
@@ -265,19 +265,19 @@
                                     <label class="text-center">Primary</label>
                                     
                                     <label class="custom-control custom-checkbox text-center">
-                                        <input type="checkbox" asp-for="EmailData.Primary" name="chbxTerms" id="Email_0" class="custom-control-input text-center">
-                                        <span class="custom-control-label text-center" asp-for="EmailData.Primary"></span>
+                                        <input type="checkbox" asp-for="EmailData[0].Primary" name="chbxTerms" id="Email_0" class="custom-control-input text-center">
+                                        <span class="custom-control-label text-center" asp-for="EmailData[0].Primary"></span>
                                     </label>
                                 </div>
                                 <div class="form-group col-sm-3">
-                                    <Select class="form-control form-control-dropdown" asp-for="EmailData.EmailType" style="height:50px" id="Email_0">
+                                    <Select class="form-control form-control-dropdown" asp-for="EmailData[0].EmailType" style="height:50px" id="Email_0">
                                         <option value="" >Email Type</option>
                                         <option value="Personal">Personal</option>
                                         <option value="Business">Business</option>
                                     </Select>
                                 </div>
                                 <div class="form-group col-sm-6">
-                                    <input asp-for="EmailData.Email" id="Email_0" class="form-control form-control-user" placeholder="Email Address" /> 
+                                    <input asp-for="EmailData[0].Email" id="Email_0" class="form-control form-control-user" placeholder="Email Address" /> 
                                 </div>
                             </div>   
                             <div id="new_Email"></div>
@@ -286,13 +286,13 @@
                             <button class="remove">remove</button>
                             <div class="form-group row">
                                 <div class="form-group col-sm-6">
-                                    <input asp-for="AddressData.Address1" class="form-control form-control-user" placeholder="Address1" />                
+                                    <input asp-for="AddressData[0].Address1" class="form-control form-control-user" placeholder="Address1" />                
                                 </div>
                                     <div class="form-group col-sm-4">
-                                    <input asp-for="AddressData.Address2" class="form-control form-control-user" placeholder="Address2" />                
+                                    <input asp-for="AddressData[0].Address2" class="form-control form-control-user" placeholder="Address2" />                
                                 </div>
                                 <div class="form-group col-sm-2">
-                                    <Select class="form-control form-control-dropdown" asp-for="AddressData.AddressType" style="height:50px" id="test">
+                                    <Select class="form-control form-control-dropdown" asp-for="AddressData[0].AddressType" style="height:50px" id="test">
                                         <option value="">Address Type</option>
                                         <option value="Residential" >Residential</option>
                                         <option value="Business">Business</option>
@@ -302,26 +302,26 @@
                             </div> 
                             <div class="form-group row">
                                 <div class="form-group col-sm-4">
-                                    <input asp-for="AddressData.City" class="form-control form-control-user" placeholder="City" />                
+                                    <input asp-for="AddressData[0].City" class="form-control form-control-user" placeholder="City" />                
                                 </div> 
                                 <div class="form-group col-sm-4">
-                                    <input asp-for="AddressData.State" class="form-control form-control-user" placeholder="State" />                
+                                    <input asp-for="AddressData[0].State" class="form-control form-control-user" placeholder="State" />                
                                 </div> 
                                 <div class="form-group col-sm-4">
-                                    <input asp-for="AddressData.Zip" class="form-control form-control-user" placeholder="Zip" />                
+                                    <input asp-for="AddressData[0].Zip" class="form-control form-control-user" placeholder="Zip" />                
                                 </div>
                             </div> 
                                 <div class="form-group row">
                                 <div class="form-group col-sm-6">
-                                    <input asp-for="AddressData.Country" class="form-control form-control-user" placeholder="Country" />                
+                                    <input asp-for="AddressData[0].Country" class="form-control form-control-user" placeholder="Country" />                
                                 </div> 
                                 <div class="form-group col-sm-6">
-                                    <input asp-for="AddressData.Province" class="form-control form-control-user" placeholder="Province" />                
+                                    <input asp-for="AddressData[0].Province" class="form-control form-control-user" placeholder="Province" />                
                                 </div>
                             </div> 
                             <div class="form-group row">
                                 <div class="form-group col-sm-6">
-                                    <input asp-for="PhoneData.PhoneNumber" class="form-control form-control-user" placeholder="Phone Number" />                
+                                    <input asp-for="PhoneData[1].PhoneNumber" class="form-control form-control-user" placeholder="Phone Number" />                
                                 </div> 
                             </div>  
                         </div>
@@ -357,7 +357,7 @@
         $('.add').on('click', add);
         function add() {
             var new_Email_No = parseInt($('#total_email').val()) + 1;
-            var new_Email = "<div id='Email_" + new_Email_No + "' class='form-group row'><div class='form-group col-sm-1'><label class='text-center'>Primary</label><label class='custom-control custom-checkbox text-center'> <input type='checkbox' asp-for='EmailData.Primary' name='chbxTerms' id='Email_0' class='custom-control-input text-center'> <span class='custom-control-label text-center' asp-for='EmailData.Primary'></span> </label></div><div class='form-group col-sm-3'> <Select class='form-control form-control-dropdown' asp-for='EmailData.EmailType style='height:50px' id='Email_0'><option value='' >Email Type</option><option value='Personal'>Personal</option><option value='Business'>Business</option> </Select></div><div class='form-group col-sm-6'> <input asp-for='EmailData.Email' id='" + new_Email +  "' class='form-control form-control-user' placeholder='Email Address' /></div><div class='form-group col-sm-1'><button id='Email_" + new_Email_No + "' onClick='removeItem(this.id)'>remove</button></div></div>";
+            var new_Email = "<div id='Email_" + new_Email_No + "' class='form-group row'><div class='form-group col-sm-1'><label class='text-center'>Primary</label><label class='custom-control custom-checkbox text-center'> <input type='checkbox' asp-for='EmailData[0].Primary' name='chbxTerms' id='Email_0' class='custom-control-input text-center'> <span class='custom-control-label text-center' asp-for='EmailData[0].Primary'></span> </label></div><div class='form-group col-sm-3'> <Select class='form-control form-control-dropdown' asp-for='EmailData.EmailType style='height:50px' id='Email_0'><option value='' >Email Type</option><option value='Personal'>Personal</option><option value='Business'>Business</option> </Select></div><div class='form-group col-sm-6'> <input asp-for='EmailData.Email' id='" + new_Email +  "' class='form-control form-control-user' placeholder='Email Address' /></div><div class='form-group col-sm-1'><button id='Email_" + new_Email_No + "' onClick='removeItem(this.id)'>remove</button></div></div>";
             var new_input = "<input type='text' id='Email_" + new_Email_No + "'>";
             $('#new_Email').append(new_Email);
             $('#total_email').val(new_Email_No);

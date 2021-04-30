@@ -10,9 +10,9 @@ namespace Youlytical.Models.CRMModels
     public class ContactsModel
     {
         public ContactData ContactData { get; set; }
-        public PhoneData PhoneData { get; set; }
-        public EmailData EmailData { get; set; }
-        public AddressData AddressData { get; set; }
+        public List<PhoneData> PhoneData { get; set; }
+        public List<EmailData> EmailData { get; set; }
+        public List<AddressData> AddressData { get; set; }
     }
     public class ContactData
     {
@@ -74,6 +74,7 @@ namespace Youlytical.Models.CRMModels
 
         [Phone]
         public string PhoneNumber { get; set; }
+        [Display(Name ="Primary")]
         public bool Primary { get; set; }
     }
 

@@ -9,8 +9,8 @@ using CRM.Data;
 using System.Threading.Tasks;
 using CRM.Services;
 using Microsoft.EntityFrameworkCore;
-
-
+using System.Collections.Generic;
+using System;
 
 namespace CRM.Controllers
 {
@@ -58,6 +58,7 @@ namespace CRM.Controllers
 		// public async Task<IActionResult> CreateContact(ContactData mContact, PhoneData mPhone, EmailData mEmail, AddressData mAddress, string returnUrl = null)
 		public async Task<IActionResult> CreateContact(ContactsModel model, string returnUrl = null)
 		{
+			Console.WriteLine("Test");
 			if(ModelState.IsValid)
 			{
 				try
@@ -81,46 +82,55 @@ namespace CRM.Controllers
 					_context.Add(newContact);
 					await _context.SaveChangesAsync();
 					int id = newContact.ContactID;
-					PhoneData newPhone = new PhoneData()
+					for(int i = 0; i < model.PhoneData.Count; i++)
 					{
-						ContactID=id,
-						PhoneType=model.PhoneData.PhoneType,
-						PhoneNumber=model.PhoneData.PhoneNumber,
-						Primary=model.PhoneData.Primary
-					};
+						if(model.PhoneData[i].PhoneNumber != null)
+						{
+							PhoneData newPhone=new PhoneData()
+							{
+								ContactID=id,
+								PhoneType=model.PhoneData[i].PhoneType,
+								PhoneNumber=model.PhoneData[i].PhoneNumber,
+								Primary=model.PhoneData[i].Primary
+							};
+						_context.Add(newPhone);
+						await _context.SaveChangesAsync();
+						}
+					}
 					AddressData newAddress = new AddressData()
 					{
 						ContactID=id,
 						// AddressType=mAddress.AddressType,
-						AddressType="Test",
-						Address1=model.AddressData.Address1,
-						Address2=model.AddressData.Address2,
-						City=model.AddressData.City,
-						State=model.AddressData.State,
-						Zip=model.AddressData.Zip,
-						Country=model.AddressData.Country,
-						Province=model.AddressData.Province,
-						Primary=model.AddressData.Primary
+						// AddressType="Test",
+						// Address1=model.AddressData.Address1,
+						// Address2=model.AddressData.Address2,
+						// City=model.AddressData.City,
+						// State=model.AddressData.State,
+						// Zip=model.AddressData.Zip,
+						// Country=model.AddressData.Country,
+						// Province=model.AddressData.Province,
+						// Primary=model.AddressData.Primary
 					};
-					// EmailData newEmail = new EmailData()
-					// {
-					// 	foreach (var Entry in newEmail)
-					// 	{
-					// 	ContactID=id,
-					// 	EmailType=model.EmailData[Entry].EmailType,
-					// 	Email=model.EmailData[].Email,
-					// 	Primary=model.EmailData[].Primary
-					// 	}
+					EmailData newEmail = new EmailData()
+					{
+						// foreach (var Entry in newEmail)
+						// {
+						// ContactID=id,
+						// EmailType=model.EmailData[Entry].EmailType,
+						// Email=model.EmailData[].Email,
+						// Primary=model.EmailData[].Primary
+						// }
 		
-					// };
-					_context.Add(newPhone);
-					_context.Add(newAddress);
+					};
+					
+					// _context.Add(newAddress);
 					// _context.Add(newEmail);
 					await _context.SaveChangesAsync();
 					return RedirectToAction(nameof(Contacts));
 				}
-				catch
+				catch (Exception error)
 				{
+					Console.WriteLine("Error:" + error);
 					return RedirectToAction("Contacts","CRM");
 				}
 			}
