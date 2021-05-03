@@ -41,7 +41,7 @@
   
   $(function(){
     $("#AllUsersTable")
-      .dataTable();
+      .dataTable()
       .click(function () {
         var Clicked_Id = $(this).text();
         

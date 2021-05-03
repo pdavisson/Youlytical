@@ -153,9 +153,8 @@
                     <div class="form-group row">
                         <div class="form-group col-sm-1 text-center">
                             <label class="custom-control-Primary">Primary</label>
-                            
                             <label class="custom-control custom-checkbox text-center">
-                                <input type="checkbox" asp-for="EmailData[0].Primary" name="chbxTerms" id="Email_0" class="custom-control-input text-center">
+                                <input type="checkbox" asp-for="EmailData[0].Primary" id="Email_0" class="custom-control-input text-center">
                                 <span class="custom-control-label" asp-for="EmailData[0].Primary"></span>
                             </label>
                         </div>
@@ -192,19 +191,11 @@
             <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
                 <div class="card-body">
                     <div class="form-group row">
-                        @* <div class="form-group col-sm-1 text-center"> *@
-                            @* <label class="custom-control-Primary">Primary</label>
-                            <label class="custom-control custom-checkbox text-center checkbox">
-                                <input type="checkbox" asp-for="PhoneData[0].Primary" name="chbxTerms" id="Phone_0" class="custom-control-input text-center" />
-                                <span class="custom-control-label" asp-for="PhoneData[0].Primary"></span>
-                            </label> *@
-                                    
-                                        <div class="form-group custom-control custom-checkbox small checkbox text-center">
-                                            <input asp-for="PhoneData[0].Primary" class="custom-control-input text-center"/>
-                                            <label asp-for="PhoneData[0].Primary" class="custom-control-label"></label>
-                                        </div>
-                                    
-                        @* </div> *@
+                        <div class="form-group custom-control custom-checkbox small checkbox">
+                            <input asp-for="PhoneData[0].Primary" class="custom-control-input text-left" />
+                            
+                            <label asp-for="PhoneData[0].Primary" class="custom-control-label text-left"></label>
+                        </div>
                         <div class="form-group col-sm-3">
                             <Select class="custom-control-formElement form-control form-control-dropdown custom-form-Element" asp-for="PhoneData[0].PhoneType" id="Phone_0">
                                 <option value="" >Phone Type</option>
@@ -333,7 +324,7 @@
         $('.addEmail').on('click', addEmail);
         function addEmail() {
             var new_Email_No = parseInt($('#total_email').val()) + 1;
-            var new_Email = "<div id='Email_" + new_Email_No + "' class='form-group row'><div class='form-group col-sm-1 text-center'><label class='text-center'>Primary</label><label class='custom-control custom-checkbox text-center'> <input type='checkbox' asp-for='EmailData.Primary' name='chbxTerms' id='Email_" + new_Email_No + "' class='custom-control-input text-center'> <span class='custom-control-label text-center' asp-for='EmailData.Primary'></span> </label></div><div class='form-group col-sm-3'> <Select class='form-control form-control-dropdown custom-form-Element' asp-for='EmailData.EmailType style='height:50px' id='Email_" + new_Email_No + "'><option value='' >Email Type</option><option value='Personal'>Personal</option><option value='Business'>Business</option> </Select></div><div class='form-group col-sm-6'> <input asp-for='EmailData.Email' id='Email_" + new_Email_No + "' class='form-control form-control-user custom-form-Element' placeholder='Email Address' /></div><div class='form-group col-sm-1'><button class='btn btn-register custom-form-Element' id='Email_" + new_Email_No + "' onClick='removeItem(this.id)'><i class='fas fa-trash-alt fa-lg'></i></button></div></div>";
+            var new_Email = "<div id='Email_" + new_Email_No + "' class='form-group row'><div class='form-group col-sm-1 text-center'><label class='text-center'>Primary</label><label class='custom-control custom-checkbox text-center'> <input type='checkbox' asp-for='EmailData.Primary' name='chbxTerms' id='Email_" + new_Email_No + "' class='custom-control-input text-center'> <span class='custom-control-label text-center' name='EmailData[" + new_Email_No+"].Primary' asp-for='EmailData[" + new_Email_No +"].Primary'></span> </label></div><div class='form-group col-sm-3'> <Select class='form-control form-control-dropdown custom-form-Element' name='EmailData[" + new_Email_No + "].EmailType' asp-for='EmailData[" + new_Email_No + "].EmailType style='height:50px' id='Email_" + new_Email_No + "'><option value='' >Email Type</option><option value='Personal'>Personal</option><option value='Business'>Business</option> </Select></div><div class='form-group col-sm-6'> <input name='EmailData[" + new_Email_No + "].Email' asp-for='EmailData[" + new_Email_No + "].Email' id='Email_" + new_Email_No + "' class='form-control form-control-user custom-form-Element' placeholder='Email Address' /></div><div class='form-group col-sm-1'><button class='btn btn-register custom-form-Element' id='Email_" + new_Email_No + "' onClick='removeItem(this.id)'><i class='fas fa-trash-alt fa-lg'></i></button></div></div>";
             $('#new_Email').append(new_Email);
             $('#total_email').val(new_Email_No);
             return false;
@@ -349,7 +340,7 @@
         $('.addAddress').on('click', addAddress);
         function addAddress() {
             var new_Address_No = parseInt($('#total_Address').val()) + 1;
-            var new_Address_row = "<div id='Address_" + new_Address_No + "'><hr><div class='form-group row'><div class='form-group col-sm-6'><input asp-for='AddressData.Address1' class='form-control form-control-user' placeholder='Address1'/></div><div class='form-group col-sm-4'><input asp-for='AddressData.Address2' class='form-control form-control-user' placeholder='Address2'/></div><div class='form-group col-sm-2'><select class='form-control form-control-dropdown' asp-for='AddressData.AddressType' style='height: 50px;' id='test'><option value=''>Address Type</option><option value='Residential'>Residential</option><option value='Business'>Business</option><option value='Other'>Other</option></select></div></div><div class='form-group row'><div class='form-group col-sm-4'><input asp-for='AddressData.City' class='form-control form-control-user' placeholder='City'/></div><div class='form-group col-sm-4'><input asp-for='AddressData.State' class='form-control form-control-user' placeholder='State'/></div><div class='form-group col-sm-4'><input asp-for='AddressData.Zip' class='form-control form-control-user' placeholder='Zip'/></div></div><div class='form-group row'><div class='form-group col-sm-6'><input asp-for='AddressData.Country' class='form-control form-control-user' placeholder='Country'/></div><div class='form-group col-sm-5'><input asp-for='AddressData.Province' class='form-control form-control-user' placeholder='Province'/></div><div class='form-group col-sm-1'><button class='btn btn-register custom-form-Element' id='Address_" + new_Address_No + "' onClick='removeItem(this.id)'><i class='fas fa-trash-alt fa-lg'> </i></button></div></div></div>";
+            var new_Address_row = "<div id='Address_" + new_Address_No + "'><hr><div class='form-group row'><div class='form-group col-sm-6'><input name='AddressData[" + new_Address_No +"].Address1' asp-for='AddressData[" + new_Address_No + "].Address1' class='form-control form-control-user' placeholder='Address1'/></div><div class='form-group col-sm-4'><input name='AddressData[" + new_Address_No + "].Address2' asp-for='AddressData[" + new_Address_No + "].Address2' class='form-control form-control-user' placeholder='Address2'/></div><div class='form-group col-sm-2'><select class='form-control form-control-dropdown' name='AddressData[" + new_Address_No + "].AddressType' asp-for='AddressData[" + new_Address_No + "].AddressType' style='height: 50px;' id='test'><option value=''>Address Type</option><option value='Residential'>Residential</option><option value='Business'>Business</option><option value='Other'>Other</option></select></div></div><div class='form-group row'><div class='form-group col-sm-4'><input name='AddressData[" + new_Address_No + "].City' asp-for='AddressData[" + new_Address_No + "].City' class='form-control form-control-user' placeholder='City'/></div><div class='form-group col-sm-4'><input name='AddressData[" + new_Address_No + "].State' asp-for='AddressData[" + new_Address_No + "].State' class='form-control form-control-user' placeholder='State'/></div><div class='form-group col-sm-4'><input name='AddressData[" + new_Address_No + "].Zip' asp-for='AddressData[" + new_Address_No + "].Zip' class='form-control form-control-user' placeholder='Zip'/></div></div><div class='form-group row'><div class='form-group col-sm-6'><input name='AddressData[" + new_Address_No + "].Country' asp-for='AddressData[" + new_Address_No + "].Country' class='form-control form-control-user' placeholder='Country'/></div><div class='form-group col-sm-5'><input name='AddressData[" + new_Address_No +"].Province' asp-for='AddressData[" + new_Address_No +"].Province' class='form-control form-control-user' placeholder='Province'/></div><div class='form-group col-sm-1'><button class='btn btn-register custom-form-Element' id='Address_" + new_Address_No + "' onClick='removeItem(this.id)'><i class='fas fa-trash-alt fa-lg'> </i></button></div></div></div>";
             $('#new_Address').append(new_Address_row);
             $('#total_Address').val(new_Address_No);
             return false;

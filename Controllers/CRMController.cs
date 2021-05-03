@@ -7,9 +7,7 @@ using Youlytical.Models.CRMModels;
 using CRM.Models;
 using CRM.Data;
 using System.Threading.Tasks;
-using CRM.Services;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 using System;
 
 namespace CRM.Controllers
@@ -53,12 +51,10 @@ namespace CRM.Controllers
 			ViewBag.ContactList=ContactList;
 			return View();
 		}
-		[HttpPost]
-		[ValidateAntiForgeryToken]
+		[HttpPost, ValidateAntiForgeryToken]
 		// public async Task<IActionResult> CreateContact(ContactData mContact, PhoneData mPhone, EmailData mEmail, AddressData mAddress, string returnUrl = null)
 		public async Task<IActionResult> CreateContact(ContactsModel model, string returnUrl = null)
 		{
-			Console.WriteLine("Test");
 			if(ModelState.IsValid)
 			{
 				try
@@ -67,7 +63,6 @@ namespace CRM.Controllers
 					ContactData newContact = new ContactData()
 					{
 						UserId=_userManager.GetUserId(HttpContext.User),
-						
 						Prefix=model.ContactData.Prefix,
 						FirstName=model.ContactData.FirstName,
 						LastName=model.ContactData.LastName,
@@ -97,35 +92,42 @@ namespace CRM.Controllers
 						await _context.SaveChangesAsync();
 						}
 					}
-					AddressData newAddress = new AddressData()
+					for(int i=0; i < model.AddressData.Count; i++)
 					{
-						ContactID=id,
-						// AddressType=mAddress.AddressType,
-						// AddressType="Test",
-						// Address1=model.AddressData.Address1,
-						// Address2=model.AddressData.Address2,
-						// City=model.AddressData.City,
-						// State=model.AddressData.State,
-						// Zip=model.AddressData.Zip,
-						// Country=model.AddressData.Country,
-						// Province=model.AddressData.Province,
-						// Primary=model.AddressData.Primary
-					};
-					EmailData newEmail = new EmailData()
+						if(model.AddressData[i].Address1 != null)
+						{
+							AddressData newAddress = new AddressData()
+							{
+								ContactID=id,
+								AddressType=model.AddressData[i].AddressType,
+								Address1=model.AddressData[i].Address1,
+								Address2=model.AddressData[i].Address2,
+								City=model.AddressData[i].City,
+								State=model.AddressData[i].State,
+								Zip=model.AddressData[i].Zip,
+								Country=model.AddressData[i].Country,
+								Province=model.AddressData[i].Province,
+								Primary=model.AddressData[i].Primary
+							};
+							_context.Add(newAddress);
+							await _context.SaveChangesAsync();
+						}
+					}
+					for(int i=0; i < model.EmailData.Count; i++)
 					{
-						// foreach (var Entry in newEmail)
-						// {
-						// ContactID=id,
-						// EmailType=model.EmailData[Entry].EmailType,
-						// Email=model.EmailData[].Email,
-						// Primary=model.EmailData[].Primary
-						// }
-		
-					};
-					
-					// _context.Add(newAddress);
-					// _context.Add(newEmail);
-					await _context.SaveChangesAsync();
+						if(model.EmailData[i].Email != null)
+						{
+							EmailData newEmail = new EmailData()
+							{
+								ContactID=id,
+								EmailType=model.EmailData[i].EmailType,
+								Email=model.EmailData[i].Email,
+								Primary=model.EmailData[i].Primary
+							};
+							_context.Add(newEmail);
+							await _context.SaveChangesAsync();
+						}
+					}
 					return RedirectToAction(nameof(Contacts));
 				}
 				catch (Exception error)
@@ -136,6 +138,77 @@ namespace CRM.Controllers
 			}
 			return Redirect(Url.Content("~/"));
 		}
+		// [HttpPost, ValidateAntiForgeryToken]
+		// public async Task<IActionResult> DeleteEmail(ContactsModel model, string returnUrl = null)
+		// {
 
+		// }
+
+		
+		// public IActionResult DeleteEmail(string id)
+		public async Task<IActionResult> DeleteEmail(string id)
+		{
+			try
+			{
+				int test = 1022;
+				var record = new EmailData()
+				{
+					eID = test
+				};
+				_context.Remove(record);
+				await _context.SaveChangesAsync();
+				Console.WriteLine("CALLED THE CORRECT IACTIONRESULT YAY!!!! yeah!!!");
+				return Json(new { success = true});
+			}
+			catch
+			{
+				// _logger.LogInformation(error.ToString);
+			}
+			Console.WriteLine("CALLED THE CORRECT IACTIONRESULT YAY!!!! yeah!!!");
+			return new EmptyResult();
+		}
+
+		public async Task<IActionResult> DeleteAddress(string id)
+		{
+			try
+			{
+				int test = 1022;
+				var record = new AddressData()
+				{
+					aID = test
+				};
+				_context.Remove(record);
+				await _context.SaveChangesAsync();
+				Console.WriteLine("CALLED THE CORRECT IACTIONRESULT YAY!!!! yeah!!!");
+				return Json(new { success = true});
+			}
+			catch
+			{
+				// _logger.LogInformation(error.ToString);
+			}
+			Console.WriteLine("CALLED THE CORRECT IACTIONRESULT YAY!!!! yeah!!!");
+			return new EmptyResult();
+		}
+		public async Task<IActionResult> DeletePhone(string id)
+		{
+			try
+			{
+				int test = 1022;
+				var record = new PhoneData()
+				{
+					pID = test
+				};
+				_context.Remove(record);
+				await _context.SaveChangesAsync();
+				Console.WriteLine("CALLED THE CORRECT IACTIONRESULT YAY!!!! yeah!!!");
+				return Json(new { success = true});
+			}
+			catch
+			{
+				// _logger.LogInformation(error.ToString);
+			}
+			Console.WriteLine("CALLED THE CORRECT IACTIONRESULT YAY!!!! yeah!!!");
+			return new EmptyResult();
+		}
     }
 }

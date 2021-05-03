@@ -78,7 +78,7 @@
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <form id="CreateEditContact" class="user" asp-controller="CRM" asp-action="CreateContact" method="POST">
+            <form id="CreateEditContact" class="user" asp-controller="CRM"  method="POST">
                 <div class="modal-body">
                     <div id="accordion" role="tablist" aria-multiselectable="true">
                         <div class="card">
@@ -125,7 +125,7 @@
                                         <div class="col-sm-4">
                                             <input asp-for="ContactData.FirstName" class="form-control form-control-user" placeholder="First Name" />
                                         </div>
-                                         <div class="col-sm-4">
+                                            <div class="col-sm-4">
                                             <input asp-for="ContactData.LastName" class="form-control form-control-user" placeholder="Last Name" />
                                         </div>
                                         <div class="col-sm-2">
@@ -212,169 +212,287 @@
                             </div>
                         </div>  
                     </div>
+
+
+
                     <div class="card">
                         <h5 class="card-header text-uppercase" role="tab" id="headingTwo">
                             <a class="collapsed d-block" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                <i class="fas fa-chevron-down float-right"></i> Contact Info
-                          </a>
+                                <i class="fas fa-chevron-down float-right"></i> Email Addresses
+                            </a>
                         </h5>
                         <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
                             <div class="card-body">
-                                <div class="form-group row">
-                                    <div class="form-group col-sm-6">
-                                        <input asp-for="AddressData[0].Address1" class="form-control form-control-user" placeholder="Address1" />                
-                                    </div>
-                                    <div class="form-group col-sm-4">
-                                        <input asp-for="AddressData[0].Address2" class="form-control form-control-user" placeholder="Address2" />                
-                                    </div>
-                                    <div class="form-group col-sm-2">
-                                        <Select class="form-control form-control-dropdown" asp-for="AddressData[0]  .AddressType" style="height:50px" id="test">
-                                            <option value="">Address Type</option>
-                                            <option value="Residential" >Residential</option>
-                                            <option value="Business">Business</option>
-                                            <option value="Other">Other</option>
-                                        </Select>             
+                                <div id="Email_Container_0">
+                                    <div class="form-group row">
+                                        <div class="col-sm-1 text-center">
+                                            <input type="checkbox" class="btn-check form-control-user custom-form-Element" asp-for="EmailData[0].Primary" id="Email_0" autocomplete="off">
+                                            <label class="btn btn-outline-purple custom-form-Element custom-btn-checkbox" id="Email_0" asp-for="EmailData[0].Primary" for="Email_0">Primary Address</label>
+                                        </div>
+                                        <div class="form-group col-sm-3">
+                                            <Select class="custom-control-formElement form-control form-control-dropdown custom-form-Element" asp-for="EmailData[0].EmailType" id="Email_0">
+                                                <option value="" >Email Type</option>
+                                                <option value="Personal">Personal</option>
+                                                <option value="Business">Business</option>
+                                            </Select>
+                                        </div>
+                                        <div class="form-group col-sm-7">
+                                            <input asp-for="EmailData[0].Email" id="Email_0" class="form-control form-control-user custom-form-Element" placeholder="Email Address" /> 
+                                        </div>
+                                        <div class='form-group col-sm-1'>
+                                            <button class="btn btn-alt-red custom-form-Element" id="Email_Container_0" onClick="removeItem(this.id)">
+                                            <i class='material-icons-outlined icon-size-xxl'>delete</i></button>
+                                        </div>
                                     </div> 
                                 </div> 
-                            <div class="form-group row">
-                                <div class="form-group col-sm-4">
-                                    <input asp-for="AddressData[0].City" class="form-control form-control-user" placeholder="City" />                
-                                </div> 
-                                <div class="form-group col-sm-4">
-                                    <input asp-for="AddressData[0].State" class="form-control form-control-user" placeholder="State" />                
-                                </div> 
-                                <div class="form-group col-sm-4">
-                                    <input asp-for="AddressData[0].Zip" class="form-control form-control-user" placeholder="Zip" />                
-                                </div>
-                            </div> 
+                                <div id="new_Email"></div>
                                 <div class="form-group row">
-                                <div class="form-group col-sm-6">
-                                    <input asp-for="AddressData[0].Country" class="form-control form-control-user" placeholder="Country" />                
+                                    <div class="form-group">
+                                        <button class="addEmail btn btn-alt-green custom-form-Element"><i class="text-right icon-size-xxl material-icons-outlined align-middle">add</i></button>
+                                        <input type="hidden" value="0" id="total_email">
+                                    </div>
                                 </div> 
-                                <div class="form-group col-sm-6">
-                                    <input asp-for="AddressData[0].Province" class="form-control form-control-user" placeholder="Province" />                
-                                </div>
-                            </div> 
-                            <div class="form-group row">
-                                <div class="form-group col-sm-6">
-                                    <input asp-for="PhoneData[0].PhoneNumber" class="form-control form-control-user" placeholder="Phone Number" />                
-                                </div> 
+                                  
                             </div>
-                            <div class="form-group row">
-                                <div class="form-group col-sm-1">
-                                    <label class="text-center">Primary</label>
-                                    
-                                    <label class="custom-control custom-checkbox text-center">
-                                        <input type="checkbox" asp-for="EmailData[0].Primary" name="chbxTerms" id="Email_0" class="custom-control-input text-center">
-                                        <span class="custom-control-label text-center" asp-for="EmailData[0].Primary"></span>
-                                    </label>
-                                </div>
-                                <div class="form-group col-sm-3">
-                                    <Select class="form-control form-control-dropdown" asp-for="EmailData[0].EmailType" style="height:50px" id="Email_0">
-                                        <option value="" >Email Type</option>
-                                        <option value="Personal">Personal</option>
-                                        <option value="Business">Business</option>
-                                    </Select>
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <input asp-for="EmailData[0].Email" id="Email_0" class="form-control form-control-user" placeholder="Email Address" /> 
-                                </div>
-                            </div>   
-                            <div id="new_Email"></div>
-                            <input type="hidden" value="0" id="total_email">
-                            <button class="add">Add</button>
-                            <button class="remove">remove</button>
-                            <div class="form-group row">
-                                <div class="form-group col-sm-6">
-                                    <input asp-for="AddressData[0].Address1" class="form-control form-control-user" placeholder="Address1" />                
-                                </div>
-                                    <div class="form-group col-sm-4">
-                                    <input asp-for="AddressData[0].Address2" class="form-control form-control-user" placeholder="Address2" />                
-                                </div>
-                                <div class="form-group col-sm-2">
-                                    <Select class="form-control form-control-dropdown" asp-for="AddressData[0].AddressType" style="height:50px" id="test">
-                                        <option value="">Address Type</option>
-                                        <option value="Residential" >Residential</option>
-                                        <option value="Business">Business</option>
-                                        <option value="Other">Other</option>
-                                    </Select>             
-                                </div> 
-                            </div> 
-                            <div class="form-group row">
-                                <div class="form-group col-sm-4">
-                                    <input asp-for="AddressData[0].City" class="form-control form-control-user" placeholder="City" />                
-                                </div> 
-                                <div class="form-group col-sm-4">
-                                    <input asp-for="AddressData[0].State" class="form-control form-control-user" placeholder="State" />                
-                                </div> 
-                                <div class="form-group col-sm-4">
-                                    <input asp-for="AddressData[0].Zip" class="form-control form-control-user" placeholder="Zip" />                
-                                </div>
-                            </div> 
-                                <div class="form-group row">
-                                <div class="form-group col-sm-6">
-                                    <input asp-for="AddressData[0].Country" class="form-control form-control-user" placeholder="Country" />                
-                                </div> 
-                                <div class="form-group col-sm-6">
-                                    <input asp-for="AddressData[0].Province" class="form-control form-control-user" placeholder="Province" />                
-                                </div>
-                            </div> 
-                            <div class="form-group row">
-                                <div class="form-group col-sm-6">
-                                    <input asp-for="PhoneData[1].PhoneNumber" class="form-control form-control-user" placeholder="Phone Number" />                
-                                </div> 
-                            </div>  
-                        </div>
                         </div>
                     </div>
                     <div class="card">
                         <h5 class="card-header text-uppercase" role="tab" id="headingThree">
-                        <a class="collapsed d-block" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        <i class="fas fa-chevron-down float-right"></i> Notes
-                        </a>
+                            <a class="collapsed d-block" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                <i class="fas fa-chevron-down float-right"></i> Phone Numbers
+                            </a>
                         </h5>
                         <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
                             <div class="card-body">
+                                <div id="Phone_Container_0">
+                                    <div class="form-group row">
+                                        <div class="col-sm-1 text-center">
+                                            <input type="checkbox" class="btn-check form-control-user custom-form-Element" asp-for="PhoneData[0].Primary" id="Phone_0" autocomplete="off">
+                                            <label class="btn btn-outline-purple custom-form-Element custom-btn-checkbox" id="Email_0" asp-for="PhoneData[0].Primary" for="Phone_0">Primary Address</label>
+                                        </div>
+                                        <div class="form-group col-sm-3">
+                                            <Select class="custom-control-formElement form-control form-control-dropdown custom-form-Element" asp-for="PhoneData[0].PhoneType" id="Phone_0">
+                                                <option value="" >Phone Type</option>
+                                                <option value="Mobile">Mobile</option>
+                                                <option value="Home">Home</option>
+                                                <option value="Work">Work</option>
+                                            </Select>
+                                        </div>
+                                        <div class="form-group col-sm-7">
+                                            <input asp-for="PhoneData[0].PhoneNumber" id="Phone_0" class="form-control form-control-user custom-form-Element" placeholder="Phone Number" /> 
+                                        </div>
+                                        <div class='form-group col-sm-1'>
+                                            <button class="btn btn-alt-red custom-form-Element" id="Phone_Container_0" onClick="removeItem(this.id)">
+                                            <i class='material-icons-outlined icon-size-xxl'>delete</i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="new_Phone"></div>
+                                <div class="form-group row">
+                                    <div class="form-group">
+                                        <button class="addPhone btn btn-alt-green custom-form-Element"><i class="text-right icon-size-xxl material-icons-outlined align-middle">add</i></button>
+                                        <input type="hidden" value="0" id="total_Phone">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <div class="card">
+                        <h5 class="card-header text-uppercase" role="tab" id="headingFour">
+                            <a class="collapsed d-block" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                <i class="fas fa-chevron-down float-right"></i> Addresses
+                            </a>
+                        </h5>
+                        <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFour">
+                            <div class="card-body">
+                                <div class="Address_Container_0">
+                                    <div class="form-group row">
+                                        <div class="col-sm-1 text-center">
+                                            <input type="checkbox" class="btn-check form-control-user custom-form-Element" asp-for="AddressData[0].Primary" id="Address_0" autocomplete="off">
+                                            <label class="btn btn-outline-purple custom-form-Element custom-btn-checkbox" id="Address_0" asp-for="AddressData[0].Primary" for="Address_0">Primary Address</label>
+                                        </div>
+                                        <div class="form-group col-sm-5">
+                                            <input asp-for="AddressData[0].Address1" class="form-control form-control-user" placeholder="Address1" />                
+                                        </div>
+                                        <div class="form-group col-sm-4">
+                                            <input asp-for="AddressData[0].Address2" class="form-control form-control-user" placeholder="Address2" />                
+                                        </div>
+                                        <div class="form-group col-sm-2">
+                                            <Select class="form-control form-control-dropdown" asp-for="AddressData[0].AddressType" style="height:50px" id="test">
+                                                <option value="">Address Type</option>
+                                                <option value="Residential" >Residential</option>
+                                                <option value="Business">Business</option>
+                                                <option value="Other">Other</option>
+                                            </Select>             
+                                        </div> 
+                                    </div> 
+                                    <div class="form-group row">
+                                        <div class="form-group col-sm-3">
+                                            <input asp-for="AddressData[0].City" class="form-control form-control-user" placeholder="City" />                
+                                        </div> 
+                                        <div class="form-group col-sm-3">
+                                            <input asp-for="AddressData[0].State" class="form-control form-control-user" placeholder="State" />                
+                                        </div> 
+                                        <div class="form-group col-sm-1">
+                                            <input asp-for="AddressData[0].Zip" class="form-control form-control-user" placeholder="Zip" />                
+                                        </div>
+                                        <div class="form-group col-sm-2">
+                                            <input asp-for="AddressData[0].Country" class="form-control form-control-user" placeholder="Country" />                
+                                        </div> 
+                                        <div class="form-group col-sm-2">
+                                            <input asp-for="AddressData[0].Province" class="form-control form-control-user" placeholder="Province" />                
+                                        </div>
+                                        <div class='form-group col-sm-1'>
+                                            <button class="btn btn-alt-red custom-form-Element" id="Address_Container_0" onClick="removeAddress(this.id)">
+                                            <i class='material-icons-outlined icon-size-xxl'>delete</i></button>
+                                        </div>
+                                    </div> 
+                                </div>
+                                <div id="new_Address"></div>
+                                <div class="form-group row">
+                                    <div class="form-group">
+                                        <button class="addAddress btn btn-alt-green custom-form-Element"><i class="text-right icon-size-xxl material-icons-outlined align-middle">add</i></button>
+                                        <input type="hidden" value="0" id="total_Address">
+                                    </div>
+                                    
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h5 class="card-header text-uppercase" role="tab" id="headingFive">
+                            <a class="collapsed d-block" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                <i class="fas fa-chevron-down float-right"></i> Notes
+                            </a>
+                        </h5>
+                        <div id="collapseFive" class="collapse" role="tabpanel" aria-labelledby="headingFive">
+                            <div class="card-body">
+                                @* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ *@
+
+
+                                @* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ *@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h5 class="card-header text-uppercase" role="tab" id="headingSix">
+                            <a class="collapsed d-block" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                <i class="fas fa-chevron-down float-right"></i> History
+                            </a>
+                        </h5>
+                        <div id="collapseSix" class="collapse" role="tabpanel" aria-labelledby="headingSix">
+                            <div class="card-body">
+                                @* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ *@
+
+
+                                @* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ *@
+                            </div>
+                        </div>
+                    </div>
+
+
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <button id="logout" type="submit" class="btn btn-primary">Add Contact</button>
+                        <button id="logout" type="submit" asp-action="CreateContact" class="btn btn-primary">Add Contact</button>
                     </div> 
                 </div>
             </form>
-        </div>
-    </div>
-</div>
-
-
-
-
 @section Scripts
 {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/datatables.min.js"></script>
+    <!-- Page level custom scripts -->
+    <script src="~/js/demo/datatables-demo.js"></script>
+    <script src="~/js/site.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
-        $('.add').on('click', add);
-        function add() {
+        $('.addEmail').on('click', addEmail);
+        function addEmail() {
             var new_Email_No = parseInt($('#total_email').val()) + 1;
-            var new_Email = "<div id='Email_" + new_Email_No + "' class='form-group row'><div class='form-group col-sm-1'><label class='text-center'>Primary</label><label class='custom-control custom-checkbox text-center'> <input type='checkbox' asp-for='EmailData[0].Primary' name='chbxTerms' id='Email_0' class='custom-control-input text-center'> <span class='custom-control-label text-center' asp-for='EmailData[0].Primary'></span> </label></div><div class='form-group col-sm-3'> <Select class='form-control form-control-dropdown' asp-for='EmailData.EmailType style='height:50px' id='Email_0'><option value='' >Email Type</option><option value='Personal'>Personal</option><option value='Business'>Business</option> </Select></div><div class='form-group col-sm-6'> <input asp-for='EmailData.Email' id='" + new_Email +  "' class='form-control form-control-user' placeholder='Email Address' /></div><div class='form-group col-sm-1'><button id='Email_" + new_Email_No + "' onClick='removeItem(this.id)'>remove</button></div></div>";
-            var new_input = "<input type='text' id='Email_" + new_Email_No + "'>";
+            var new_Email = "<div class='form-group row' id='Email_Container_" + new_Email_No + "'><div class='col-sm-1 text-center'><input type='checkbox' class='btn-check form-control-user custom-form-Element' asp-for='EmailData[" + new_Email_No + "].Primary' id='Email_" + new_Email_No + "' autocomplete='off'><label class='btn btn-outline-purple custom-form-Element custom-btn-checkbox' id='Email_" + new_Email_No + "' asp-for='EmailData[" + new_Email_No + "].Primary' for='Email_" + new_Email_No + "'>Primary Address</label></div><div class='form-group col-sm-3'><Select class='custom-control-formElement form-control form-control-dropdown custom-form-Element' asp-for='EmailData[" + new_Email_No + "].EmailType' id='Email_" + new_Email_No + "'><option value='' >Email Type</option><option value='Personal'>Personal</option><option value='Business'>Business</option></Select></div><div class='form-group col-sm-7'><input asp-for='EmailData[" + new_Email_No + "].Email' id='Email_" + new_Email_No + "' class='form-control form-control-user custom-form-Element' placeholder='Email Address'/></div><div class='form-group col-sm-1'><button class='btn btn-alt-red custom-form-Element' id='Email_Container_" + new_Email_No + "' onClick='removeEmail(this.id)'><i class='material-icons-outlined icon-size-xxl'>delete</i></button></div></div>"
+            
             $('#new_Email').append(new_Email);
             $('#total_email').val(new_Email_No);
             return false;
         }
-        function removeItem(clicked_id) {
-            alert(clicked_id)
-            document.getElementById(clicked_id).remove();
+        $('.addPhone').on('click', addPhone);
+        function addPhone() {
+            var new_Phone_No = parseInt($('#total_Phone').val()) + 1;
+            var new_Phone = "<div class='form-group row' id='Phone_Container_" + new_Phone_No + "'><div class='col-sm-1 text-center'><input type='checkbox' class='btn-check form-control-user custom-form-Element' asp-for='PhoneData[" + new_Phone_No + "].Primary' id='Phone_" + new_Phone_No + "' autocomplete='off'><label class='btn btn-outline-purple custom-form-Element custom-btn-checkbox' id='Email_" + new_Phone_No + "' asp-for='PhoneData[" + new_Phone_No + "].Primary' for='Phone_" + new_Phone_No + "'>Primary Phone</label></div><div class='form-group col-sm-3'><Select class='custom-control-formElement form-control form-control-dropdown custom-form-Element' asp-for='PhoneData[" + new_Phone_No + "].PhoneType' id='Phone_" + new_Phone_No + "'><option value='' >Phone Type</option><option value='Mobile'>Mobile</option><option value='Home'>Home</option><option value='Work'>Work</option></Select></div><div class='form-group col-sm-7'><input asp-for='PhoneData[" + new_Phone_No + "].PhoneNumber' id='Phone_" + new_Phone_No + "' class='form-control form-control-user custom-form-Element' placeholder='Phone Number' /></div><div class='form-group col-sm-1'><button class='btn btn-alt-red custom-form-Element' id='Phone_Container_" + new_Phone_No + "' onClick='removePhone(this.id)'><i class='material-icons-outlined icon-size-xxl'>delete</i></button></div></div></div>";
+            $('#new_Phone').append(new_Phone);
+            $('#total_Phone').val(new_Phone_No);
+            return false;
         }
-        
+        $('.addAddress').on('click', addAddress);
+        function addAddress() {
+            var new_Address_No = parseInt($('#total_Address').val()) + 1;
+            var new_Address_row = "<div id='Address_" + new_Address_No + "'><hr><div class='form-group row'><div class='form-group col-sm-6'><input name='AddressData[" + new_Address_No +"].Address1' asp-for='AddressData[" + new_Address_No + "].Address1' class='form-control form-control-user' placeholder='Address1'/></div><div class='form-group col-sm-4'><input name='AddressData[" + new_Address_No + "].Address2' asp-for='AddressData[" + new_Address_No + "].Address2' class='form-control form-control-user' placeholder='Address2'/></div><div class='form-group col-sm-2'><select class='form-control form-control-dropdown' name='AddressData[" + new_Address_No + "].AddressType' asp-for='AddressData[" + new_Address_No + "].AddressType' style='height: 50px;' id='test'><option value=''>Address Type</option><option value='Residential'>Residential</option><option value='Business'>Business</option><option value='Other'>Other</option></select></div></div><div class='form-group row'><div class='form-group col-sm-4'><input name='AddressData[" + new_Address_No + "].City' asp-for='AddressData[" + new_Address_No + "].City' class='form-control form-control-user' placeholder='City'/></div><div class='form-group col-sm-4'><input name='AddressData[" + new_Address_No + "].State' asp-for='AddressData[" + new_Address_No + "].State' class='form-control form-control-user' placeholder='State'/></div><div class='form-group col-sm-4'><input name='AddressData[" + new_Address_No + "].Zip' asp-for='AddressData[" + new_Address_No + "].Zip' class='form-control form-control-user' placeholder='Zip'/></div></div><div class='form-group row'><div class='form-group col-sm-6'><input name='AddressData[" + new_Address_No + "].Country' asp-for='AddressData[" + new_Address_No + "].Country' class='form-control form-control-user' placeholder='Country'/></div><div class='form-group col-sm-5'><input name='AddressData[" + new_Address_No +"].Province' asp-for='AddressData[" + new_Address_No +"].Province' class='form-control form-control-user' placeholder='Province'/></div><div class='form-group col-sm-1'><button class='btn btn-alt-red custom-form-Element' id='Address_" + new_Address_No + "' onClick='removeAddress(this.id)'><i class='material-icons-outlined icon-size-xxl'>delete</i></button></div></div></div>";
+            $('#new_Address').append(new_Address_row);
+            $('#total_Address').val(new_Address_No);
+            return false;
+        }
+        function removeEmail(clicked_id) {
+            document.getElementById(clicked_id).remove();
+
+            $.ajax({
+                url: '@Url.Action("DeleteEmail", "CRM")',
+                type: 'POST',
+                dataType: 'json',
+                cache: false,
+                data: { 'id': clicked_id },
+                success: function () {
+                        alert("Email Successfully Deleted.")
+                },
+                error: function () {
+                    alert('Error occured');
+                }
+                });
+
+        }
+        function removeAddress(clicked_id) {
+            document.getElementById(clicked_id).remove();
+            $.ajax({
+                url: '@Url.Action("DeleteAddress", "CRM")',
+                type: 'POST',
+                dataType: 'json',
+                cache: false,
+                data: { 'id': clicked_id },
+                success: function () {
+                        alert("Address Successfully Deleted.")
+                },
+                error: function () {
+                    alert('Error occured');
+                }
+                });
+
+        }
+        function removePhone(clicked_id) {
+            document.getElementById(clicked_id).remove();
+            $.ajax({
+                url: '@Url.Action("DeletePhone", "CRM")',
+                type: 'POST',
+                dataType: 'json',
+                cache: false,
+                data: { 'id': clicked_id },
+                success: function () {
+                        alert("Address Successfully Deleted.")
+                },
+                error: function () {
+                    alert('Error occured');
+                }
+                });
+
+        }
+        $('form').on('click', checkbox-trigger, function () {
+            if (this.checked) {
+                $(this).val(true);
+            }
+            else {
+                $(this).val(false);
+            }
+        });
     </script>
-            <script src="~/js/datatables.min.js"></script>
-    <!-- Page level custom scripts -->
-    <script src="~/js/demo/datatables-demo.js"></script>
-    
 }
-
-
 
 <link rel="stylesheet" href="~/css/datatable.min.css" />

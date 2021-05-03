@@ -1,69 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CS425 - Bootstrap button (checkbox & radio button)</title>
+  <!-- Latest compiled and minified Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css">
+</head>
 
-@model Youlytical.Models.CRMModels.ContactsModel;
-@{
-    ViewData["Title"] = "Test";
-    Layout="_CRMLayout";
+<body>
+  <div class="container">
+    <h2>Checkbox</h2>
+    <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+      <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
+      <label class="btn btn-outline-primary" for="Test">Checkbox 1</label>
 
-}
-<h2>@ViewData["Title"]</h2>
+      <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
+      <label class="btn btn-outline-primary" for="">Checkbox 2</label>
 
-
-<p>Use this area to provide additional information.</p>
-<br /> <br />
-
-<form method="post">
-
-
-<div class="form-group row">
-    <div class="form-group col-sm-1 text-center">
-        <label class="custom-control-Primary">Primary</label>
-        
-        <label class="custom-control custom-checkbox text-center">
-            <input type="checkbox" asp-for="EmailData[0].Primary" name="chbxTerms" id="Email_0" class="custom-control-input text-center">
-            <span class="custom-control-label" asp-for="EmailData[0].Primary"></span>
-        </label>
-    </div>
-    <div class="form-group col-sm-3">
-        <Select class="custom-control-formElement form-control form-control-dropdown custom-form-Element" asp-for="EmailData[0].EmailType" id="Email_0">
-            <option value="" >Email Type</option>
-            <option value="Personal">Personal</option>
-            <option value="Business">Business</option>
-        </Select>
-    </div>
-    <div class="form-group col-sm-6">
-        <input asp-for="EmailData[0].Email" id="Email_0" class="form-control form-control-user custom-form-Element" placeholder="Email Address" /> 
-    </div>
-</div> 
-<div id="new_Email"></div>
-<div class="form-group row">
-    <div class="form-group">
-         <button class="btn btn-primary btn-user custom-form-Element" type="submit">
-            <i class="float-right fas fa-save fa-2x"></i>
-        </button>
-        <button class="add btn btn-green float-right custom-form-Element"><i class="text-right custom-form-Element fas fa-plus fa-2x"></i></button>
-        <input type="hidden" value="0" id="total_email">
-    </div>
+      <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
+      <label class="btn btn-outline-primary" for="btncheck3">Checkbox 3</label>
 </div>
-</form>
+    <br><br>
+    <h2>Radio Buttons</h2>
+    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+      <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+      <label class="btn btn-outline-primary" for="btnradio1">Radio 1</label>
 
+      <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+      <label class="btn btn-outline-primary" for="btnradio2">Radio 2</label>
 
+      <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+      <label class="btn btn-outline-primary" for="btnradio3">Radio 3</label>
+    </div>
+  </div>
+</body>
 
-
-@section Scripts
-{
-    <script>
-        $('.add').on('click', add);
-        function add() {
-            var new_Email_No = parseInt($('#total_email').val()) + 1;
-            var new_Email = "<div id='Email_" + new_Email_No + "' class='form-group row'><div class='form-group col-sm-1 text-center'><label class='text-center'>Primary</label><label class='custom-control custom-checkbox text-center'> <input type='checkbox' asp-for='EmailData.Primary' name='chbxTerms' id='Email_" + new_Email_No + "' class='custom-control-input text-center'> <span class='custom-control-label text-center' asp-for='EmailData.Primary'></span> </label></div><div class='form-group col-sm-3'> <Select class='form-control form-control-dropdown custom-form-Element' asp-for='EmailData.EmailType style='height:50px' id='Email_" + new_Email_No + "'><option value='' >Email Type</option><option value='Personal'>Personal</option><option value='Business'>Business</option> </Select></div><div class='form-group col-sm-6'> <input asp-for='EmailData.Email' id='Email_" + new_Email_No + "' class='form-control form-control-user custom-form-Element' placeholder='Email Address' /></div><div class='form-group col-sm-1'><button class='btn btn-register custom-form-Element' id='Email_" + new_Email_No + "' onClick='removeItem(this.id)'><i class='fas fa-trash-alt fa-lg'></i></button></div></div>";
-            @* var new_input = "<input type='text' id='Email_" + new_Email_No + "'>"; *@
-            $('#new_Email').append(new_Email);
-            $('#total_email').val(new_Email_No);
-            return false;
-        }
-        function removeItem(clicked_id) {
-            document.getElementById(clicked_id).remove();
-        }
-    </script>
-}
-
+</html>
