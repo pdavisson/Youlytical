@@ -14407,11 +14407,6 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\peted\\source\\repos\\Youlytical\\Views\\CRM\\CreateEditContact.cshtml",
-      "TargetPath": "Views\\CRM\\CreateEditContact.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "c:\\Users\\peted\\source\\repos\\Youlytical\\Views\\Shared\\_FormLayout.cshtml",
       "TargetPath": "Views\\Shared\\_FormLayout.cshtml",
       "FileKind": "mvc"
@@ -14447,8 +14442,8 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\peted\\source\\repos\\Youlytical\\Views\\CRM\\test.cshtml",
-      "TargetPath": "Views\\CRM\\test.cshtml",
+      "FilePath": "c:\\Users\\peted\\source\\repos\\Youlytical\\Views\\CRM\\Test.cshtml",
+      "TargetPath": "Views\\CRM\\Test.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14477,6 +14472,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\peted\\source\\repos\\Youlytical\\Views\\CRM\\new_index_dev.cshtml",
+      "TargetPath": "Views\\CRM\\new_index_dev.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\peted\\source\\repos\\Youlytical\\Views\\Home\\Index.cshtml",
       "TargetPath": "Views\\Home\\Index.cshtml",
       "FileKind": "mvc"
@@ -14499,6 +14499,11 @@
     {
       "FilePath": "c:\\Users\\peted\\source\\repos\\Youlytical\\Views\\_ViewStart.cshtml",
       "TargetPath": "Views\\_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\peted\\source\\repos\\Youlytical\\Views\\CRM\\ModalRecord.cshtml",
+      "TargetPath": "Views\\CRM\\ModalRecord.cshtml",
       "FileKind": "mvc"
     }
   ],

@@ -48,10 +48,10 @@
       });
     $("#AdminTable").dataTable();
     $("#MembersTable").dataTable();
+    $("#ContactsTable").dataTable();
   })   
 $(document).ready(function () {
   $('.SelectedUser').on('click', function () {
-    // var GUID = $(this).children("td:eq(0)").text();
     document.getElementById("jsGUID").value=$(this).children("td:eq(0)").text();
     document.getElementById("jsFirstName").value=$(this).children("td:eq(2)").text();
     document.getElementById("jsLastName").value=$(this).children("td:eq(3)").text();
@@ -75,4 +75,3 @@ function removeItem(clicked_id) {
     document.getElementById(clicked_id).remove();
 }
 
-    

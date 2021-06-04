@@ -5,18 +5,19 @@
     ViewData["Title"]="Dashboard";
     Layout="_CRMLayout";
 }
+
 <!-- DataTables Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3 d-sm-inline-block">
         <h3 class="card-header text-uppercase">
-            <a href="#" data-toggle="modal" data-target="#addContactModal">
+            <a href="#" data-toggle="modal" id="CreateContact" data-target="#CreateEditContactModal" title="Add New Contact">
                 <i class="text-right material-icons-outlined add-icon float-right">add</i>Contacts
             </a>
         </h3>
     </div>  
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-bordered table-hover" id="ContactsTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <th style="display:none;">Contact ID</th>
@@ -31,7 +32,8 @@
                 <tbody>
                     @foreach (var item in ViewBag.ContactList)
                     {
-                        <tr>
+                        <tr id="@item.ContactID">
+                        @* <tr onclick="location.href = '@(Url.Action("ModalRecord", "CRM", new { ContactID = @item.ContactID }))'"> *@
                             <td style="display:none;">@item.ContactID</td>
                             <td>@item.FirstName</td>
                             <td>@item.LastName</td>
@@ -69,29 +71,33 @@
     </div>
 </div>
 <!-- Logout Modal-->
-<div class="modal fade" id="addContactModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal  fade" id="CreateEditContactModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add Contact</h5>
+                <h5 class="modal-title text-uppercase" id="exampleModalLabel">Add Contact</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
             <form id="CreateEditContact" class="user" asp-controller="CRM"  method="POST">
+                <div id="alert_placeholder" class="container"></div>
                 <div class="modal-body">
                     <div id="accordion" role="tablist" aria-multiselectable="true">
                         <div class="card">
                             <h5 class="card-header text-uppercase" role="tab" id="headingOne">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="collapsed d-block">
-                                    <i class="fas fa-chevron-down float-right"></i> Names
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="d-block">
+                                    <i class="fas fa-chevron-down float-right"></i> Contact Name
                                 </a>
                             </h5>
                             <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
                                 <div class="card-body">
                                     <div class="form-group custom-row">
+                                        <div type="hidden">
+                                            <input asp-for="ContactData.ContactID" type="hidden" id="ContactUID" value="0" />
+                                        </div>
                                         <div class="col-sm-2">
-                                            <Select class="form-control form-control-dropdown" asp-for="ContactData.Prefix" style="height:50px" id="test">
+                                            <Select class="form-control form-control-dropdown" asp-for="ContactData.Prefix" style="height:50px" id="Prefix">
                                                 <option value="">Prefix</option>
                                                 <option value="1st Lt">1st Lt</Option>
                                                 <option value="Adm">Adm</Option>
@@ -122,14 +128,16 @@
                                                 <option value="Sister">Sister</Option>
                                             </Select>
                                         </div>
+                                        
+                                        @* <div><input value="@ViewBag.ModalContact[0].FirstName" /></div> *@
                                         <div class="col-sm-4">
-                                            <input asp-for="ContactData.FirstName" class="form-control form-control-user" placeholder="First Name" />
+                                            <input asp-for="ContactData.FirstName" id="FirstName" class="form-control form-control-user" placeholder="First Name" />
                                         </div>
-                                            <div class="col-sm-4">
-                                            <input asp-for="ContactData.LastName" class="form-control form-control-user" placeholder="Last Name" />
+                                        <div class="col-sm-4">
+                                            <input asp-for="ContactData.LastName" id="LastName" class="form-control form-control-user" placeholder="Last Name" />
                                         </div>
                                         <div class="col-sm-2">
-                                            <Select class="form-control form-control-dropdown" asp-for="ContactData.Suffix" style="height:50px" id="test">
+                                            <Select class="form-control form-control-dropdown" asp-for="ContactData.Suffix" style="height:50px" id="Suffix">
                                                 <option value="" >Suffix</option>
                                                 <option value="II">II</option>
                                                 <option value="III">III</option>
@@ -149,72 +157,10 @@
                                             </Select>
                                         </div>
                                     </div>
-                                <div class="form-group custom-row">
-                                    <div class="col-sm-2">
-                                        <Select class="form-control form-control-dropdown" asp-for="ContactData.SpousePrefix" style="height:50px" id="test">
-                                            <option value="">Prefix</option>
-                                            <option value="1st Lt">1st Lt</Option>
-                                            <option value="Adm">Adm</Option>
-                                            <option value="Atty">Atty</Option>
-                                            <option value="Brother">Brother</Option>
-                                            <option value="Capt">Capt</Option>
-                                            <option value="Chief">Chief</Option>
-                                            <option value="Cmdr">Cmdr</Option>
-                                            <option value="Col">Col</Option>
-                                            <option value="Dean">Dean</Option>
-                                            <option value="Dr">Dr</Option>
-                                            <option value="Elder">Elder</Option>
-                                            <option value="Father">Father</Option>
-                                            <option value="Gen">Gen</Option>
-                                            <option value="Gov">Gov</Option>
-                                            <option value="Hon">Hon</Option>
-                                            <option value="Lt Col">Lt Col</Option>
-                                            <option value="Maj">Maj</Option>
-                                            <option value="MSgt">MSgt</Option>
-                                            <option value="Mr">Mr</Option>
-                                            <option value="Mrs">Mrs</Option>
-                                            <option value="Ms">Ms</Option>
-                                            <option value="Pastor">Pastor</Option>
-                                            <option value="Prince">Prince</option>
-                                            <option value="Prof">Prof</Option>
-                                            <option value="Rabbi">Rabbi</Option>
-                                            <option value="Rev">Rev</Option>
-                                            <option value="Sister">Sister</Option>
-                                        </Select>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <input asp-for="ContactData.SpouseFirstName" class="form-control form-control-user" placeholder="Spouse First Name" />
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <input asp-for="ContactData.SpouseLastName" class="form-control form-control-user" placeholder="Spouse Last Name" />
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <Select class="form-control form-control-dropdown" asp-for="ContactData.SpouseSuffix" style="height:50px" id="test">
-                                            <option value="" >Suffix</option>
-                                            <option value="II">II</option>
-                                            <option value="III">III</option>
-                                            <option value="IV">IV</option>
-                                            <option value="CPA">CPA</option>
-                                            <option value="DDS">DDS</option>
-                                            <option value="Esq">Esq</option>
-                                            <option value="JD">JD</option>
-                                            <option value="Jr">Jr</option>
-                                            <option value="LLD">LLD</option>
-                                            <option value="MD">MD</option>
-                                            <option value="PhD">PhD</option>
-                                            <option value="Ret">Ret</option>
-                                            <option value="RN">RN</option>
-                                            <option value="Sr">Sr</option>
-                                            <option value="DO">DO</option>
-                                        </Select>
-                                    </div>
                                 </div>
                             </div>
                         </div>  
                     </div>
-
-
-
                     <div class="card">
                         <h5 class="card-header text-uppercase" role="tab" id="headingTwo">
                             <a class="collapsed d-block" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -223,7 +169,7 @@
                         </h5>
                         <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
                             <div class="card-body">
-                                <div id="Email_Container_0">
+                                @* <div id="Email_Container_0">
                                     <div class="form-group row">
                                         <div class="col-sm-1 text-center">
                                             <input type="checkbox" class="btn-check form-control-user custom-form-Element" asp-for="EmailData[0].Primary" id="Email_0" autocomplete="off">
@@ -240,16 +186,16 @@
                                             <input asp-for="EmailData[0].Email" id="Email_0" class="form-control form-control-user custom-form-Element" placeholder="Email Address" /> 
                                         </div>
                                         <div class='form-group col-sm-1'>
-                                            <button class="btn btn-alt-red custom-form-Element" id="Email_Container_0" onClick="removeItem(this.id)">
+                                            <button class="btn btn-alt-red custom-form-Element" id="Email_Container_0" onClick="removeItem(this.id),''">
                                             <i class='material-icons-outlined icon-size-xxl'>delete</i></button>
                                         </div>
                                     </div> 
-                                </div> 
+                                </div>  *@
                                 <div id="new_Email"></div>
                                 <div class="form-group row">
                                     <div class="form-group">
-                                        <button class="addEmail btn btn-alt-green custom-form-Element"><i class="text-right icon-size-xxl material-icons-outlined align-middle">add</i></button>
-                                        <input type="hidden" value="0" id="total_email">
+                                        <button class="addEmail btn btn-alt-green custom-form-Element" title="Add New Email"><i class="text-right icon-size-xxl material-icons-outlined align-middle">add</i></button>
+                                        <input type="hidden" value="-1" id="total_email">
                                     </div>
                                 </div> 
                                   
@@ -264,7 +210,7 @@
                         </h5>
                         <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
                             <div class="card-body">
-                                <div id="Phone_Container_0">
+                                @* <div id="Phone_Container_0">
                                     <div class="form-group row">
                                         <div class="col-sm-1 text-center">
                                             <input type="checkbox" class="btn-check form-control-user custom-form-Element" asp-for="PhoneData[0].Primary" id="Phone_0" autocomplete="off">
@@ -282,16 +228,16 @@
                                             <input asp-for="PhoneData[0].PhoneNumber" id="Phone_0" class="form-control form-control-user custom-form-Element" placeholder="Phone Number" /> 
                                         </div>
                                         <div class='form-group col-sm-1'>
-                                            <button class="btn btn-alt-red custom-form-Element" id="Phone_Container_0" onClick="removeItem(this.id)">
+                                            <button class="btn btn-alt-red custom-form-Element" id="Phone_Container_0" onclick="removeItem(this.id)">
                                             <i class='material-icons-outlined icon-size-xxl'>delete</i></button>
                                         </div>
                                     </div>
-                                </div>
+                                </div> *@
                                 <div id="new_Phone"></div>
                                 <div class="form-group row">
                                     <div class="form-group">
-                                        <button class="addPhone btn btn-alt-green custom-form-Element"><i class="text-right icon-size-xxl material-icons-outlined align-middle">add</i></button>
-                                        <input type="hidden" value="0" id="total_Phone">
+                                        <button class="btn btn-alt-green custom-form-Element addPhone" title="Add New Phone Number"><i class="text-right icon-size-xxl material-icons-outlined align-middle">add</i></button>
+                                        <input type="hidden" value="-1" id="total_Phone">
                                     </div>
                                 </div>
                             </div>
@@ -305,7 +251,7 @@
                         </h5>
                         <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFour">
                             <div class="card-body">
-                                <div class="Address_Container_0">
+                                @* <div class="Address_Container_0">
                                     <div class="form-group row">
                                         <div class="col-sm-1 text-center">
                                             <input type="checkbox" class="btn-check form-control-user custom-form-Element" asp-for="AddressData[0].Primary" id="Address_0" autocomplete="off">
@@ -318,7 +264,7 @@
                                             <input asp-for="AddressData[0].Address2" class="form-control form-control-user" placeholder="Address2" />                
                                         </div>
                                         <div class="form-group col-sm-2">
-                                            <Select class="form-control form-control-dropdown" asp-for="AddressData[0].AddressType" style="height:50px" id="test">
+                                            <Select class="form-control form-control-dropdown" asp-for="AddressData[0].AddressType" style="height:50px" id="AddressType">
                                                 <option value="">Address Type</option>
                                                 <option value="Residential" >Residential</option>
                                                 <option value="Business">Business</option>
@@ -343,16 +289,17 @@
                                             <input asp-for="AddressData[0].Province" class="form-control form-control-user" placeholder="Province" />                
                                         </div>
                                         <div class='form-group col-sm-1'>
+
                                             <button class="btn btn-alt-red custom-form-Element" id="Address_Container_0" onClick="removeAddress(this.id)">
                                             <i class='material-icons-outlined icon-size-xxl'>delete</i></button>
                                         </div>
                                     </div> 
-                                </div>
+                                </div> *@
                                 <div id="new_Address"></div>
                                 <div class="form-group row">
                                     <div class="form-group">
-                                        <button class="addAddress btn btn-alt-green custom-form-Element"><i class="text-right icon-size-xxl material-icons-outlined align-middle">add</i></button>
-                                        <input type="hidden" value="0" id="total_Address">
+                                        <button class="addAddress btn btn-alt-green custom-form-Element" title="Add New Address"><i class="text-right icon-size-xxl material-icons-outlined align-middle">add</i></button>
+                                        <input type="hidden" value="-1" id="total_Address">
                                     </div>
                                     
                                 </div>
@@ -393,8 +340,8 @@
 
 
                     <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <button id="logout" type="submit" asp-action="CreateContact" class="btn btn-primary">Add Contact</button>
+                        <button class="btn btn-secondary closemodal" type="button" data-dismiss="modal" title="Cancel"><i class="text-right icon-size-xxl material-icons-outlined align-middle">close</i></button>
+                        <button id="SaveRecord" type="submit" asp-action="CreateContact" class="btn btn-primary" title="Save"><i class="text-right icon-size-xxl material-icons-outlined align-middle">save_alt</i></button>
                     </div> 
                 </div>
             </form>
@@ -405,21 +352,25 @@
     <!-- Page level custom scripts -->
     <script src="~/js/demo/datatables-demo.js"></script>
     <script src="~/js/site.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    @* <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> *@
     <script>
+        $(window).on('load', hidemodal);
         $('.addEmail').on('click', addEmail);
         function addEmail() {
             var new_Email_No = parseInt($('#total_email').val()) + 1;
-            var new_Email = "<div class='form-group row' id='Email_Container_" + new_Email_No + "'><div class='col-sm-1 text-center'><input type='checkbox' class='btn-check form-control-user custom-form-Element' asp-for='EmailData[" + new_Email_No + "].Primary' id='Email_" + new_Email_No + "' autocomplete='off'><label class='btn btn-outline-purple custom-form-Element custom-btn-checkbox' id='Email_" + new_Email_No + "' asp-for='EmailData[" + new_Email_No + "].Primary' for='Email_" + new_Email_No + "'>Primary Address</label></div><div class='form-group col-sm-3'><Select class='custom-control-formElement form-control form-control-dropdown custom-form-Element' asp-for='EmailData[" + new_Email_No + "].EmailType' id='Email_" + new_Email_No + "'><option value='' >Email Type</option><option value='Personal'>Personal</option><option value='Business'>Business</option></Select></div><div class='form-group col-sm-7'><input asp-for='EmailData[" + new_Email_No + "].Email' id='Email_" + new_Email_No + "' class='form-control form-control-user custom-form-Element' placeholder='Email Address'/></div><div class='form-group col-sm-1'><button class='btn btn-alt-red custom-form-Element' id='Email_Container_" + new_Email_No + "' onClick='removeEmail(this.id)'><i class='material-icons-outlined icon-size-xxl'>delete</i></button></div></div>"
-            
+            var new_Email = "<div class='form-group row' id='Email_Container_" + new_Email_No + "'><div class='col-sm-1 text-center'><input type='checkbox' class='btn-check form-control-user custom-form-Element' name='EmailData[" + new_Email_No + "].Primary' id='Email_" + new_Email_No + "' autocomplete='off' value='true'><label class='btn btn-outline-purple custom-form-Element custom-btn-checkbox' id='Email_" + new_Email_No + "' name='EmailData[" + new_Email_No + "].Primary' for='Email_" + new_Email_No + "'>Primary Address</label></div><div class='form-group col-sm-3'><Select class='custom-control-formElement form-control form-control-dropdown custom-form-Element' name='EmailData[" + new_Email_No + "].EmailType' id='Email_" + new_Email_No + "'><option value='' >Email Type</option><option value='Personal'>Personal</option><option value='Business'>Business</option></Select></div><div class='form-group col-sm-7'><input name='EmailData[" + new_Email_No + "].Email' id='Email_" + new_Email_No + "' class='form-control form-control-user custom-form-Element' placeholder='Email Address'/></div><div class='form-group col-sm-1'><button class='btn btn-alt-red custom-form-Element' id='Email_Container_" + new_Email_No + "' onClick='removeEmail(this.id)'><i class='material-icons-outlined icon-size-xxl'>delete</i></button></div></div>";
             $('#new_Email').append(new_Email);
             $('#total_email').val(new_Email_No);
             return false;
         }
+        $('#CreateContact').on('click', buttonchange);
+            function buttonchange() {
+                $('#SaveRecord').attr('formaction','CreateContact');
+        }
         $('.addPhone').on('click', addPhone);
         function addPhone() {
             var new_Phone_No = parseInt($('#total_Phone').val()) + 1;
-            var new_Phone = "<div class='form-group row' id='Phone_Container_" + new_Phone_No + "'><div class='col-sm-1 text-center'><input type='checkbox' class='btn-check form-control-user custom-form-Element' asp-for='PhoneData[" + new_Phone_No + "].Primary' id='Phone_" + new_Phone_No + "' autocomplete='off'><label class='btn btn-outline-purple custom-form-Element custom-btn-checkbox' id='Email_" + new_Phone_No + "' asp-for='PhoneData[" + new_Phone_No + "].Primary' for='Phone_" + new_Phone_No + "'>Primary Phone</label></div><div class='form-group col-sm-3'><Select class='custom-control-formElement form-control form-control-dropdown custom-form-Element' asp-for='PhoneData[" + new_Phone_No + "].PhoneType' id='Phone_" + new_Phone_No + "'><option value='' >Phone Type</option><option value='Mobile'>Mobile</option><option value='Home'>Home</option><option value='Work'>Work</option></Select></div><div class='form-group col-sm-7'><input asp-for='PhoneData[" + new_Phone_No + "].PhoneNumber' id='Phone_" + new_Phone_No + "' class='form-control form-control-user custom-form-Element' placeholder='Phone Number' /></div><div class='form-group col-sm-1'><button class='btn btn-alt-red custom-form-Element' id='Phone_Container_" + new_Phone_No + "' onClick='removePhone(this.id)'><i class='material-icons-outlined icon-size-xxl'>delete</i></button></div></div></div>";
+            var new_Phone = "<div class='form-group row' id='Phone_Container_" + new_Phone_No + "'><div class='col-sm-1 text-center'><input type='checkbox' class='btn-check form-control-user custom-form-Element' name='PhoneData[" + new_Phone_No + "].Primary' id='Phone_" + new_Phone_No + "' autocomplete='off' data-val='true' data-val-required='The Primary field is required.' value='true' /><label class='btn btn-outline-purple custom-form-Element custom-btn-checkbox' id='Phone_" + new_Phone_No + "' for='Phone_" + new_Phone_No + "'>Primary Phone</label></div><div class='form-group col-sm-3'><Select class='custom-control-formElement form-control form-control-dropdown custom-form-Element' name='PhoneData[" + new_Phone_No + "].PhoneType' id='Phone_" + new_Phone_No + "'><option value='' >Phone Type</option><option value='Mobile'>Mobile</option><option value='Home'>Home</option><option value='Work'>Work</option></Select></div><div class='form-group col-sm-7'><input name='PhoneData[" + new_Phone_No + "].PhoneNumber' id='Phone_" + new_Phone_No + "' class='phone form-control form-control-user custom-form-Element' placeholder='Phone Number' /></div><div class='form-group col-sm-1'><button class='btn btn-alt-red custom-form-Element' id='Phone_Container_" + new_Phone_No + "' onClick='removePhone(this.id)'><i class='material-icons-outlined icon-size-xxl'>delete</i></button></div></div></div>";
             $('#new_Phone').append(new_Phone);
             $('#total_Phone').val(new_Phone_No);
             return false;
@@ -427,62 +378,172 @@
         $('.addAddress').on('click', addAddress);
         function addAddress() {
             var new_Address_No = parseInt($('#total_Address').val()) + 1;
-            var new_Address_row = "<div id='Address_" + new_Address_No + "'><hr><div class='form-group row'><div class='form-group col-sm-6'><input name='AddressData[" + new_Address_No +"].Address1' asp-for='AddressData[" + new_Address_No + "].Address1' class='form-control form-control-user' placeholder='Address1'/></div><div class='form-group col-sm-4'><input name='AddressData[" + new_Address_No + "].Address2' asp-for='AddressData[" + new_Address_No + "].Address2' class='form-control form-control-user' placeholder='Address2'/></div><div class='form-group col-sm-2'><select class='form-control form-control-dropdown' name='AddressData[" + new_Address_No + "].AddressType' asp-for='AddressData[" + new_Address_No + "].AddressType' style='height: 50px;' id='test'><option value=''>Address Type</option><option value='Residential'>Residential</option><option value='Business'>Business</option><option value='Other'>Other</option></select></div></div><div class='form-group row'><div class='form-group col-sm-4'><input name='AddressData[" + new_Address_No + "].City' asp-for='AddressData[" + new_Address_No + "].City' class='form-control form-control-user' placeholder='City'/></div><div class='form-group col-sm-4'><input name='AddressData[" + new_Address_No + "].State' asp-for='AddressData[" + new_Address_No + "].State' class='form-control form-control-user' placeholder='State'/></div><div class='form-group col-sm-4'><input name='AddressData[" + new_Address_No + "].Zip' asp-for='AddressData[" + new_Address_No + "].Zip' class='form-control form-control-user' placeholder='Zip'/></div></div><div class='form-group row'><div class='form-group col-sm-6'><input name='AddressData[" + new_Address_No + "].Country' asp-for='AddressData[" + new_Address_No + "].Country' class='form-control form-control-user' placeholder='Country'/></div><div class='form-group col-sm-5'><input name='AddressData[" + new_Address_No +"].Province' asp-for='AddressData[" + new_Address_No +"].Province' class='form-control form-control-user' placeholder='Province'/></div><div class='form-group col-sm-1'><button class='btn btn-alt-red custom-form-Element' id='Address_" + new_Address_No + "' onClick='removeAddress(this.id)'><i class='material-icons-outlined icon-size-xxl'>delete</i></button></div></div></div>";
+            var new_Address_row = "<div id='Address_" + new_Address_No + "'><hr><div class='form-group row'><div class='col-sm-1 text-center'><input type='checkbox' class='btn-check form-control-user custom-form-Element' name='AddressData[" + new_Address_No + "].Primary' id='Address_" + new_Address_No + "' autocomplete='off' value='true' /><label class='btn btn-outline-purple custom-form-Element custom-btn-checkbox' id='Address_" + new_Address_No + "' name='AddressData[" + new_Address_No + "].Primary' for='Address_" + new_Address_No + "'>Primary Address</label></div><div class='form-group col-sm-5'><input name='AddressData[" + new_Address_No +"].Address1' name='AddressData[" + new_Address_No + "].Address1' class='form-control form-control-user' placeholder='Address1'/></div><div class='form-group col-sm-4'><input name='AddressData[" + new_Address_No + "].Address2' name='AddressData[" + new_Address_No + "].Address2' class='form-control form-control-user' placeholder='Address2'/></div><div class='form-group col-sm-2'><select class='form-control form-control-dropdown' name='AddressData[" + new_Address_No + "].AddressType' name='AddressData[" + new_Address_No + "].AddressType' style='height: 50px;' id='test'><option value=''>Address Type</option><option value='Residential'>Residential</option><option value='Business'>Business</option><option value='Other'>Other</option></select></div></div><div class='form-group row'><div class='form-group col-sm-4'><input name='AddressData[" + new_Address_No + "].City' name='AddressData[" + new_Address_No + "].City' class='form-control form-control-user' placeholder='City'/></div><div class='form-group col-sm-4'><input name='AddressData[" + new_Address_No + "].State' name='AddressData[" + new_Address_No + "].State' class='form-control form-control-user' placeholder='State'/></div><div class='form-group col-sm-4'><input name='AddressData[" + new_Address_No + "].Zip' name='AddressData[" + new_Address_No + "].Zip' class='form-control form-control-user' placeholder='Zip'/></div></div><div class='form-group row'><div class='form-group col-sm-6'><input name='AddressData[" + new_Address_No + "].Country' name='AddressData[" + new_Address_No + "].Country' class='form-control form-control-user' placeholder='Country'/></div><div class='form-group col-sm-5'><input name='AddressData[" + new_Address_No +"].Province' name='AddressData[" + new_Address_No +"].Province' class='form-control form-control-user' placeholder='Province'/></div><div class='form-group col-sm-1'><button class='btn btn-alt-red custom-form-Element' id='Address_" + new_Address_No + "' onClick='removeAddress(this.id)'><i class='material-icons-outlined icon-size-xxl'>delete</i></button></div></div></div>";
             $('#new_Address').append(new_Address_row);
             $('#total_Address').val(new_Address_No);
             return false;
         }
-        function removeEmail(clicked_id) {
-            document.getElementById(clicked_id).remove();
-
-            $.ajax({
-                url: '@Url.Action("DeleteEmail", "CRM")',
-                type: 'POST',
-                dataType: 'json',
-                cache: false,
-                data: { 'id': clicked_id },
-                success: function () {
-                        alert("Email Successfully Deleted.")
-                },
-                error: function () {
-                    alert('Error occured');
-                }
-                });
-
+        //$('#CreateEditContactModal').modal({backdrop: 'static', keyboard: false})  
+   //    $('#CreateEditContactModal').on('hidden.bs.modal', function () {
+    //       $("#SaveRecord").click();
+     //       alert("Yes");
+      //      location.reload();
+       // })
+        $('.add-icon').on('click',hidemodal);
+        $('.close').on('click',hidemodal);
+        $('.closemodal').on('click',hidemodal);
+        function hidemodal() {
+            $('#CreateEditContactModal').modal('hide');
+            $('#total_Phone').val("-1");
+            $('#total_Address').val("-1");
+            $('#total_email').val("-1");
+            $("#FirstName").val('');
+            $("#Prefix").val('');
+            $("#LastName").val('');
+            $("#Suffix").val('');
+            $("#new_Phone").empty();
+            $("#new_Email").empty();
+            $("#new_Address").empty();
         }
-        function removeAddress(clicked_id) {
-            document.getElementById(clicked_id).remove();
+        $('CreateContact').on('click',changeSubmitType);
+        function changeSubmitType() {
+            $("#SaveRecord").attr('formaction','CreateContact');
+        }
+        $('#ContactsTable tbody tr').click(function() {
+            var ContactID=$(this).closest('tr').attr('id');
             $.ajax({
-                url: '@Url.Action("DeleteAddress", "CRM")',
-                type: 'POST',
+                url: '@Url.Action("ModalRecord", "CRM")',
+                type: 'GET',
                 dataType: 'json',
                 cache: false,
-                data: { 'id': clicked_id },
-                success: function () {
-                        alert("Address Successfully Deleted.")
+                data: { 'ContactID': ContactID },
+                success: function (response) {
+                    $("#new_Phone").empty();
+                    $("#new_Email").empty();
+                    $("#new_Address").empty();
+                    $("#SaveRecord").attr('formaction','EditContact');
+                    $("#ContactUID").val(response[0].contactID)                    ;
+                    $("#FirstName").val(response[0].firstName);
+                    $("#Prefix").val(response[0].prefix);
+                    $("#LastName").val(response[0].lastName);
+                    $("#Suffix").val(response[0].suffix);
+                    for(var e=0; e < response[0].emailAddresses.length; e++)
+                    {
+                        var new_Email_No = parseInt($('#total_email').val()) + 1;
+                        var new_Email = "<div class='form-group row' id='" + response[0].emailAddresses[e].eID + "'><div class='col-sm-1 text-center'><input type='hidden' name='EmailData[" + new_Email_No + "].eID' value='" + response[0].emailAddresses[e].eID + "' id='total_Email' /><input type='checkbox' class='eCheck_" + new_Email_No + " btn-check form-control-user custom-form-Element' name='EmailData[" + new_Email_No + "].Primary' id='Email_" + new_Email_No + "' autocomplete='off' value='true'><label class='btn btn-outline-purple custom-form-Element custom-btn-checkbox' id='Email_" + new_Email_No + "' name='EmailData[" + new_Email_No + "].Primary' for='Email_" + new_Email_No + "'>Primary Address</label></div><div class='form-group col-sm-3'><Select class='EmailType_" + new_Email_No + " custom-control-formElement form-control form-control-dropdown custom-form-Element' name='EmailData[" + new_Email_No + "].EmailType' id='Email_" + new_Email_No + "'><option value='' >Email Type</option><option value='Personal'>Personal</option><option value='Business'>Business</option></Select></div><div class='form-group col-sm-7'><input name='EmailData[" + new_Email_No + "].Email' id='Email_" + new_Email_No + "' class='form-control form-control-user custom-form-Element' placeholder='Email Address' value='" + response[0].emailAddresses[e].email + "' /></div><div class='form-group col-sm-1'><button class='btn btn-alt-red custom-form-Element' id='" + response[0].emailAddresses[e].eID + "' onClick='removeEmail(this.id)'><i class='material-icons-outlined icon-size-xxl'>delete</i></button></div></div>";
+                        $('#new_Email').append(new_Email);
+                        $('#total_email').val(new_Email_No);
+                        $('.EmailType_' + new_Email_No).val(response[0].emailAddresses[e].emailType);
+                        if(response[0].emailAddresses[e].primary===true)
+                        {
+                            $('.eCheck_' + new_Email_No).prop("checked",true);
+                        }
+                        else
+                        {
+                            $('.eCheck_' + new_Email_No).prop("checked",false);
+                        }
+                    }
+                    for(var p=0; p < response[0].phoneNumbers.length; p++)
+                    {   
+                        var new_Phone_No = parseInt($('#total_Phone').val()) + 1;
+                        //var new_Phone = "<div class='form-group row' id='Phone_Container_" + new_Phone_No + "'><div class='col-sm-1 text-center'><input type='hidden' name='PhoneData[" + new_Phone_No + "].pID' value='" + response[0].phoneNumbers[p].pID + "' /><input type='checkbox' class='pCheck_" + new_Phone_No + " btn-check form-control-user custom-form-Element' name='PhoneData[" + new_Phone_No + "].Primary' id='Phone_" + new_Phone_No + "' autocomplete='off' value='true'><label class='btn btn-outline-purple custom-form-Element custom-btn-checkbox' id='Phone_" + new_Phone_No + "' name='PhoneData[" + new_Phone_No + "].Primary' for='Phone_" + new_Phone_No + "'>Primary Phone</label></div><div class='form-group col-sm-3'><Select class='PhoneType_" + new_Phone_No + " custom-control-formElement form-control form-control-dropdown custom-form-Element' name='PhoneData[" + new_Phone_No + "].PhoneType' id='Phone_" + new_Phone_No + "'><option value='' >Select Phone Type....</option><option value='Mobile'>Mobile</option><option value='Home'>Home</option><option value='Work'>Work</option></Select></div><div class='form-group col-sm-7'><input name='PhoneData[" + new_Phone_No + "].PhoneNumber' id='Phone_" + new_Phone_No + "' class='phone form-control form-control-user custom-form-Element' value='" + response[0].phoneNumbers[p].phoneNumber + "' placeholder='Phone Number' /></div><div class='form-group col-sm-1'><button class='btn btn-alt-red custom-form-Element' id='Phone_Container_" + new_Phone_No + "' value='" + response[0].phoneNumbers[p].pID + "' onClick='removePhone(this.id)'><i class='material-icons-outlined icon-size-xxl'>delete</i></button></div></div></div>";
+                        var new_Phone = "<div class='form-group row' id='" + response[0].phoneNumbers[p].pID + "'><div class='col-sm-1 text-center'><input type='hidden' name='PhoneData[" + new_Phone_No + "].pID' value='" + response[0].phoneNumbers[p].pID + "' /><input type='checkbox' class='pCheck_" + new_Phone_No + " btn-check form-control-user custom-form-Element' name='PhoneData[" + new_Phone_No + "].Primary' id='Phone_" + new_Phone_No + "' autocomplete='off' value='true'><label class='btn btn-outline-purple custom-form-Element custom-btn-checkbox' id='Phone_" + new_Phone_No + "' name='PhoneData[" + new_Phone_No + "].Primary' for='Phone_" + new_Phone_No + "'>Primary Phone</label></div><div class='form-group col-sm-3'><Select class='PhoneType_" + new_Phone_No + " custom-control-formElement form-control form-control-dropdown custom-form-Element' name='PhoneData[" + new_Phone_No + "].PhoneType' id='Phone_" + new_Phone_No + "'><option value='' >Select Phone Type....</option><option value='Mobile'>Mobile</option><option value='Home'>Home</option><option value='Work'>Work</option></Select></div><div class='form-group col-sm-7'><input name='PhoneData[" + new_Phone_No + "].PhoneNumber' id='Phone_" + new_Phone_No + "' class='phone form-control form-control-user custom-form-Element' value='" + response[0].phoneNumbers[p].phoneNumber + "' placeholder='Phone Number' /></div><div class='form-group col-sm-1'><button class='btn btn-alt-red custom-form-Element' id='" + response[0].phoneNumbers[p].pID + "' onClick='removePhone(this.id)'><i class='material-icons-outlined icon-size-xxl'>delete</i></button></div></div></div>";
+                        $('#new_Phone').append(new_Phone);
+                        $('#total_Phone').val(new_Phone_No);
+                        $('.PhoneType_' + new_Phone_No).val(response[0].phoneNumbers[p].phoneType);
+                        if(response[0].phoneNumbers[p].primary===true)
+                        {
+                            $('.pCheck_' + new_Phone_No).prop("checked",true);
+                        }
+                        else
+                        {
+                            $('.pCheck_' + new_Phone_No).prop("checked",false);
+                        }
+                    }
+                    for(var a=0; a < response[0].addresses.length; a++)
+                    {
+                        var new_Address_No=parseInt($('#total_Address').val()) + 1;
+                        var new_Address="<div id='" + response[0].addresses[a].aID +  "'><div class='form-group row'><div class='col-sm-1 text-center'><input type='hidden' name='AddressData[" + new_Address_No + "].aID' value='" + response[0].addresses[a].aID + "' id='total_Address' /><input type='checkbox' class='aCheck_" + new_Address_No + " btn-check form-control-user custom-form-Element' name='AddressData[" + new_Address_No + "].Primary' id='Address_" + new_Address_No + "' autocomplete='off' value='true' /><label class='btn btn-outline-purple custom-form-Element custom-btn-checkbox' id='Address_" + new_Address_No + "' name='AddressData[" + new_Address_No + "].Primary' for='Address_" + new_Address_No + "'>Primary Address</label></div><div class='form-group col-sm-5'><input name='AddressData[" + new_Address_No +"].Address1' name='AddressData[" + new_Address_No + "].Address1' class='form-control form-control-user' placeholder='Address1' value='" + response[0].addresses[a].address1 + "'/></div><div class='form-group col-sm-4'><input name='AddressData[" + new_Address_No + "].Address2' name='AddressData[" + new_Address_No + "].Address2' class='form-control form-control-user' placeholder='Address2' value='" + response[0].addresses[a].address2 + "'/></div><div class='form-group col-sm-2'><select class='AddressType_" + new_Address_No + " form-control form-control-dropdown' name='AddressData[" + new_Address_No + "].AddressType' name='AddressData[" + new_Address_No + "].AddressType' style='height: 50px;' id='test'><option value=''>Address Type</option><option value='Residential'>Residential</option><option value='Business'>Business</option><option value='Other'>Other</option></select></div></div><div class='form-group row'><div class='form-group col-sm-4'><input name='AddressData[" + new_Address_No + "].City' name='AddressData[" + new_Address_No + "].City' class='form-control form-control-user' placeholder='City' value='" + response[0].addresses[a].city + "'/></div><div class='form-group col-sm-4'><input name='AddressData[" + new_Address_No + "].State' name='AddressData[" + new_Address_No + "].State' class='form-control form-control-user' placeholder='State' value='" + response[0].addresses[a].state + "'/></div><div class='form-group col-sm-4'><input name='AddressData[" + new_Address_No + "].Zip' name='AddressData[" + new_Address_No + "].Zip' class='form-control form-control-user' placeholder='Zip' value='" +response[0].addresses[a].zip + "'/></div></div><div class='form-group row'><div class='form-group col-sm-6'><input name='AddressData[" + new_Address_No + "].Country' name='AddressData[" + new_Address_No + "].Country' class='form-control form-control-user' placeholder='Country' value='" + response[0].addresses[a].country + "'/></div><div class='form-group col-sm-5'><input name='AddressData[" + new_Address_No +"].Province' name='AddressData[" + new_Address_No +"].Province' class='form-control form-control-user' placeholder='Province' value='" + response[0].addresses[a].province + "'/></div><div class='form-group col-sm-1'><button class='btn btn-alt-red custom-form-Element' id='" + response[0].addresses[a].aID + "'onClick='removeAddress(this.id)'><i class='material-icons-outlined icon-size-xxl'>delete</i></button></div></div></div>";
+                        $('#new_Address').append(new_Address);
+                        $('#total_Address').val(new_Address_No);
+                        $('.AddressType_' + new_Address_No).val(response[0].addresses[a].addressType);
+                        if(response[0].addresses[a].primary===true)
+                        {
+                            $('aCheck_' + new_Address_No).prop("checked",true);
+                        }
+                        else
+                        {
+                            $('aCheck_' + new_Address_No).prop("checked",false);
+                        }
+                    }
+                    $('#CreateEditContactModal').modal('show');
                 },
-                error: function () {
-                    alert('Error occured');
+                error: function (response) {
+                    console.log(JSON.stringify(response));
+                    showAlert("Error: ","something went wrong.","alert-danger");
+                    alert("Errore");
                 }
                 });
-
+        });
+        function removeEmail(clicked_id) {
+            var answer =confirm("Are you sure?");
+            if(answer===true)
+            {
+                document.getElementById(clicked_id).remove();
+                $.ajax({
+                    url: '@Url.Action("DeleteEmail", "CRM")',
+                    type: 'POST',
+                    dataType: 'json',
+                    cache: false,
+                    data: { 'id': clicked_id },
+                    success: function () {
+                        showAlert("Success","The Contacts email has been deleted.","alert-success");
+                    },
+                    error: function () {
+                        showAlert("Error","something went wrong.","alert-danger");
+                    }
+                });
+            }
         }
         function removePhone(clicked_id) {
-            document.getElementById(clicked_id).remove();
-            $.ajax({
-                url: '@Url.Action("DeletePhone", "CRM")',
-                type: 'POST',
-                dataType: 'json',
-                cache: false,
-                data: { 'id': clicked_id },
-                success: function () {
-                        alert("Address Successfully Deleted.")
-                },
-                error: function () {
-                    alert('Error occured');
-                }
+            var answer = confirm("Are you sure you want to remove this phone number?")
+            if(answer===true)
+            {
+                document.getElementById(clicked_id).remove();
+                $.ajax({
+                    url: '@Url.Action("DeletePhone", "CRM")',
+                    type: 'POST',
+                    dataType: 'json',
+                    cache: false,
+                    data: { 'id': clicked_id },
+                    success: function () {
+                        showAlert("Success","The contacts phone number has been deleted.","alert-success");
+                    },
+                    error: function () {
+                        showAlert("Error ","something went wrong.","alert-danger");
+                    }
                 });
-
+            }
+        }
+        function removeAddress(clicked_id) {
+            var answer =confirm("Are you sure?");
+            if(answer===true)
+            {
+                document.getElementById(clicked_id).remove();
+                $.ajax({
+                    url: '@Url.Action("DeleteAddress", "CRM")',
+                    type: 'POST',
+                    dataType: 'json',
+                    cache: false,
+                    data: { 'id': clicked_id },
+                    success: function () {
+                            showAlert("Success","The contacts address has been deleted.","alert-success");
+                    },
+                    error: function () {
+                        alert('Error occured');
+                    }
+                });
+            }
         }
         $('form').on('click', checkbox-trigger, function () {
             if (this.checked) {
@@ -492,7 +553,22 @@
                 $(this).val(false);
             }
         });
+        function showAlert( title, message, alerttype ) 
+        {
+            $('#alert_placeholder').append( $('#alert_placeholder').append(
+                '<div id="alertdiv" class="alert alert-dismissable ' + alerttype + ' text-center" role="alert">' +
+                    '<strong>' + title + ': </strong>' + message + 
+                    '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+                        '<span aria-hidden="true">&times;</span>' +
+                    '</button>' +
+                    '</div>')
+            );
+        // close it in 3 secs
+            setTimeout( function() {
+                $("#alertdiv").remove();
+            }, 3000 );
+        }   
+
     </script>
 }
-
 <link rel="stylesheet" href="~/css/datatable.min.css" />
